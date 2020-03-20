@@ -2,12 +2,17 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FathymSharedModule, MaterialModule } from '@lcu/common';
-import { LcuService } from './services/lcu.service';
-import { LcuComponent } from './controls/lcu/lcu.component';
-import { LcuDirective } from './directives/lcu.directive';
+import { LcuLimitedTrialWelcomeElementComponent } from './elements/welcome/welcome.component';
+import { LcuLimitedTrialDataAppsElementComponent } from './elements/data-apps/data-apps.component';
+import { LcuLimitedTrialDataFlowElementComponent } from './elements/data-flow/data-flow.component';
+import { LimitedTrialStateContext } from './state/limited-trial/limited-trial-state.context';
 
 @NgModule({
-  declarations: [LcuComponent, LcuDirective],
+  declarations: [
+    LcuLimitedTrialWelcomeElementComponent,
+    LcuLimitedTrialDataAppsElementComponent,
+    LcuLimitedTrialDataFlowElementComponent
+  ],
   imports: [
     FathymSharedModule,
     FormsModule,
@@ -15,14 +20,22 @@ import { LcuDirective } from './directives/lcu.directive';
     FlexLayoutModule,
     MaterialModule
   ],
-  exports: [LcuComponent, LcuDirective],
-  entryComponents: []
+  exports: [
+    LcuLimitedTrialWelcomeElementComponent,
+    LcuLimitedTrialDataAppsElementComponent,
+    LcuLimitedTrialDataFlowElementComponent
+  ],
+  entryComponents: [
+    LcuLimitedTrialWelcomeElementComponent,
+    LcuLimitedTrialDataAppsElementComponent,
+    LcuLimitedTrialDataFlowElementComponent
+  ]
 })
 export class LcuLimitedTrialModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<LcuLimitedTrialModule> {
     return {
       ngModule: LcuLimitedTrialModule,
-      providers: [LcuService]
+      providers: [LimitedTrialStateContext]
     };
   }
 }
