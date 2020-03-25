@@ -5,9 +5,7 @@ import { LimitedTrialState } from './limited.state';
 @Injectable({
   providedIn: 'root'
 })
-export class LimitedTrialStateContext extends StateContext<
-  LimitedTrialState
-> {
+export class LimitedTrialStateContext extends StateContext<LimitedTrialState> {
   //  Properties
 
   //  Constructors
@@ -29,11 +27,11 @@ export class LimitedTrialStateContext extends StateContext<
     return { Loading: true } as LimitedTrialState;
   }
 
-  protected loadStateKey() {
+  protected loadStateKey(): string {
     return 'init';
   }
 
-  protected loadStateName() {
+  protected loadStateName(): string {
     return 'limitedtrial';
   }
 }
