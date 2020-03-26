@@ -6,15 +6,19 @@ import { FathymSharedModule, MaterialModule } from '@lcu/common';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './controls/home/home.component';
-import { DocumentationComponent } from './controls/documentation/documentation.component';
-import { LcuDocumentationModule } from '@lowcodeunit/lcu-documentation-common';
+// import { DocumentationComponent } from './controls/documentation/documentation.component';
+// import { LcuDocumentationModule } from '@lowcodeunit/lcu-documentation-common';
 import { LcuLimitedTrialModule } from '@napkin-ide/lcu-limited-trial-common';
+import { DataAppComponent } from './controls/data-app/data-app.component';
+import { DataFlowComponent } from './controls/data-flow/data-flow.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    DocumentationComponent
+    DataAppComponent,
+    DataFlowComponent
+    // DocumentationComponent
   ],
   imports: [
     AppRoutingModule,
@@ -23,11 +27,12 @@ import { LcuLimitedTrialModule } from '@napkin-ide/lcu-limited-trial-common';
     FathymSharedModule,
     MaterialModule,
     FlexLayoutModule,
-    LcuDocumentationModule.forRoot(),
+    // LcuDocumentationModule.forRoot(),
     LcuLimitedTrialModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [LcuLimitedTrialModule]
+  exports: [LcuLimitedTrialModule, DataAppComponent, DataFlowComponent],
+  entryComponents: [DataAppComponent, DataFlowComponent]
 })
 export class AppModule { }

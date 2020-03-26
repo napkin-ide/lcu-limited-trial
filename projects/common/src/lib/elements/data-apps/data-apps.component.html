@@ -1,3 +1,43 @@
 <h2>LcuLimitedTrial DataApps Next Steps</h2>
 
-<p>Do stuff and things!</p>
+<div fxLayout="row">
+    <div fxFlex fxFlexOrder="-1">
+      <p>This is an example of a flexbox CSS layout using Angular</p>
+    </div>
+    <div fxFlex fxFlexOrder="1" fxFlexOrder.gt-md="3">
+      <p fxHide="false" fxHide.gt-md>Hello</p>
+      <p fxShow="false" fxShow.gt-md>world!</p>
+    </div>
+    <div fxFlex fxFlexOrder="2">
+      <p>Cool</p>
+    </div>
+    <div fxFlex fxFlexOrder="3" fxFlexOrder.gt-md="1">
+      <p fxHide="false" fxHide.gt-md>Another way</p>
+      <p fxShow="false" fxShow.gt-md>to say hello world</p>
+    </div>
+  </div>
+
+<!-- <div class="widgets-row"
+    fxLayout
+    fxLayout.xs="column"
+    fxLayoutAlign="start"
+    fxLayoutWrap="wrap">
+    <div class="widget" fxFlex="100%">Large</div>
+</div>
+
+<div fxLayout
+    fxLayout.xs="column"
+    fxLayoutAlign="space-between"
+    fxLayoutWrap="wrap">
+    <div fxFlex="49%" class="widget"></div>
+    <div fxLayout
+        fxLayout.xs="column"
+        fxLayoutWrap="wrap"
+        fxLayoutAlign="space-around"
+        fxFlex="49%">
+        <div class="widget-sm" fxFlex="49%">Small</div>
+        <div class="widget-sm" fxFlex="49%">Small</div>
+        <div class="widget-sm" fxFlex="49%">Small</div>
+        <div class="widget-sm" fxFlex="49%">Small</div>
+    </div>
+</div> -->
