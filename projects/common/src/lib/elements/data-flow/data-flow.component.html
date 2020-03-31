@@ -1,3 +1,71 @@
-<h2>LcuLimitedTrial DataFlow Next Steps</h2>
+<div class="lcu-data-apps-config-manager" *ngIf="State">
+  <mat-toolbar>
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
 
-<p>Do stuff and things!</p>
+    <h2>Data Flow Management</h2>
+
+    <span class="filler"></span>
+  </mat-toolbar>
+
+  <mat-drawer-container class="drawer">
+    <mat-drawer mode="side" #drawer opened>
+      <div fxLayout="column" fxLayoutGap="3px">
+
+        <mat-tab-group>
+          <mat-tab>
+            <ng-template matTabLabel>
+              <span matBadge="3" matBadgeOverlap="false">Emulated Data Flows</span>
+            </ng-template>
+            <lcu-list-item
+              [list-data] = PublicDataSource
+              (selected-app)="SetActiveApp($event)">
+            </lcu-list-item>
+          </mat-tab>
+
+          <mat-tab>
+            <ng-template matTabLabel>
+              <span matBadge="1" matBadgeOverlap="false">Free Trial Data Flows</span>
+            </ng-template>
+            <lcu-list-item
+              [list-data] = PublicDataSource
+              (selected-app)="SetActiveApp($event)">
+            </lcu-list-item>
+          </mat-tab>
+
+          <!-- <mat-tab>
+            <ng-template matTabLabel>
+              <span matBadge="{{PublicDataSource.length}}" matBadgeOverlap="false">Emulated Data Flows</span>
+            </ng-template>
+            <lcu-app-list
+              [app-data] = PublicDataSource
+              app-type = 'Public'
+              (selected-app)="SetActiveApp($event)">
+            </lcu-app-list>
+          </mat-tab>
+
+          <mat-tab>
+            <ng-template matTabLabel>
+              <span matBadge="{{PrivateDataSource.length}}" matBadgeOverlap="false">Free Trial Data Flows</span>
+            </ng-template>
+            <lcu-app-list
+              [app-data] = PrivateDataSource
+              app-type = 'Private'
+              (selected-app)="SetActiveApp($event)">
+          </lcu-app-list>
+          </mat-tab> -->
+        </mat-tab-group>
+
+      </div>
+    </mat-drawer>
+
+    <!--CONTENT-->
+    <mat-drawer-content>
+      <div style="background-color: chartreuse;">
+        mat drawer
+      </div>
+    </mat-drawer-content>
+
+  </mat-drawer-container>
+</div>

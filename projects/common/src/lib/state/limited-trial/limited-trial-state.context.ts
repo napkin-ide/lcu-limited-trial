@@ -28,10 +28,18 @@ export class LimitedTrialStateContext extends StateContext<LimitedTrialState> {
   }
 
   protected loadStateKey(): string {
-    return 'init';
+    return 'main';
   }
 
   protected loadStateName(): string {
-    return 'limitedtrial';
+    return 'dataflowmanagement';
   }
+
+  // protected loadStateKey(): string {
+  //   return 'init';
+  // }
+
+  // protected loadStateName(): string {
+  //   return 'limitedtrial';
+  // }
 }

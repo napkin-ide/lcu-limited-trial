@@ -1,0 +1,23 @@
+<mat-card
+  *ngFor="let item of ListData; let first = first; let last = last"
+  [ngClass]="{ 'margin-top-2': first }"
+  class="margin-bottom-1">
+  <div fxLayout="row">
+      <mat-icon *ngIf="item.MaterialIcon">{{ item.MaterialIcon }}</mat-icon>
+      <mat-card-header [matTooltip]="item.Name">
+          <mat-card-title>{{ item.Name }}</mat-card-title>
+          <mat-card-subtitle>{{ item.Description }}</mat-card-subtitle>
+      </mat-card-header>
+  </div>
+
+  <mat-card-actions fxLayoutAlign="end">
+      <button mat-button color="accent" (click)="SetActiveItem(item)">
+          <mat-icon class="margin-right-1">edit</mat-icon>
+          Edit
+      </button>
+      <button mat-button color="warn">
+          <mat-icon class="margin-right-1">delete</mat-icon>
+          Delete
+      </button>
+  </mat-card-actions>
+</mat-card>
