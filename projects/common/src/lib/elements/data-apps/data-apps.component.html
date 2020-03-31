@@ -21,7 +21,6 @@
             </ng-template>
             <lcu-app-list 
               [app-data] = PublicDataSource 
-              app-type = 'Public'
               (selected-app)="SetActiveApp($event)">
             </lcu-app-list> 
           </mat-tab>
@@ -32,7 +31,6 @@
             </ng-template>
             <lcu-app-list 
               [app-data] = PrivateDataSource 
-              app-type = 'Private'
               (selected-app)="SetActiveApp($event)">
           </lcu-app-list>   
           </mat-tab>
@@ -64,7 +62,7 @@
 
     <!--CONTENT-->
     <mat-drawer-content>
-      <div style="background-color: chartreuse;">
+      <div style="background-color: rgb(56, 56, 56); height: 100%;">
         mat drawer
       </div>
     </mat-drawer-content>

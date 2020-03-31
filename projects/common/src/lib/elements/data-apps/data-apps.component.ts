@@ -28,6 +28,9 @@ export class LcuLimitedTrialDataAppsElementComponent extends LcuElementComponent
   constructor(protected injector: Injector,
               protected state: LimitedTrialStateContext) {
     super(injector);
+
+    this.PrivateDataSource = [];
+    this.PublicDataSource = [];
   }
 
   //  Life Cycle
@@ -59,11 +62,14 @@ export class LcuLimitedTrialDataAppsElementComponent extends LcuElementComponent
 
   //  Helpers
 
+  /**
+   * Handle when the state is returned
+   */
   protected handleStateChanges(): void {
-    console.log('this.state', this.state);
-    console.log('this.State', this.State);
-
-    this.separateAppTypes();
+    debugger;
+    if (this.State.Applications) {
+      this.separateAppTypes();
+    }
   }
 
   /**

@@ -34,17 +34,15 @@ export class LimitedTrialStateContext extends StateContext<LimitedTrialState> {
 
   //  Helpers
   protected defaultValue() {
-    const defaults: LimitedTrialState = new LimitedTrialState();
-    defaults.Applications = this.applications();
-    defaults.Loading = true;
-    defaults.AddingApp = false;
+    // const defaults: LimitedTrialState = new LimitedTrialState();
+    // defaults.Applications = this.applications();
+    // defaults.Loading = true;
+    // defaults.AddingApp = false;
 
-    return defaults;
-    // return {
-    //           Loading: true,
-    //           ActiveApp: {},
-    //           Applications: [],
-    //        } as LimitedTrialState;
+    // return defaults;
+    return {
+              Loading: true
+           } as LimitedTrialState;
   }
 
   // protected loadStateKey(): string {
