@@ -5,13 +5,18 @@ import { FathymSharedModule, MaterialModule } from '@lcu/common';
 import { LcuLimitedTrialWelcomeElementComponent } from './elements/welcome/welcome.component';
 import { LcuLimitedTrialDataAppsElementComponent } from './elements/data-apps/data-apps.component';
 import { LcuLimitedTrialDataFlowElementComponent } from './elements/data-flow/data-flow.component';
+
+
+
 import { LimitedTrialStateContext } from './state/limited-trial/limited-trial-state.context';
+import { AppListComponent } from './controls/data-apps/app-list/app-list.component';
 
 @NgModule({
   declarations: [
     LcuLimitedTrialWelcomeElementComponent,
     LcuLimitedTrialDataAppsElementComponent,
-    LcuLimitedTrialDataFlowElementComponent
+    LcuLimitedTrialDataFlowElementComponent,
+    AppListComponent
   ],
   imports: [
     FathymSharedModule,
@@ -23,12 +28,14 @@ import { LimitedTrialStateContext } from './state/limited-trial/limited-trial-st
   exports: [
     LcuLimitedTrialWelcomeElementComponent,
     LcuLimitedTrialDataAppsElementComponent,
-    LcuLimitedTrialDataFlowElementComponent
+    LcuLimitedTrialDataFlowElementComponent,
+    AppListComponent
   ],
   entryComponents: [
     LcuLimitedTrialWelcomeElementComponent,
     LcuLimitedTrialDataAppsElementComponent,
-    LcuLimitedTrialDataFlowElementComponent
+    LcuLimitedTrialDataFlowElementComponent,
+    AppListComponent
   ]
 })
 export class LcuLimitedTrialModule {

@@ -1,43 +1,72 @@
-<h2>LcuLimitedTrial DataApps Next Steps</h2>
+<div class="lcu-data-apps-config-manager" *ngIf="State">
+  <mat-toolbar>
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
 
-<div fxLayout="row">
-    <div fxFlex fxFlexOrder="-1">
-      <p>This is an example of a flexbox CSS layout using Angular</p>
-    </div>
-    <div fxFlex fxFlexOrder="1" fxFlexOrder.gt-md="3">
-      <p fxHide="false" fxHide.gt-md>Hello</p>
-      <p fxShow="false" fxShow.gt-md>world!</p>
-    </div>
-    <div fxFlex fxFlexOrder="2">
-      <p>Cool</p>
-    </div>
-    <div fxFlex fxFlexOrder="3" fxFlexOrder.gt-md="1">
-      <p fxHide="false" fxHide.gt-md>Another way</p>
-      <p fxShow="false" fxShow.gt-md>to say hello world</p>
-    </div>
-  </div>
+    <h2>Data Applications</h2>
 
-<!-- <div class="widgets-row"
-    fxLayout
-    fxLayout.xs="column"
-    fxLayoutAlign="start"
-    fxLayoutWrap="wrap">
-    <div class="widget" fxFlex="100%">Large</div>
+    <span class="filler"></span>
+  </mat-toolbar>
+
+  <mat-drawer-container class="drawer">
+    <mat-drawer mode="side" #drawer opened>
+      <div fxLayout="column" fxLayoutGap="3px">
+
+
+        <mat-tab-group>
+          <mat-tab> 
+            <ng-template matTabLabel>
+              <span matBadge="{{PublicDataSource.length}}" matBadgeOverlap="false">Public Apps</span>
+            </ng-template>
+            <lcu-app-list 
+              [app-data] = PublicDataSource 
+              app-type = 'Public'
+              (selected-app)="SetActiveApp($event)">
+            </lcu-app-list> 
+          </mat-tab>
+
+          <mat-tab> 
+            <ng-template matTabLabel>
+              <span matBadge="{{PrivateDataSource.length}}" matBadgeOverlap="false">Private Apps</span>
+            </ng-template>
+            <lcu-app-list 
+              [app-data] = PrivateDataSource 
+              app-type = 'Private'
+              (selected-app)="SetActiveApp($event)">
+          </lcu-app-list>   
+          </mat-tab>
+        </mat-tab-group>
+
+        
+
+        
+        <!-- <mat-card *ngFor="let app of State.Applications">
+          <div fxLayout="row" fxLayoutGap="5px">
+            <mat-icon matTooltip="Private App" *ngIf="app.IsPrivate">lock</mat-icon>
+            <mat-icon matTooltip="Public App" *ngIf="!app.IsPrivate">lock_open</mat-icon>
+            <mat-card-header>
+              <mat-card-title>{{ app.Name }}</mat-card-title>
+              <mat-card-subtitle>{{ app.PathRegex }}</mat-card-subtitle>
+            </mat-card-header>
+          </div>
+          <mat-card-actions fxLayoutAlign="end">
+            <button mat-button color="accent" (click)="SetActiveApp(app)">
+              <mat-icon class="margin-right-1">edit</mat-icon>
+              Edit
+            </button>
+          </mat-card-actions>
+        </mat-card> -->
+
+
+      </div>
+    </mat-drawer>
+
+    <!--CONTENT-->
+    <mat-drawer-content>
+      <div style="background-color: chartreuse;">
+        mat drawer
+      </div>
+    </mat-drawer-content>
+</mat-drawer-container>
 </div>
-
-<div fxLayout
-    fxLayout.xs="column"
-    fxLayoutAlign="space-between"
-    fxLayoutWrap="wrap">
-    <div fxFlex="49%" class="widget"></div>
-    <div fxLayout
-        fxLayout.xs="column"
-        fxLayoutWrap="wrap"
-        fxLayoutAlign="space-around"
-        fxFlex="49%">
-        <div class="widget-sm" fxFlex="49%">Small</div>
-        <div class="widget-sm" fxFlex="49%">Small</div>
-        <div class="widget-sm" fxFlex="49%">Small</div>
-        <div class="widget-sm" fxFlex="49%">Small</div>
-    </div>
-</div> -->
