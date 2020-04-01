@@ -13,9 +13,6 @@ export class ListItemModel {
 })
 export class ListItemComponent implements OnInit {
 
-  /**
-   * local variable for app data getter/setter
-   */
   private _listData: Array<ListItemModel>;
 
   // tslint:disable-next-line:no-input-rename
@@ -31,14 +28,23 @@ export class ListItemComponent implements OnInit {
   }
 
   // tslint:disable-next-line:no-output-rename
-  @Output('selected-app')
+  @Output('deleted-item')
+  public DeletedItem: EventEmitter<ListItemModel>;
+
+  // tslint:disable-next-line:no-output-rename
+  @Output('selected-item')
   public SelectedItem: EventEmitter<ListItemModel>;
 
-  constructor() {
-    this.SelectedItem = new EventEmitter<ListItemModel>();
-   }
 
-  ngOnInit(): void {
+  constructor() {
+    this.DeletedItem = new EventEmitter<ListItemModel>();
+    this.SelectedItem = new EventEmitter<ListItemModel>();
+  }
+
+  public ngOnInit(): void { }
+
+  public DeleteItem(item: ListItemModel): void {
+    this.DeletedItem.emit(item);
   }
 
   public SetActiveItem(item: ListItemModel): void {

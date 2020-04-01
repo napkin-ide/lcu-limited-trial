@@ -16,45 +16,25 @@
         <mat-tab-group>
           <mat-tab>
             <ng-template matTabLabel>
-              <span matBadge="3" matBadgeOverlap="false">Emulated Data Flows</span>
+              <span [matBadge]="EmulatedDataFlows?.length" matBadgeOverlap="false">Emulated Data Flows</span>
             </ng-template>
             <lcu-list-item
-              [list-data] = PublicDataSource
-              (selected-app)="SetActiveApp($event)">
+              [list-data]="EmulatedDataFlows"
+              (deleted-item)="DeleteDataFlow($event)"
+              (selected-item)="SetActiveDataFlow($event)">
             </lcu-list-item>
           </mat-tab>
 
           <mat-tab>
             <ng-template matTabLabel>
-              <span matBadge="1" matBadgeOverlap="false">Free Trial Data Flows</span>
+              <span [matBadge]="TrialDataFlows?.length" matBadgeOverlap="false">Free Trial Data Flows</span>
             </ng-template>
             <lcu-list-item
-              [list-data] = PublicDataSource
-              (selected-app)="SetActiveApp($event)">
+              [list-data]="TrialDataFlows"
+              (deleted-item)="DeleteDataFlow($event)"
+              (selected-item)="SetActiveDataFlow($event)">
             </lcu-list-item>
           </mat-tab>
-
-          <!-- <mat-tab>
-            <ng-template matTabLabel>
-              <span matBadge="{{PublicDataSource.length}}" matBadgeOverlap="false">Emulated Data Flows</span>
-            </ng-template>
-            <lcu-app-list
-              [app-data] = PublicDataSource
-              app-type = 'Public'
-              (selected-app)="SetActiveApp($event)">
-            </lcu-app-list>
-          </mat-tab>
-
-          <mat-tab>
-            <ng-template matTabLabel>
-              <span matBadge="{{PrivateDataSource.length}}" matBadgeOverlap="false">Free Trial Data Flows</span>
-            </ng-template>
-            <lcu-app-list
-              [app-data] = PrivateDataSource
-              app-type = 'Private'
-              (selected-app)="SetActiveApp($event)">
-          </lcu-app-list>
-          </mat-tab> -->
         </mat-tab-group>
 
       </div>
@@ -62,10 +42,34 @@
 
     <!--CONTENT-->
     <mat-drawer-content>
-      <div style="background-color: chartreuse;">
-        mat drawer
+      <div class="data-flow-manager-container">
+        <ng-container *ngIf="!State.Loading">
+          <div *ngIf="!State.ActiveDataFlow" class="spread">
+            <h2 class="mat-headline">Data Flow Management</h2>
+
+            <p class="mat-body-2 spread">
+              A collection of all data flows across your organization. Pay close attention to the type of Data Flow from this view as they all
+              have different outcomes in provisioned and deployed enterprise assets/configurations.
+            </p>
+
+            <!-- <p class="mat-body-2 spread">
+              Select a Data Flow in the Sidebar to get started!
+            </p> -->
+
+            <lcu-data-flow-list-element [context]="{ State: State }"></lcu-data-flow-list-element>
+          </div>
+
+          <ng-container *ngIf="State.ActiveDataFlow">
+            <lcu-data-flow-ide-element [context]="{ State: State }"></lcu-data-flow-ide-element>
+          </ng-container>
+        </ng-container>
+
+        <div class="spread" *ngIf="State.Loading">
+          <mat-spinner></mat-spinner>
+        </div>
       </div>
     </mat-drawer-content>
 
   </mat-drawer-container>
 </div>
+

@@ -1,6 +1,10 @@
 .lcu-data-apps-config-manager {
   height: 100%;
 
+  .data-flow-manager-container {
+    height: 100%;
+  }
+
   .drawer {
     height: calc(100% - 64px);
   }
