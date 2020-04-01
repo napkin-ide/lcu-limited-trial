@@ -1,7 +1,7 @@
 import { Component, OnInit, Injector } from '@angular/core';
-import { LCUElementContext, LcuElementComponent, Application } from '@lcu/common';
-import { LimitedTrialStateContext } from '../../state/limited-trial/limited-trial-state.context';
-import { LimitedTrialState } from '../../state/limited-trial/limited.state';
+import { LCUElementContext, LcuElementComponent } from '@lcu/common';
+import { LimitedDataFlowManagementStateContext } from './../../state/data-flow/limited-data-flow-management-state.context';
+import { LimitedDataFlowManagementState } from '../../state/data-flow/limited-data-flow-management.state';
 
 export class LcuLimitedTrialDataFlowElementState {}
 
@@ -19,13 +19,11 @@ export class LcuLimitedTrialDataFlowElementComponent extends LcuElementComponent
 
   //  Properties
   public PublicDataSource: Array<any>;
-  public State: LimitedTrialState;
+  public State: LimitedDataFlowManagementState;
 
   //  Constructors
-  constructor(
-    protected injector: Injector,
-    protected state: LimitedTrialStateContext
-  ) {
+  constructor(protected injector: Injector,
+              protected dfMgmt: LimitedDataFlowManagementStateContext) {
     super(injector);
 
     this.PublicDataSource = [
@@ -55,7 +53,7 @@ export class LcuLimitedTrialDataFlowElementComponent extends LcuElementComponent
     /**
      * Listen for state changes
      */
-    this.state.Context.subscribe((state: any) => {
+    this.dfMgmt.Context.subscribe((state: any) => {
       this.State = state;
       console.log('Successfully loaded State: ', this.State);
 
@@ -70,7 +68,7 @@ export class LcuLimitedTrialDataFlowElementComponent extends LcuElementComponent
    *
    * @param app selected application
    */
-  public SetActiveApp(app: Application): void {
+  public SetActiveApp(app: any): void {
     this.State.Loading = true;
 
     // this.state.SetActiveApp(app);
@@ -78,7 +76,6 @@ export class LcuLimitedTrialDataFlowElementComponent extends LcuElementComponent
 
   //  Helpers
   protected handleStateChanges(): void {
-    console.log('this.state', this.state);
     console.log('this.State', this.State);
   }
 }

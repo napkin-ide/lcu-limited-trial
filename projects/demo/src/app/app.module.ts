@@ -41,4 +41,4 @@ import { environment } from '../environments/environment';
   exports: [LcuLimitedTrialModule, DataAppComponent, DataFlowComponent],
   entryComponents: [DataAppComponent, DataFlowComponent]
 })
-export class AppModule { }
+export class AppModule {}
