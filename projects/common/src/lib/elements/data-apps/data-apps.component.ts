@@ -1,20 +1,29 @@
 import { Component, OnInit, Injector } from '@angular/core';
-import { LCUElementContext, LcuElementComponent, Application } from '@lcu/common';
-import { LimitedTrialState } from '../../state/limited-trial/limited.state';
-import { LimitedTrialStateContext } from '../../state/limited-trial/limited-trial-state.context';
+import {
+  LCUElementContext,
+  LcuElementComponent,
+  Application
+} from '@lcu/common';
+import { LimitedDataAppsManagementStateContext } from '../../state/data-apps/limited-data-apps-management-state.context';
+import { LimitedDataAppsManagementState } from '../../state/data-apps/limited-data-apps-management.state';
 
 export class LcuLimitedTrialDataAppsElementState {}
 
-export class LcuLimitedTrialDataAppsContext extends LCUElementContext<LcuLimitedTrialDataAppsElementState> {}
+export class LcuLimitedTrialDataAppsContext extends LCUElementContext<
+  LcuLimitedTrialDataAppsElementState
+> {}
 
-export const SELECTOR_LCU_LIMITED_TRIAL_DATA_APPS_ELEMENT = 'lcu-limited-trial-data-apps-element';
+export const SELECTOR_LCU_LIMITED_TRIAL_DATA_APPS_ELEMENT =
+  'lcu-limited-trial-data-apps-element';
 
 @Component({
   selector: SELECTOR_LCU_LIMITED_TRIAL_DATA_APPS_ELEMENT,
   templateUrl: './data-apps.component.html',
   styleUrls: ['./data-apps.component.scss']
 })
-export class LcuLimitedTrialDataAppsElementComponent extends LcuElementComponent<LcuLimitedTrialDataAppsContext> implements OnInit {
+export class LcuLimitedTrialDataAppsElementComponent
+  extends LcuElementComponent<LcuLimitedTrialDataAppsContext>
+  implements OnInit {
   //  Fields
 
   //  Properties
@@ -22,11 +31,13 @@ export class LcuLimitedTrialDataAppsElementComponent extends LcuElementComponent
 
   public PrivateDataSource: Array<Application>;
 
-  public State: LimitedTrialState;
- 
+  public State: LimitedDataAppsManagementState;
+
   //  Constructors
-  constructor(protected injector: Injector,
-              protected state: LimitedTrialStateContext) {
+  constructor(
+    protected injector: Injector,
+    protected dfMgmt: LimitedDataAppsManagementStateContext
+  ) {
     super(injector);
 
     this.PrivateDataSource = [];
@@ -40,7 +51,7 @@ export class LcuLimitedTrialDataAppsElementComponent extends LcuElementComponent
     /**
      * Listen for state changes
      */
-    this.state.Context.subscribe((state: any) => {
+    this.dfMgmt.Context.subscribe((state: any) => {
       this.State = state;
 
       this.handleStateChanges();
@@ -57,7 +68,7 @@ export class LcuLimitedTrialDataAppsElementComponent extends LcuElementComponent
   public SetActiveApp(app: Application): void {
     this.State.Loading = true;
 
-    this.state.SetActiveApp(app);
+    this.dfMgmt.SetActiveApp(app);
   }
 
   //  Helpers
@@ -76,12 +87,16 @@ export class LcuLimitedTrialDataAppsElementComponent extends LcuElementComponent
    * separate data into public or private apps
    */
   protected separateAppTypes(): void {
-    this.PublicDataSource = this.State.Applications.filter( (itm: Application) => {
-      return itm.IsPrivate === false;
-    });
+    this.PublicDataSource = this.State.Applications.filter(
+      (itm: Application) => {
+        return itm.IsPrivate === false;
+      }
+    );
 
-    this.PrivateDataSource = this.State.Applications.filter( (itm: Application) => {
-      return itm.IsPrivate === true;
-    });
+    this.PrivateDataSource = this.State.Applications.filter(
+      (itm: Application) => {
+        return itm.IsPrivate === true;
+      }
+    );
   }
 }

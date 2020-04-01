@@ -5,11 +5,9 @@ import { FathymSharedModule, MaterialModule } from '@lcu/common';
 import { LcuLimitedTrialWelcomeElementComponent } from './elements/welcome/welcome.component';
 import { LcuLimitedTrialDataAppsElementComponent } from './elements/data-apps/data-apps.component';
 import { LcuLimitedTrialDataFlowElementComponent } from './elements/data-flow/data-flow.component';
-
-
-
-import { LimitedTrialStateContext } from './state/limited-trial/limited-trial-state.context';
 import { AppListComponent } from './controls/data-apps/app-list/app-list.component';
+import { LimitedDataAppsManagementStateContext } from './state/data-apps/limited-data-apps-management-state.context';
+import { LimitedDataFlowManagementStateContext } from './state/data-flow/limited-data-flow-management-state.context';
 
 @NgModule({
   declarations: [
@@ -42,7 +40,10 @@ export class LcuLimitedTrialModule {
   static forRoot(): ModuleWithProviders<LcuLimitedTrialModule> {
     return {
       ngModule: LcuLimitedTrialModule,
-      providers: [LimitedTrialStateContext]
+      providers: [
+        LimitedDataAppsManagementStateContext,
+        LimitedDataFlowManagementStateContext
+      ]
     };
   }
 }
