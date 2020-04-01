@@ -1,5 +1,6 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { LCUElementContext, LcuElementComponent } from '@lcu/common';
+import { LimitedTrialStateContext } from '../../state/limited-trial/limited-trial-state.context';
 
 export class LcuLimitedTrialDataFlowElementState {}
 
@@ -18,7 +19,8 @@ export class LcuLimitedTrialDataFlowElementComponent extends LcuElementComponent
   //  Properties
 
   //  Constructors
-  constructor(protected injector: Injector) {
+  constructor(protected injector: Injector,
+              protected trialState: LimitedTrialStateContext) {
     super(injector);
   }
 
