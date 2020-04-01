@@ -1,11 +1,11 @@
 import { StateContext } from '@lcu/common';
 import { Injectable, Injector } from '@angular/core';
-import { LimitedTrialState } from './limited.state';
+import { LimitedDataFlowManagementState } from './limited-data-flow-management.state';
 
 @Injectable({
   providedIn: 'root'
 })
-export class LimitedTrialStateContext extends StateContext<LimitedTrialState> {
+export class LimitedDataFlowManagementStateContext extends StateContext<LimitedDataFlowManagementState> {
   //  Properties
 
   //  Constructors
@@ -14,21 +14,21 @@ export class LimitedTrialStateContext extends StateContext<LimitedTrialState> {
   }
 
   //  API Methods
-  public SetUserType() {
-    this.Execute({
-      Arguments: {
-      },
-      Type: 'SetUserType'
-    });
-  }
+  // public ___() {
+  //   this.Execute({
+  //     Arguments: {
+  //     },
+  //     Type: 'SetUserType'
+  //   });
+  // }
 
   //  Helpers
   protected defaultValue() {
-    return { Loading: true } as LimitedTrialState;
+    return { Loading: true } as LimitedDataFlowManagementState;
   }
 
   protected loadStateKey(): string {
-    return 'init';
+    return 'data-flow';
   }
 
   protected loadStateName(): string {

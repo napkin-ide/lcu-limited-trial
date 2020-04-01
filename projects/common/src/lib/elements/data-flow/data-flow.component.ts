@@ -1,6 +1,6 @@
 import { Component, OnInit, Injector } from '@angular/core';
 import { LCUElementContext, LcuElementComponent } from '@lcu/common';
-import { LimitedTrialStateContext } from '../../state/limited-trial/limited-trial-state.context';
+import { LimitedDataFlowManagementStateContext } from './../../state/data-flow/limited-data-flow-management-state.context';
 
 export class LcuLimitedTrialDataFlowElementState {}
 
@@ -20,7 +20,7 @@ export class LcuLimitedTrialDataFlowElementComponent extends LcuElementComponent
 
   //  Constructors
   constructor(protected injector: Injector,
-              protected trialState: LimitedTrialStateContext) {
+              protected dfMgmt: LimitedDataFlowManagementStateContext) {
     super(injector);
   }
 
