@@ -51,15 +51,6 @@
     display: flex;
     height: calc(100% - #{$header-height});
     justify-content: center;
-    padding: 10px;
-
-    a:not(.mat-button) {
-      color: map-get($primary, 500);
-
-      &:hover {
-        color: map-get($accent, 200);
-      }
-    }
   }
 
   .color-swatch-arctic {

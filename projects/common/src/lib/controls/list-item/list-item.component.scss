@@ -1,0 +1,12 @@
+.mat-card-header {
+  .mat-card-title {
+    max-width: 280px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .mat-card-subtitle {
+    max-width: 280px;
+  }
+}
