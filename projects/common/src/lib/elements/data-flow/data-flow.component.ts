@@ -5,6 +5,7 @@ import { LCUElementContext, LcuElementComponent, DataFlow } from '@lcu/common';
 import { DataFlowManagerEventService } from '@napkin-ide/lcu-data-flow-common';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from './modals/confirmation-modal/confirmation-modal.component';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 export class LcuLimitedTrialDataFlowElementState {}
 
@@ -19,10 +20,11 @@ export const SELECTOR_LCU_LIMITED_TRIAL_DATA_FLOW_ELEMENT = 'lcu-limited-trial-d
 })
 export class LcuLimitedTrialDataFlowElementComponent extends LcuElementComponent<LcuLimitedTrialDataFlowContext> implements OnInit {
   //  Fields
+  protected subscriptions: { [key: string]: Subscription };
 
   //  Properties
-  public EmulatedDataFlows: DataFlow[];
-  public TrialDataFlows: DataFlow[];
+  public DataFlowLists: { emulatedDataFlows: DataFlow[], trialDataFlows: DataFlow[] };
+
   public State: LimitedDataFlowManagementState;
 
   //  Constructors
@@ -34,72 +36,60 @@ export class LcuLimitedTrialDataFlowElementComponent extends LcuElementComponent
   ) {
     super(injector);
 
-    this.dataFlowEventService.GetToggleIsCreatingEvent().subscribe(
-      () => {
-        console.log('GOT THE EVENT!!!');
-        this.State.Loading = true;
+    this.DataFlowLists = { emulatedDataFlows: [], trialDataFlows: [] };
 
-        this.dfMgmt.ToggleIsCreating();
-      }
-    );
+    this.subscriptions = {
+      deleteDataFlow: this.deleteDataFlow(),
+      deployDataFlow: this.deployDataFlow(),
+      saveDataFlow: this.saveDataFlow(),
+      setActiveDataFlow: this.setActiveDataFlow(),
+      toggleCreationModules: this.toggleCreationModules(),
+      toggleIsCreating: this.toggleIsCreating()
+    };
   }
 
   //  Life Cycle
   public ngOnInit() {
     super.ngOnInit();
-    /**
-     * Listen for state changes
-     */
+
     this.dfMgmt.Context.subscribe(async (state: any) => {
       this.State = state;
       console.log('Successfully loaded State: ', this.State);
-      this.State.DataFlows = this.populateDataFlows();
+      // this.State.DataFlows = this.populateDataFlows();
 
       await this.handleStateChanges();
     });
   }
 
   //  API Methods
-
-  /**
-   * Click handler for the selected application
-   *
-   * @param dataFlow selected dataFlow
-   */
-  public SetActiveDataFlow(dataFlow: DataFlow): void {
-    // this.State.Loading = true;
-
-    // this.dfMgmt.SetActiveDataFlow(dataFlow.Lookup);
-    this.State.ActiveDataFlow = this.populateDataFlows()[0];
-    console.log('State now: ', this.State);
-  }
-
-  public DeleteDataFlow(dataFlow: DataFlow): void {
+  public ToggleIsCreating(): void {
     this.State.Loading = true;
 
-    this.dfMgmt.DeleteDataFlow(dataFlow.Lookup);
+    this.dfMgmt.ToggleIsCreating();
   }
 
   //  Helpers
   protected handleStateChanges(): void {
     console.log('this.State', this.State);
-    // const ids = this.State.EmulatedDataFlowIDs;
-    const ids = ['690e235c-0216-46b7-93f1-3cf002033ac6'];
 
-    if (ids && ids.length) {
-      this.EmulatedDataFlows = this.State.DataFlows.filter((df: DataFlow) => {
-        return ids.find((id: string) => df.ID === id);
-      });
-      console.log('this.EmulatedDataFlows', this.EmulatedDataFlows);
-      this.TrialDataFlows = this.State.DataFlows.filter((df: DataFlow) => {
-        return ids.find((id: string) => df.ID !== id);
-      });
-      console.log('this.TrialDataFlows', this.TrialDataFlows);
-    } else {
-      this.EmulatedDataFlows = [];
-      this.TrialDataFlows = [];
+    // const ids = this.State.EmulatedDataFlowIDs;
+    if (this.State && this.State.DataFlows) {
+      const ids = ['690e235c-0216-46b7-93f1-3cf002033ac6'];
+
+      if (ids && ids.length) {
+        this.DataFlowLists.emulatedDataFlows = this.State.DataFlows.filter((df: DataFlow) => {
+          return ids.find((id: string) => df.ID === id);
+        });
+        console.log('this.EmulatedDataFlows', this.DataFlowLists.emulatedDataFlows);
+        this.DataFlowLists.trialDataFlows = this.State.DataFlows.filter((df: DataFlow) => {
+          return ids.find((id: string) => df.ID !== id);
+        });
+        console.log('this.TrialDataFlows', this.DataFlowLists.trialDataFlows);
+      } else {
+        this.DataFlowLists.emulatedDataFlows = [];
+        this.DataFlowLists.trialDataFlows = [];
+      }
     }
-    // this.TrialDataFlows = this.State.DataFlows.filter((df: DataFlow) => );
 
   }
 
@@ -113,6 +103,62 @@ export class LcuLimitedTrialDataFlowElementComponent extends LcuElementComponent
       console.log('Closed the dialog');
     });
   }
+
+  protected deleteDataFlow(): Subscription {
+    return this.dataFlowEventService.GetDeleteDataFlowEvent().subscribe(
+      (dataFlowLookup: string) => {
+        this.State.Loading = true;
+        this.dfMgmt.DeleteDataFlow(dataFlowLookup);
+      }
+    );
+  }
+
+  protected deployDataFlow(): Subscription {
+    return this.dataFlowEventService.GetDeployDataFlowEvent().subscribe(
+      (dataFlowLookup: string) => {
+        this.State.Loading = true;
+        this.dfMgmt.DeployDataFlow(dataFlowLookup);
+      }
+    );
+  }
+
+  protected saveDataFlow(): Subscription {
+    return this.dataFlowEventService.GetSaveDataFlowEvent().subscribe(
+      (dataFlow: DataFlow) => {
+        this.State.Loading = true;
+        this.dfMgmt.SaveDataFlow(dataFlow);
+      }
+    );
+  }
+
+  protected setActiveDataFlow(): Subscription {
+    return this.dataFlowEventService.GetSetActiveDataFlowEvent().subscribe(
+      (dataFlowLookup: string) => {
+        this.State.Loading = true;
+        this.dfMgmt.SetActiveDataFlow(dataFlowLookup);
+      }
+    );
+  }
+
+  protected toggleCreationModules(): Subscription {
+    return this.dataFlowEventService.GetToggleCreationModulesEvent().subscribe(
+      () => {
+        this.State.Loading = true;
+        this.dfMgmt.ToggleCreationModules();
+      }
+    );
+  }
+
+  protected toggleIsCreating(): Subscription {
+    return this.dataFlowEventService.GetToggleIsCreatingEvent().subscribe(
+      () => {
+        this.ToggleIsCreating();
+      }
+    );
+  }
+
+
+
 
 
 

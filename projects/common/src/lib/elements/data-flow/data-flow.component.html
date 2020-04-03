@@ -1,4 +1,4 @@
-<div class="lcu-data-apps-config-manager" *ngIf="State">
+<div class="data-flow-manager-container" *ngIf="State">
   <mat-toolbar>
     <button mat-icon-button (click)="drawer.toggle()">
       <mat-icon>menu</mat-icon>
@@ -10,53 +10,19 @@
   </mat-toolbar>
 
   <mat-drawer-container class="drawer">
-    <mat-drawer mode="side" #drawer opened>
+    <!--SIDEBAR-->
+    <mat-drawer mode="side" #drawer>
       <div fxLayout="column" fxLayoutGap="3px">
-
-        <mat-tab-group>
-          <mat-tab>
-            <ng-template matTabLabel>
-              <span [matBadge]="EmulatedDataFlows?.length" matBadgeOverlap="false">Emulated Data Flows</span>
-            </ng-template>
-            <lcu-list-item
-              [list-data]="EmulatedDataFlows"
-              (deleted-item)="DeleteDataFlow($event)"
-              (selected-item)="SetActiveDataFlow($event)">
-            </lcu-list-item>
-          </mat-tab>
-
-          <mat-tab>
-            <ng-template matTabLabel>
-              <span [matBadge]="TrialDataFlows?.length" matBadgeOverlap="false">Free Trial Data Flows</span>
-            </ng-template>
-            <lcu-list-item
-              [list-data]="TrialDataFlows"
-              (deleted-item)="DeleteDataFlow($event)"
-              (selected-item)="SetActiveDataFlow($event)">
-            </lcu-list-item>
-          </mat-tab>
-        </mat-tab-group>
-
+        <lcu-data-flow-list-element [context]="{ State: State }" [data-flow-lists]="DataFlowLists"></lcu-data-flow-list-element>
       </div>
     </mat-drawer>
 
     <!--CONTENT-->
     <mat-drawer-content>
-      <div class="data-flow-manager-container">
+      <div class="data-flow-manager-content">
         <ng-container *ngIf="!State.Loading">
-          <div *ngIf="!State.ActiveDataFlow" class="spread">
-            <h2 class="mat-headline">Data Flow Management</h2>
-
-            <p class="mat-body-2 spread">
-              A collection of all data flows across your organization. Pay close attention to the type of Data Flow from this view as they all
-              have different outcomes in provisioned and deployed enterprise assets/configurations.
-            </p>
-
-            <!-- <p class="mat-body-2 spread">
-              Select a Data Flow in the Sidebar to get started!
-            </p> -->
-
-            <lcu-data-flow-list-element [context]="{ State: State }"></lcu-data-flow-list-element>
+          <div *ngIf="!State.ActiveDataFlow" class="data-flow-manager-content-form spread">
+            <lcu-data-flow-create-element [context]="{ State: State }"></lcu-data-flow-create-element>
           </div>
 
           <ng-container *ngIf="State.ActiveDataFlow">
@@ -72,4 +38,3 @@
 
   </mat-drawer-container>
 </div>
-

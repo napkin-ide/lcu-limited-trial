@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FathymSharedModule, MaterialModule, LCUServiceSettings } from '@lcu/common';
+import { FathymSharedModule, MaterialModule } from '@lcu/common';
 import { LcuLimitedTrialWelcomeElementComponent } from './elements/welcome/welcome.component';
 import { LcuLimitedTrialDataAppsElementComponent } from './elements/data-apps/data-apps.component';
 import { LcuLimitedTrialDataFlowElementComponent } from './elements/data-flow/data-flow.component';
