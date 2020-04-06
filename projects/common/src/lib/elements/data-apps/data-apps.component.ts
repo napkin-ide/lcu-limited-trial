@@ -77,14 +77,13 @@ export class LcuLimitedTrialDataAppsElementComponent
    * Handle when the state is returned
    */
   protected handleStateChanges(): void {
-    debugger;
     if (this.State.Applications) {
       this.separateAppTypes();
     }
   }
 
   /**
-   * separate data into public or private apps
+   * Separate data into public or private apps
    */
   protected separateAppTypes(): void {
     this.PublicDataSource = this.State.Applications.filter(

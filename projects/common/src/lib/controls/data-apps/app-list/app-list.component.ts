@@ -9,20 +9,15 @@ import { Application } from '@lcu/common';
 export class AppListComponent implements OnInit {
 
   /**
-   * local variable for app data getter/setter
+   * Application data
    */
-  private _appData: Array<Application>;
-
   // tslint:disable-next-line:no-input-rename
   @Input('app-data')
-  set AppData(val: Array<Application>) {
-    this._appData = val;
-  }
+  public AppData: Array<Application>;
 
-  get AppData(): Array<Application> {
-    return this._appData;
-  }
-
+  /**
+   * Event emitter for selected application
+   */
   // tslint:disable-next-line:no-output-rename
   @Output('selected-app')
   public SelectedApp: EventEmitter<Application>;
@@ -35,7 +30,8 @@ export class AppListComponent implements OnInit {
   }
 
   /**
-   * 
+   * Event for when an app is selected
+   *
    * @param app selected app
    */
   public SetActiveApp(app: Application): void {

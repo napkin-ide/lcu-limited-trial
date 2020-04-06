@@ -8,13 +8,15 @@ import { LcuLimitedTrialDataFlowElementComponent } from './elements/data-flow/da
 import { AppListComponent } from './controls/data-apps/app-list/app-list.component';
 import { LimitedDataAppsManagementStateContext } from './state/data-apps/limited-data-apps-management-state.context';
 import { LimitedDataFlowManagementStateContext } from './state/data-flow/limited-data-flow-management-state.context';
+import { DataAppsConfigComponent } from './controls/data-apps/data-apps-config/data-apps-config.component';
 
 @NgModule({
   declarations: [
     LcuLimitedTrialWelcomeElementComponent,
     LcuLimitedTrialDataAppsElementComponent,
     LcuLimitedTrialDataFlowElementComponent,
-    AppListComponent
+    AppListComponent,
+    DataAppsConfigComponent
   ],
   imports: [
     FathymSharedModule,
@@ -27,13 +29,15 @@ import { LimitedDataFlowManagementStateContext } from './state/data-flow/limited
     LcuLimitedTrialWelcomeElementComponent,
     LcuLimitedTrialDataAppsElementComponent,
     LcuLimitedTrialDataFlowElementComponent,
-    AppListComponent
+    AppListComponent,
+    DataAppsConfigComponent
   ],
   entryComponents: [
     LcuLimitedTrialWelcomeElementComponent,
     LcuLimitedTrialDataAppsElementComponent,
     LcuLimitedTrialDataFlowElementComponent,
-    AppListComponent
+    AppListComponent,
+    DataAppsConfigComponent
   ]
 })
 export class LcuLimitedTrialModule {
