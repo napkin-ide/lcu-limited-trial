@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-  <script id="lcu-reg">
+  <!-- <script id="lcu-reg">
     window.LCU = {
       APIRoot: "https://www.fathym-int.com",
       // APIRoot: "https://localhost:44387",
@@ -20,6 +20,18 @@
        UsernameMock: 'trevor.richardson@fathym.com'
       }
     };
+  </script> -->
+  <script id="lcu-reg">
+    window.LCU = {
+     APIRoot: "https://www.fathym-int.com",
+      Application: {
+      },
+      State: {
+        ActionRoot: "/api/state",
+        Root: "/api/state",
+        // Environment: 'local',
+        UsernameMock: 'ron.swanson@fathym.com'
+      }
   </script>
   <!-- <script id="lcu-reg">
     window.LCU = {
