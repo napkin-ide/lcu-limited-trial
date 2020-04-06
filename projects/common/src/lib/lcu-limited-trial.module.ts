@@ -1,3 +1,4 @@
+import { DataAppsConfigComponent } from './controls/data-apps/data-apps-config/data-apps-config.component';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -18,7 +19,9 @@ import { ConfirmationModalComponent } from './elements/data-flow/modals/confirma
     LcuLimitedTrialDataAppsElementComponent,
     LcuLimitedTrialDataFlowElementComponent,
     ListItemComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    DataAppsConfigComponent,
+    AppListComponent // need to remove this one and replace with the ListItemComponent
   ],
   imports: [
     FathymSharedModule,
@@ -32,14 +35,18 @@ import { ConfirmationModalComponent } from './elements/data-flow/modals/confirma
     LcuLimitedTrialWelcomeElementComponent,
     LcuLimitedTrialDataAppsElementComponent,
     LcuLimitedTrialDataFlowElementComponent,
-    ListItemComponent
+    ListItemComponent,
+    DataAppsConfigComponent,
+    AppListComponent // need to remove this one and replace with the ListItemComponent
   ],
   entryComponents: [
     LcuLimitedTrialWelcomeElementComponent,
     LcuLimitedTrialDataAppsElementComponent,
     LcuLimitedTrialDataFlowElementComponent,
     ListItemComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    DataAppsConfigComponent,
+    AppListComponent // need to remove this one and replace with the ListItemComponent
   ]
 })
 export class LcuLimitedTrialModule {

@@ -1,4 +1,4 @@
-import { Application, DAFApplicationConfig, DAFAPIApplicationConfig, Status, DAFViewApplicationConfig } from '@lcu/common';
+import { Application, DAFApplicationConfig, DAFAPIApplicationConfig, Status } from '@lcu/common';
 
 export class LimitedDataAppsManagementState {
   public ActiveApp: Application;
@@ -8,10 +8,6 @@ export class LimitedDataAppsManagementState {
   public ActiveDAFAPIs: DAFAPIApplicationConfig[];
 
   public ActiveHost: string;
-
-  // not sure where this comes from, don't see it in state data
-  // maybe I have to build this out?
-  public ActiveView: DAFViewApplicationConfig;
 
   public AddingApp: boolean;
 
