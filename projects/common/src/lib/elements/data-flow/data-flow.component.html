@@ -1,3 +1,40 @@
-<h2>LcuLimitedTrial DataFlow Next Steps</h2>
+<div class="data-flow-manager-container" *ngIf="State">
+  <mat-toolbar>
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
 
-<p>Do stuff and things!</p>
+    <h2>Data Flow Management</h2>
+
+    <span class="filler"></span>
+  </mat-toolbar>
+
+  <mat-drawer-container class="drawer">
+    <!--SIDEBAR-->
+    <mat-drawer mode="side" #drawer>
+      <div fxLayout="column" fxLayoutGap="3px">
+        <lcu-data-flow-list-element [context]="{ State: State }" [data-flow-lists]="DataFlowLists"></lcu-data-flow-list-element>
+      </div>
+    </mat-drawer>
+
+    <!--CONTENT-->
+    <mat-drawer-content>
+      <div class="data-flow-manager-content">
+        <ng-container *ngIf="!State.Loading">
+          <div *ngIf="!State.ActiveDataFlow" class="data-flow-manager-content-form spread">
+            <lcu-data-flow-create-element [context]="{ State: State }"></lcu-data-flow-create-element>
+          </div>
+
+          <ng-container *ngIf="State.ActiveDataFlow">
+            <lcu-data-flow-ide-element [context]="{ State: State }"></lcu-data-flow-ide-element>
+          </ng-container>
+        </ng-container>
+
+        <div class="spread" *ngIf="State.Loading">
+          <mat-spinner></mat-spinner>
+        </div>
+      </div>
+    </mat-drawer-content>
+
+  </mat-drawer-container>
+</div>

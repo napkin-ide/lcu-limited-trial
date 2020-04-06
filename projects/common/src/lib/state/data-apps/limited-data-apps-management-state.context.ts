@@ -1,4 +1,4 @@
-import { StateContext, Application, DAFApplicationConfig } from '@lcu/common';
+import { StateContext, Application, DAFApplicationConfig, DAFViewApplicationConfig } from '@lcu/common';
 import { Injectable, Injector } from '@angular/core';
 import { LimitedDataAppsManagementState } from './limited-data-apps-management.state';
 
@@ -16,6 +16,15 @@ export class LimitedDataAppsManagementStateContext extends StateContext<
   }
 
   //  API Methods
+  public SaveAppView(view: DAFViewApplicationConfig) {
+    this.Execute({
+      Arguments: {
+        View: view
+      },
+      Type: 'save-app-view'
+    });
+  }
+
   public SetActiveApp(app: Application) {
     this.Execute({
       Arguments: {

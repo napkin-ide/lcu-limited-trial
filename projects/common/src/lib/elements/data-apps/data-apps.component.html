@@ -1,43 +1,67 @@
-<h2>LcuLimitedTrial DataApps Next Steps</h2>
+<div class="lcu-data-apps-config-manager" *ngIf="State">
+  <ng-container *ngIf="State.Loading">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </ng-container>
+  <mat-toolbar>
+    <button mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <h2>Data Applications</h2>
+    <span class="filler"></span>
+  
+    <div>
+      <button *ngIf="!State.AddingApp" mat-flat-button matTooltip="Create a new application"color="accent">
+        <mat-icon>add_circle</mat-icon>
+        Add New Data App
+      </button>
+      <button 
+        *ngIf="State.AddingApp" mat-flat-button matTooltip="Cancel new application"color="warn">
+        <mat-icon>cancel</mat-icon>
+        Cancel Add New
+      </button>
+    </div>
+    
+  </mat-toolbar>
 
-<div fxLayout="row">
-    <div fxFlex fxFlexOrder="-1">
-      <p>This is an example of a flexbox CSS layout using Angular</p>
-    </div>
-    <div fxFlex fxFlexOrder="1" fxFlexOrder.gt-md="3">
-      <p fxHide="false" fxHide.gt-md>Hello</p>
-      <p fxShow="false" fxShow.gt-md>world!</p>
-    </div>
-    <div fxFlex fxFlexOrder="2">
-      <p>Cool</p>
-    </div>
-    <div fxFlex fxFlexOrder="3" fxFlexOrder.gt-md="1">
-      <p fxHide="false" fxHide.gt-md>Another way</p>
-      <p fxShow="false" fxShow.gt-md>to say hello world</p>
-    </div>
-  </div>
+  <mat-drawer-container class="drawer" autosize>
+    <mat-drawer mode="side" #drawer opened>
 
-<!-- <div class="widgets-row"
-    fxLayout
-    fxLayout.xs="column"
-    fxLayoutAlign="start"
-    fxLayoutWrap="wrap">
-    <div class="widget" fxFlex="100%">Large</div>
+      <div fxLayout="column" fxLayoutGap="3px">
+
+        <mat-tab-group>
+          <!-- Public Applications -->
+          <mat-tab> 
+            <ng-template matTabLabel>
+              <span matBadge="{{ PublicDataSource.length }}" 
+                    matBadgeOverlap="false">Public Apps</span>
+            </ng-template>
+            <lcu-app-list 
+              [app-data] = PublicDataSource 
+              (selected-app)="SetActiveApp($event)">
+            </lcu-app-list> 
+          </mat-tab>
+
+          <!-- Private Applications -->
+          <mat-tab *ngIf="PrivateDataSource.length > 0"> 
+            <ng-template matTabLabel>
+              <span matBadge="{{ PrivateDataSource.length }}" 
+                    matBadgeOverlap="false">Private Apps</span>
+            </ng-template>
+            <lcu-app-list 
+              [app-data] = PrivateDataSource 
+              (selected-app)="SetActiveApp($event)">
+            </lcu-app-list>   
+          </mat-tab>
+        </mat-tab-group>
+      </div>
+    </mat-drawer>
+
+    <!--Content-->
+    
+    <mat-drawer-content>
+      <div>
+        <lcu-data-apps-config *ngIf="State.ActiveApp"></lcu-data-apps-config>
+      </div>
+    </mat-drawer-content>
+</mat-drawer-container>
 </div>
-
-<div fxLayout
-    fxLayout.xs="column"
-    fxLayoutAlign="space-between"
-    fxLayoutWrap="wrap">
-    <div fxFlex="49%" class="widget"></div>
-    <div fxLayout
-        fxLayout.xs="column"
-        fxLayoutWrap="wrap"
-        fxLayoutAlign="space-around"
-        fxFlex="49%">
-        <div class="widget-sm" fxFlex="49%">Small</div>
-        <div class="widget-sm" fxFlex="49%">Small</div>
-        <div class="widget-sm" fxFlex="49%">Small</div>
-        <div class="widget-sm" fxFlex="49%">Small</div>
-    </div>
-</div> -->
