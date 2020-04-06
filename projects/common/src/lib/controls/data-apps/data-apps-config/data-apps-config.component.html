@@ -1,0 +1,100 @@
+<mat-card class="margin-bottom-1 margin-left-3 margin-top-5">
+    <ng-container *ngIf="State.Loading">
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </ng-container>
+    <div fxLayout="row">
+        <mat-card-header>
+            <mat-card-title>
+                Managing Application
+            </mat-card-title>
+            <mat-card-subtitle color="accent">
+                {{ State.ActiveApp.Name }}
+        
+                <!-- <a
+                *ngIf="State.ActiveView?.BaseHref"
+                matTooltip="Launch in Browser"
+                mat-icon-button
+                [href]="State.ActiveView.BaseHref"
+                target="_blank"
+              >
+                <mat-icon>launch</mat-icon>
+              </a> -->
+
+              <a mat-icon-button matSuffix matTooltip="Copy Application ID" (click)="CopyAppIdToClipBoard(State.ActiveApp.ID)">
+                <mat-icon>file_copy</mat-icon>
+              </a>
+
+              <mat-chip-list *ngIf="State.ActiveApp.IsPrivate">
+                <mat-chip color="accent" selected>private</mat-chip>
+              </mat-chip-list>
+            </mat-card-subtitle>
+        </mat-card-header>
+    </div>
+    <mat-card-content>
+        <ng-container *ngIf="!State.Loading">
+            <mat-tab-group mat-stretch-tabs>
+              <mat-tab label="View Configuration">
+                <form [formGroup]="DAFViewAppFormGroup" (ngSubmit)="SaveAppView()" *ngIf="!State.Loading">
+                  <mat-form-field class="mat-full-width">
+                    <input matInput placeholder="NPM Package" formControlName="npmPkg" [matAutocomplete]="npmPkg" required />
+
+                    <mat-autocomplete #npmPkg="matAutocomplete" (optionSelected)="PackageSelected($event)">
+                      <ng-container *ngFor="let pkg of NPMPackages">
+                        <mat-option [value]="pkg.Name">
+                          <span>{{ pkg.Name }}</span> |
+
+                          <small>(latest: {{ pkg.Version }})</small>
+                        </mat-option>
+                      </ng-container>
+                    </mat-autocomplete>
+                  </mat-form-field>
+
+                  <mat-form-field class="mat-full-width">
+                    <input matInput placeholder="Package Version" formControlName="pkgVer" required />
+
+                    <a
+                      mat-icon-button
+                      matSuffix
+                      [href]="'https://www.npmjs.com/package/' + DAFViewAppFormGroup.controls.npmPkg.value"
+                      target="_blank"
+                    >
+                      <mat-icon>help</mat-icon>
+                    </a>
+                  </mat-form-field>
+
+                  <div class="state-actions">
+                    <button type="submit" mat-raised-button color="accent" [disabled]="!DAFViewAppFormGroup.valid">
+                      Save View Config
+                    </button>
+                  </div>
+                </form>
+              </mat-tab>
+
+              <!-- <mat-tab label="State Configuration">
+                <h2>Coming Soon</h2>
+              </mat-tab> -->
+
+              <mat-tab label="Application Details">
+                <form class="spread" [formGroup]="SaveDataAppFormGroup">
+                  <mat-form-field class="mat-full-width">
+                    <input matInput placeholder="Application Name" formControlName="name" />
+                  </mat-form-field>
+
+                  <mat-form-field class="mat-full-width">
+                    <textarea matInput placeholder="Description" formControlName="desc"></textarea>
+                  </mat-form-field>
+
+                  <mat-form-field class="mat-full-width">
+                    <input matInput placeholder="Path" formControlName="path" />
+                  </mat-form-field>
+
+                  <!-- <a mat-raised-button color="accent" (click)="SaveDataApp(false)">Save Data App</a> -->
+                </form>
+              </mat-tab>
+            </mat-tab-group>
+          </ng-container>
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="end">
+        
+    </mat-card-actions>
+</mat-card>

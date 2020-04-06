@@ -1,0 +1,23 @@
+<mat-card 
+    *ngFor="
+            let app of AppData; 
+            let first = first; 
+            let last = last" 
+            [ngClass]="{ 'margin-top-2': first }"
+            class="margin-bottom-1">
+    <div fxLayout="row">
+        <mat-icon matTooltip="Public App" *ngIf="!app.IsPrivate">lock_open</mat-icon>
+        <mat-icon matTooltip="Private App" *ngIf="app.IsPrivate">lock</mat-icon>
+        <mat-card-header>
+            <mat-card-title>{{ app.Name }}</mat-card-title>
+            <mat-card-subtitle>{{ app.PathRegex }}</mat-card-subtitle>
+        </mat-card-header>
+    </div>
+
+    <mat-card-actions fxLayoutAlign="end">
+        <button mat-button color="accent" (click)="SetActiveApp(app)">
+            <mat-icon class="margin-right-1">settings</mat-icon>
+            Settings
+        </button>
+    </mat-card-actions>
+</mat-card>

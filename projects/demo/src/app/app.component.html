@@ -22,4 +22,22 @@
     <div class="lcu-content mat-drawer-container">
       <router-outlet></router-outlet>
     </div>
+    <span fxFlex="nogrow">
+      <button matTooltip="Welcome" mat-icon-button routerLink="/home">
+        <mat-icon>home</mat-icon>
+      </button>
+      <button matTooltip="Data Apps" mat-icon-button routerLink="/data-app">
+        <mat-icon>view_list</mat-icon>
+      </button>
+      <button matTooltip="Data Flow" mat-icon-button routerLink="/data-flow">
+        <mat-icon>account_tree</mat-icon>
+      </button>
+    </span>
+  </mat-toolbar>
+
+  <!-- <div class="lcu-content mat-drawer-container">
+      <div class="lcu-card-container" fxLayout="row" fxLayout.lt-md="column"> -->
+  <div class="lcu-content mat-drawer-container">
+    <router-outlet></router-outlet>
   </div>
+</div>
