@@ -3,13 +3,19 @@
             let app of AppData; 
             let first = first; 
             let last = last" 
-            [ngClass]="{ 'margin-top-2': first }"
+            [ngClass]="{ 'no-class-just-leaving-for-now': first, 
+                        'active-app': State?.ActiveApp?.Name === app.Name }"
             class="margin-bottom-1">
     <div fxLayout="row">
-        <mat-icon matTooltip="Public App" *ngIf="!app.IsPrivate">lock_open</mat-icon>
-        <mat-icon matTooltip="Private App" *ngIf="app.IsPrivate">lock</mat-icon>
+        <div *ngIf="State?.ActiveApp?.Name !== app.Name">
+            <mat-icon matTooltip="Public App" *ngIf="!app.IsPrivate">lock_open</mat-icon>
+            <mat-icon matTooltip="Private App" *ngIf="app.IsPrivate">lock</mat-icon>
+        </div>
+        <mat-icon color="accent" matTooltip="Active App" *ngIf="State?.ActiveApp?.Name === app.Name">beenhere</mat-icon>
         <mat-card-header>
             <mat-card-title>{{ app.Name }}</mat-card-title>
+            <!--This should be a description or something of interest, 
+                just adding PathRegex for now - Shannon -->
             <mat-card-subtitle>{{ app.PathRegex }}</mat-card-subtitle>
         </mat-card-header>
     </div>

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Application } from '@lcu/common';
+import { LimitedDataAppsManagementStateContext } from '../../../state/data-apps/limited-data-apps-management-state.context';
+import { LimitedDataAppsManagementState } from '../../../state/data-apps/limited-data-apps-management.state';
 
 @Component({
   selector: 'lcu-app-list',
@@ -8,6 +10,7 @@ import { Application } from '@lcu/common';
 })
 export class AppListComponent implements OnInit {
 
+  public SelectedAppName: string;
   /**
    * Application data
    */
@@ -22,11 +25,24 @@ export class AppListComponent implements OnInit {
   @Output('selected-app')
   public SelectedApp: EventEmitter<Application>;
 
-  constructor() {
+  /**
+   * Data Apps state data
+   */
+  public State: LimitedDataAppsManagementState;
+
+  constructor(protected state: LimitedDataAppsManagementStateContext) {
     this.SelectedApp = new EventEmitter<Application>();
    }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    /**
+     * Listen for state changes
+     */
+    this.state.Context.subscribe((state: any) => {
+      this.State = state;
+
+      this.handleStateChanges();
+    });
   }
 
   /**
@@ -35,6 +51,15 @@ export class AppListComponent implements OnInit {
    * @param app selected app
    */
   public SetActiveApp(app: Application): void {
+
+    // this.SelectedAppName = app.Name;
     this.SelectedApp.emit(app);
+  }
+
+  /**
+   * Listen for state changes
+   */
+  protected handleStateChanges(): void {
+    
   }
 }

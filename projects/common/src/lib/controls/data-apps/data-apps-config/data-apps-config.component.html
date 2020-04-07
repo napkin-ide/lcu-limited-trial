@@ -4,26 +4,31 @@
       </ng-container>
     <div fxLayout="row">
         <mat-card-header>
+
             <mat-card-title>
-                Managing Application
-            </mat-card-title>
-            <mat-card-subtitle color="accent">
                 {{ State.ActiveApp.Name }}
-        
-                <!-- <a
-                *ngIf="State.ActiveView?.BaseHref"
+                <a
+                *ngIf="State.CurrentAppView?.BaseHref"
                 matTooltip="Launch in Browser"
                 mat-icon-button
-                [href]="State.ActiveView.BaseHref"
-                target="_blank"
-              >
+                color="accent"
+                [href]="State.ActiveDAFApp['BaseHref']"
+                target="_blank">
                 <mat-icon>launch</mat-icon>
-              </a> -->
-
-              <a mat-icon-button matSuffix matTooltip="Copy Application ID" (click)="CopyAppIdToClipBoard(State.ActiveApp.ID)">
-                <mat-icon>file_copy</mat-icon>
               </a>
 
+              <!-- <a 
+                mat-icon-button 
+                color="accent" 
+                matSuffix 
+                matTooltip="Copy Application ID to clipboard" 
+                (click)="CopyAppIdToClipBoard(State.ActiveApp.ID)">
+                <mat-icon class="margin-right-1">file_copy</mat-icon>
+              </a> -->
+            </mat-card-title>
+             
+            <mat-card-subtitle color="accent">
+                <!-- {{ State.ActiveApp.Name }} -->
               <mat-chip-list *ngIf="State.ActiveApp.IsPrivate">
                 <mat-chip color="accent" selected>private</mat-chip>
               </mat-chip-list>
@@ -34,8 +39,21 @@
         <ng-container *ngIf="!State.Loading">
             <mat-tab-group mat-stretch-tabs>
               <mat-tab label="View Configuration">
-                <form [formGroup]="DAFViewAppFormGroup" (ngSubmit)="SaveAppView()" *ngIf="!State.Loading">
+                <form class="spread" [formGroup]="DAFViewAppFormGroup" (ngSubmit)="SaveAppView()" *ngIf="!State.Loading">
                   <mat-form-field class="mat-full-width">
+                    <input matInput placeholder="Application Id" formControlName="appId"/>
+                    <a 
+                      mat-icon-button 
+                      color="accent" 
+                      matSuffix 
+                      matTooltip="Copy Application ID to clipboard" 
+                      (click)="CopyAppIdToClipBoard(State.ActiveApp.ID)">
+                      <mat-icon class="margin-right-1">file_copy</mat-icon>
+                    </a>
+                  </mat-form-field>
+                  
+                  <mat-form-field class="mat-full-width">
+                    
                     <input matInput placeholder="NPM Package" formControlName="npmPkg" [matAutocomplete]="npmPkg" required />
 
                     <mat-autocomplete #npmPkg="matAutocomplete" (optionSelected)="PackageSelected($event)">
@@ -55,6 +73,10 @@
                     <a
                       mat-icon-button
                       matSuffix
+                      color="accent"
+                      matTooltip="Get information about 
+                      {{DAFViewAppFormGroup.controls.npmPkg.value}}/
+                      {{DAFViewAppFormGroup.controls.pkgVer.value}} on npmjs.com"
                       [href]="'https://www.npmjs.com/package/' + DAFViewAppFormGroup.controls.npmPkg.value"
                       target="_blank"
                     >
