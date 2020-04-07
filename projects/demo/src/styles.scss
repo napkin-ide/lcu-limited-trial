@@ -27,6 +27,17 @@
   @include angular-material-theme($theme);
   @include theme-extras($theme);
   @include lcu-component-theme($theme);
+  @include specific-theme-styles($theme);
+}
+
+/**
+  Set specific theme styles
+*/
+@mixin specific-theme-styles($theme) {
+  // set the background color of the active application
+  .active-app {
+    background-color: mat-color(map-get($theme, primary), 700) !important;
+  }
 }
 
 @include theme-setup(fathym-sea-green-theme(true));

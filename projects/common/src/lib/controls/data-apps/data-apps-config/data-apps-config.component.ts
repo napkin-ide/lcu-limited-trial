@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder, AbstractControl, FormControl } from '@angular/forms';
 import { debounceTime, switchMap, map } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { LimitedDataAppsManagementState } from '../../../state/data-apps/limited-data-apps-management.state';
 import { LimitedDataAppsManagementStateContext } from '../../../state/data-apps/limited-data-apps-management-state.context';
 import { NPMService } from '../../../state/limited-trial/npm.service';
+import { DAFViewApplicationConfig } from '@lcu/common';
 
 @Component({
   selector: 'lcu-data-apps-config',
@@ -14,17 +15,61 @@ import { NPMService } from '../../../state/limited-trial/npm.service';
 export class DataAppsConfigComponent implements OnInit {
 
   // Properties
+
+  /**
+   * Data view app form group
+   */
   public DAFViewAppFormGroup: FormGroup;
 
+  /**
+   * Disable / Enable fields
+   */
+  protected disabledFields: boolean;
+
+  /**
+   * NPM package model
+   */
   public NPMPackages: { Name: string; NPMLink: string; Version: string }[];
 
+  /**
+   * Save data form group
+   */
   public SaveDataAppFormGroup: FormGroup;
 
+  /**
+   * Data Apps state data
+   */
   public State: LimitedDataAppsManagementState;
+
+  // Fields
+
+  /**
+   * NPM package field
+   */
+  public get NPMPackageControl(): AbstractControl {
+    return this.DAFViewAppFormGroup.get('npmPkg');
+  }
+
+  /**
+   * NPM package version
+   */
+  public get NPMPackageVersionControl(): AbstractControl {
+    return this.DAFViewAppFormGroup.get('pkgVer');
+  }
+
+  /**
+   * App ID field
+   */
+  public get AppIdControl(): AbstractControl {
+    return this.DAFViewAppFormGroup.get('appId');
+  }
 
   constructor(protected state: LimitedDataAppsManagementStateContext,
               protected formBldr: FormBuilder,
-              protected npm: NPMService) { }
+              protected npm: NPMService) {
+
+                this.disabledFields = true;
+  }
 
   public ngOnInit(): void {
 
@@ -85,8 +130,8 @@ export class DataAppsConfigComponent implements OnInit {
   public PackageSelected(event: MatAutocompleteSelectedEvent) {
     const pkg = this.NPMPackages.find(p => p.Name === event.option.value);
 
-    if (!this.DAFViewAppFormGroup.controls.pkgVer.value) {
-      this.DAFViewAppFormGroup.controls.pkgVer.setValue(pkg.Version);
+    if (!this.NPMPackageVersionControl.value) {
+      this.NPMPackageVersionControl.value.setValue(pkg.Version);
     }
   }
 
@@ -95,8 +140,8 @@ export class DataAppsConfigComponent implements OnInit {
 
     this.state.SaveAppView({
       ...this.State.ActiveDAFApp,
-      NPMPackage: this.DAFViewAppFormGroup.controls.npmPkg.value,
-      PackageVersion: this.DAFViewAppFormGroup.controls.pkgVer.value
+      NPMPackage: this.NPMPackageControl.value,
+      PackageVersion: this.NPMPackageVersionControl.value
     });
   }
 
@@ -105,14 +150,15 @@ export class DataAppsConfigComponent implements OnInit {
    */
   protected setupForm(): void {
     this.SaveDataAppFormGroup = this.formBldr.group({
-      name: ['', Validators.required],
-      desc: ['', Validators.required],
-      path: ['', Validators.required]
+      name: new FormControl({ value: '', disabled: this.disabledFields }, [Validators.required]),
+      desc: new FormControl({ value: '', disabled: this.disabledFields }, [Validators.required]),
+      path: new FormControl({ value: '', disabled: this.disabledFields }, [Validators.required])
     });
 
     this.DAFViewAppFormGroup = this.formBldr.group({
-      npmPkg: ['', Validators.required],
-      pkgVer: ['', Validators.required]
+      npmPkg: new FormControl({ value: '', disabled: this.disabledFields }, [Validators.required]),
+      pkgVer: new FormControl({ value: '', disabled: this.disabledFields }, [Validators.required]),
+      appId: new FormControl({ value: '', disabled: this.disabledFields }, [Validators.required])
     });
 
     this.onChanges();
@@ -141,26 +187,20 @@ export class DataAppsConfigComponent implements OnInit {
   protected handleStateChanges(): void {
     console.log('data-apps-config', this.State);
 
+    this.State.CurrentAppView = this.State.ActiveDAFApp;
+
     this.setNPMPackage();
     this.setSaveDataApp();
   }
 
   protected setNPMPackage(): void {
 
-    // if (this.DAFViewAppFormGroup) {
-    //   if (this.State.ActiveView) {
-    //     this.DAFViewAppFormGroup.controls.npmPkg.setValue(this.State.ActiveView.NPMPackage);
-
-    //     this.DAFViewAppFormGroup.controls.pkgVer.setValue(this.State.ActiveView.PackageVersion);
-    //   } else {
-    //     this.DAFViewAppFormGroup.reset();
-    //   }
-    // }
-
     if (this.DAFViewAppFormGroup) {
-      if (this.State.ActiveDAFApp) {
-        this.DAFViewAppFormGroup.controls.npmPkg.setValue( this.State.ActiveDAFApp['NPMPackage']);
-        this.DAFViewAppFormGroup.controls.pkgVer.setValue( this.State.ActiveDAFApp['PackageVersion']);
+      if (this.State.CurrentAppView) {
+        this.NPMPackageControl.setValue(this.State.CurrentAppView.NPMPackage);
+        this.NPMPackageVersionControl.setValue(this.State.CurrentAppView.PackageVersion);
+        this.AppIdControl.setValue(this.State.CurrentAppView.ID);
+
       } else {
         this.DAFViewAppFormGroup.reset();
       }
