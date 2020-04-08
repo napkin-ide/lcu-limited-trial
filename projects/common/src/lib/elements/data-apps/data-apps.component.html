@@ -1,3 +1,4 @@
+
 <div class="lcu-data-apps-config-manager" *ngIf="State">
   <ng-container *ngIf="State.Loading">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
@@ -5,7 +6,7 @@
   <mat-toolbar>
     <button mat-icon-button (click)="drawer.toggle()">
       <mat-icon 
-        style="transform: rotate(180deg);"
+        class="open-icon"
         *ngIf="!drawer.opened"
         matTooltip="Open Application List">
         menu_open
