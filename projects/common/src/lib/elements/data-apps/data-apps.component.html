@@ -4,22 +4,33 @@
   </ng-container>
   <mat-toolbar>
     <button mat-icon-button (click)="drawer.toggle()">
-      <mat-icon>menu</mat-icon>
+      <mat-icon 
+        style="transform: rotate(180deg);"
+        *ngIf="!drawer.opened"
+        matTooltip="Open Application List">
+        menu_open
+      </mat-icon>
+      <mat-icon 
+        *ngIf="drawer.opened"
+        matTooltip="Close Application List">
+        menu_open
+      </mat-icon>
     </button>
     <h2>Data Applications</h2>
     <span class="filler"></span>
   
-    <!-- <div>
-      <button *ngIf="!State.AddingApp" mat-flat-button matTooltip="Create a new application"color="accent">
+    <div>
+      <button 
+        *ngIf="!State.AddingApp" mat-flat-button matTooltip="Create a new application" color="accent">
         <mat-icon>add_circle</mat-icon>
         Add New Data App
       </button>
       <button 
-        *ngIf="State.AddingApp" mat-flat-button matTooltip="Cancel new application"color="warn">
+        *ngIf="State.AddingApp" mat-flat-button matTooltip="Cancel new application" color="warn">
         <mat-icon>cancel</mat-icon>
         Cancel Add New
       </button>
-    </div> -->
+    </div>
     
   </mat-toolbar>
 

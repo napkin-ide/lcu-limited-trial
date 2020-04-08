@@ -5,13 +5,13 @@
             <mat-card-title>
                 {{ State.ActiveApp.Name }}
                 <a
-                *ngIf="State.CurrentAppView?.BaseHref"
-                matTooltip="Launch in Browser"
-                mat-icon-button
-                color="accent"
-                [href]="State.ActiveDAFApp['BaseHref']"
-                target="_blank">
-                <mat-icon>launch</mat-icon>
+                  *ngIf="State.CurrentAppView?.BaseHref"
+                  matTooltip="Open Application in Browser"
+                  mat-icon-button
+                  color="accent"
+                  [href]="State.ActiveDAFApp['BaseHref']"
+                  target="_blank">
+                <mat-icon>open_in_browser</mat-icon>
               </a>
             </mat-card-title>
              
