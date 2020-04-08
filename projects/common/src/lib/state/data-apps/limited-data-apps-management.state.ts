@@ -28,7 +28,8 @@ export class LimitedDataAppsManagementState {
 
   public Loading?: boolean;
 
-  public VersionLookups?: boolean;
+  // public VersionLookups?: boolean;
+  public VersionLookups?: any;
 }
 
 export enum DAFAppTypes {

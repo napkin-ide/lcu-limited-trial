@@ -27,9 +27,11 @@ export class DataAppsConfigComponent implements OnInit {
   protected disabledFields: boolean;
 
   /**
-   * NPM package model
+   * Array of NPM packages and versions, when doing an NPM package search
    */
   public NPMPackages: { Name: string; NPMLink: string; Version: string }[];
+
+  public NPMPackageVersions: Array<string>;
 
   /**
    * Save data form group
@@ -157,7 +159,7 @@ export class DataAppsConfigComponent implements OnInit {
 
     this.DAFViewAppFormGroup = this.formBldr.group({
       npmPkg: new FormControl({ value: '', disabled: this.disabledFields }, [Validators.required]),
-      pkgVer: new FormControl({ value: '', disabled: this.disabledFields }, [Validators.required]),
+      pkgVer: new FormControl({ value: '', disabled: false }, [Validators.required]),
       appId: new FormControl({ value: '', disabled: this.disabledFields }, [Validators.required])
     });
 
@@ -184,6 +186,9 @@ export class DataAppsConfigComponent implements OnInit {
       });
   }
 
+  /**
+   * Do something when state changes
+   */
   protected handleStateChanges(): void {
     console.log('data-apps-config', this.State);
 
@@ -197,14 +202,32 @@ export class DataAppsConfigComponent implements OnInit {
 
     if (this.DAFViewAppFormGroup) {
       if (this.State.CurrentAppView) {
+
         this.NPMPackageControl.setValue(this.State.CurrentAppView.NPMPackage);
         this.NPMPackageVersionControl.setValue(this.State.CurrentAppView.PackageVersion);
+        this.NPMPackageVersions = this.npmVersionLookup();
+
         this.AppIdControl.setValue(this.State.CurrentAppView.ID);
 
       } else {
         this.DAFViewAppFormGroup.reset();
       }
     }
+  }
+
+  /**
+   * Return array of npm versions
+   */
+  protected npmVersionLookup(): Array<string> {
+    let versions: Array<string>;
+    Object.entries(this.State.VersionLookups).find((el: object) => {
+      if (el[0] === this.State.CurrentAppView.NPMPackage) {
+        versions = el[1];
+      }
+      return;
+    });
+
+    return versions;
   }
 
   protected setSaveDataApp(): void {
