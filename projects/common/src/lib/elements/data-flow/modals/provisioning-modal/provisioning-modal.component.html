@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Deploy Resources</h1>
+<div mat-dialog-content>
+  <p>
+    Deployment is a feature in the full version of Fathym Data Flow Management.
+  </p>
+  <p>
+    Normally, this would take your Data Flow and do the following:
+  </p>
+  <ul>
+    <li>Automatically provision your IoT infrastructure</li>
+    <li>Provide monitoring of your Application</li>
+    <li>Manage the flow of your IoT device data</li>
+  </ul>
+  <p>
+    Click the <b>Buy Now!</b> button below to find out more information about the purchasing options.
+  </p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-raised-button color="primary" cdkFocusInitial (click)="BuyNow()">Buy Now!</button>
+</div>
