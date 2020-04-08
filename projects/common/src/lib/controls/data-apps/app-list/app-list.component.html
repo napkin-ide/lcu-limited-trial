@@ -11,7 +11,7 @@
             <mat-icon matTooltip="Public App" *ngIf="!app.IsPrivate">lock_open</mat-icon>
             <mat-icon matTooltip="Private App" *ngIf="app.IsPrivate">lock</mat-icon>
         </div>
-        <mat-icon matTooltip="Active App" *ngIf="State?.ActiveApp?.Name === app.Name">beenhere</mat-icon>
+        <mat-icon class="active-icon" matTooltip="Active App" *ngIf="State?.ActiveApp?.Name === app.Name">beenhere</mat-icon>
         <mat-card-header>
             <mat-card-title>{{ app.Name }}</mat-card-title>
             <!--This should be a description or something of interest, 

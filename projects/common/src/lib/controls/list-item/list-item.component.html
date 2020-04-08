@@ -1,9 +1,17 @@
-<mat-card
-  *ngFor="let item of ListData; let first = first; let last = last"
-  [ngClass]="{ 'margin-top-2': first }"
-  class="margin-bottom-1">
+<mat-card 
+  *ngFor="let item of ListData; 
+          let first = first; 
+          let last = last" 
+            [ngClass]="{ 'no-class-just-leaving-for-now': first, 
+                        'active-app': item.Active }"
+            class="margin-bottom-1">
   <div fxLayout="row">
+
+    <div *ngIf="item.Active">
       <mat-icon *ngIf="item.MaterialIcon">{{ item.MaterialIcon }}</mat-icon>
+    </div>
+    <mat-icon matTooltip="Active" *ngIf="item.Active && item.MaterialActiveIcon">{{ item.MaterialActiveIcon }}</mat-icon>
+
       <mat-card-header [matTooltip]="item.Name">
           <mat-card-title>{{ item.Name }}</mat-card-title>
           <mat-card-subtitle>{{ item.Description }}</mat-card-subtitle>
@@ -11,13 +19,14 @@
   </div>
 
   <mat-card-actions fxLayoutAlign="end">
-      <button mat-button color="accent" (click)="SetActiveItem(item)">
+      <button mat-button color="accent" (click)="SetActiveItem(item)" *ngIf="item.Active">
           <mat-icon class="margin-right-1">edit</mat-icon>
           Edit
       </button>
-      <button mat-button color="warn" (click)="DeleteItem(item)">
+      <button mat-button color="warn" (click)="DeleteItem(item)" *ngIf="item.Deletable">
           <mat-icon class="margin-right-1">delete</mat-icon>
           Delete
       </button>
   </mat-card-actions>
 </mat-card>
+
