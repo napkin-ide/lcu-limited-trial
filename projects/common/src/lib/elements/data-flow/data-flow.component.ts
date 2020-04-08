@@ -95,7 +95,7 @@ export class LcuLimitedTrialDataFlowElementComponent extends LcuElementComponent
 
   protected openProvisioningDialog(): void {
     this.dialog.open(ProvisioningModalComponent, {
-      width: '600px',
+      width: '610px',
       data: null
     });
   }
