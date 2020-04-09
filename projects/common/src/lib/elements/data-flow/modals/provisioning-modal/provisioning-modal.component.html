@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Deploy Resources</h1>
+<div mat-dialog-content>
+  <p>
+    Deployment is a feature in the full version of Fathym's Data Flow Management.
+  </p>
+  <p>
+    With the full version, Deployment would administer the following:
+  </p>
+  <ul>
+    <li>Provisioning the Data Flow infrastructure to your Azure subscription</li>
+    <li>Configuring needed code and settings</li>
+    <li>Ensuring enterprise resource security</li>
+    <li>Applying Fathym's 'Best Practices' in terms of scale and pricing</li>
+  </ul>
+  <p>
+    To find out more information about our purchasing options, click the <b>Buy Now!</b> button below.
+  </p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-raised-button color="primary" cdkFocusInitial (click)="BuyNow()">Buy Now!</button>
+</div>
