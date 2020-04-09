@@ -1,4 +1,3 @@
-import { DataAppsConfigComponent } from './controls/data-apps/data-apps-config/data-apps-config.component';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -11,7 +10,8 @@ import { LimitedDataAppsManagementStateContext } from './state/data-apps/limited
 import { LimitedDataFlowManagementStateContext } from './state/data-flow/limited-data-flow-management-state.context';
 import { ListItemComponent } from './controls/list-item/list-item.component';
 import { LcuDataFlowModule } from '@napkin-ide/lcu-data-flow-common';
-import { ConfirmationModalComponent } from './elements/data-flow/modals/confirmation-modal/confirmation-modal.component';
+import { ProvisioningModalComponent } from './elements/data-flow/modals/provisioning-modal/provisioning-modal.component';
+import { DataAppsConfigComponent } from './controls/data-apps/data-apps-config/data-apps-config.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { ConfirmationModalComponent } from './elements/data-flow/modals/confirma
     LcuLimitedTrialDataAppsElementComponent,
     LcuLimitedTrialDataFlowElementComponent,
     ListItemComponent,
-    ConfirmationModalComponent,
+    ProvisioningModalComponent,
     DataAppsConfigComponent,
     AppListComponent, // need to remove this one and replace with the ListItemComponent
     SafePipe
@@ -45,7 +45,7 @@ import { ConfirmationModalComponent } from './elements/data-flow/modals/confirma
     LcuLimitedTrialDataAppsElementComponent,
     LcuLimitedTrialDataFlowElementComponent,
     ListItemComponent,
-    ConfirmationModalComponent,
+    ProvisioningModalComponent,
     DataAppsConfigComponent,
     AppListComponent // need to remove this one and replace with the ListItemComponent
   ]

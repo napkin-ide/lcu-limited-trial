@@ -4,8 +4,8 @@ import { LimitedDataFlowManagementState } from '../../state/data-flow/limited-da
 import { LCUElementContext, LcuElementComponent, DataFlow } from '@lcu/common';
 import { DataFlowManagerEventService } from '@napkin-ide/lcu-data-flow-common';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationModalComponent } from './modals/confirmation-modal/confirmation-modal.component';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { ProvisioningModalComponent } from './modals/provisioning-modal/provisioning-modal.component';
 
 export class LcuLimitedTrialDataFlowElementState {}
 
@@ -93,14 +93,10 @@ export class LcuLimitedTrialDataFlowElementComponent extends LcuElementComponent
 
   }
 
-  protected openDialog(): void {
-    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
-      width: '500px',
+  protected openProvisioningDialog(): void {
+    this.dialog.open(ProvisioningModalComponent, {
+      width: '610px',
       data: null
-    });
-
-    dialogRef.afterClosed().subscribe((result: any) => {
-      console.log('Closed the dialog');
     });
   }
 
@@ -116,8 +112,7 @@ export class LcuLimitedTrialDataFlowElementComponent extends LcuElementComponent
   protected deployDataFlow(): Subscription {
     return this.dataFlowEventService.GetDeployDataFlowEvent().subscribe(
       (dataFlowLookup: string) => {
-        this.State.Loading = true;
-        this.dfMgmt.DeployDataFlow(dataFlowLookup);
+        this.openProvisioningDialog();
       }
     );
   }
