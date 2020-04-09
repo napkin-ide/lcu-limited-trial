@@ -38,7 +38,7 @@ export class LcuLimitedTrialDataAppsElementComponent
   //  Constructors
   constructor(
     protected injector: Injector,
-    protected dfMgmt: LimitedDataAppsManagementStateContext
+    protected state: LimitedDataAppsManagementStateContext
   ) {
     super(injector);
 
@@ -53,7 +53,7 @@ export class LcuLimitedTrialDataAppsElementComponent
     /**
      * Listen for state changes
      */
-    this.dfMgmt.Context.subscribe((state: any) => {
+    this.state.Context.subscribe((state: any) => {
       this.State = state;
 
       this.handleStateChanges();
@@ -70,7 +70,16 @@ export class LcuLimitedTrialDataAppsElementComponent
   public SetActiveApp(app: Application): void {
     this.State.Loading = true;
 
-    this.dfMgmt.SetActiveApp(app);
+    this.state.SetActiveApp(app);
+  }
+
+  /**
+   * Toggle between adding and canceling a new app
+   */
+  public ToggleAddingApp(): void {
+    this.State.Loading = true;
+
+    this.state.ToggleAddNew();
   }
 
   //  Helpers

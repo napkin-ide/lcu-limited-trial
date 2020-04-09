@@ -12,6 +12,7 @@ import { LimitedDataFlowManagementStateContext } from './state/data-flow/limited
 import { ListItemComponent } from './controls/list-item/list-item.component';
 import { LcuDataFlowModule } from '@napkin-ide/lcu-data-flow-common';
 import { ConfirmationModalComponent } from './elements/data-flow/modals/confirmation-modal/confirmation-modal.component';
+import { AddAppComponent } from './controls/data-apps/add-app/add-app.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ConfirmationModalComponent } from './elements/data-flow/modals/confirma
     ListItemComponent,
     ConfirmationModalComponent,
     DataAppsConfigComponent,
-    AppListComponent // need to remove this one and replace with the ListItemComponent
+    AppListComponent,
+    AddAppComponent // need to remove this one and replace with the ListItemComponent
   ],
   imports: [
     FathymSharedModule,
@@ -37,7 +39,8 @@ import { ConfirmationModalComponent } from './elements/data-flow/modals/confirma
     LcuLimitedTrialDataFlowElementComponent,
     ListItemComponent,
     DataAppsConfigComponent,
-    AppListComponent // need to remove this one and replace with the ListItemComponent
+    AppListComponent,
+    AddAppComponent // need to remove this one and replace with the ListItemComponent
   ],
   entryComponents: [
     LcuLimitedTrialWelcomeElementComponent,
@@ -46,7 +49,8 @@ import { ConfirmationModalComponent } from './elements/data-flow/modals/confirma
     ListItemComponent,
     ConfirmationModalComponent,
     DataAppsConfigComponent,
-    AppListComponent // need to remove this one and replace with the ListItemComponent
+    AppListComponent,
+    AddAppComponent // need to remove this one and replace with the ListItemComponent
   ]
 })
 export class LcuLimitedTrialModule {
