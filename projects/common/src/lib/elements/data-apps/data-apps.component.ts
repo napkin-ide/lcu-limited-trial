@@ -79,6 +79,7 @@ export class LcuLimitedTrialDataAppsElementComponent
   public ToggleAddingApp(): void {
     this.State.Loading = true;
 
+    // toggle
     this.state.ToggleAddNew();
   }
 
