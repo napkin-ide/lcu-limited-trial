@@ -1,14 +1,37 @@
-.tool-display-section {
-    width: 400px;
+.welcome-intro-section {
+    text-align: center;
 }
-
-.tool-display-title {
-    margin-bottom: 5px;
+.journey-card {
+    height: 300px;
+    // width: 250px;
+    border: 1px solid black;
 }
+.journey-video-section {
+    height: 50%;
+}
+.journey-title-description-section {
+    height: 50%;
 
-.video-link-section {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+    .title-section {
+        height: 45%;
+
+        .journey-name {
+            font-size: 14pt;
+            border-bottom: 1px solid black;
+        }
+
+        .journey-uses {
+            font-size: 12pt;
+        }
+
+        p {
+            text-align: center;
+            margin: 0;
+            line-height: 34px;
+        }
+    }
+
+    .description-section {
+        height: 55%;
+    }
 }
