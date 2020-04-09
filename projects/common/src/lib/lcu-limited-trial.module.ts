@@ -10,7 +10,6 @@ import { LimitedDataAppsManagementStateContext } from './state/data-apps/limited
 import { LimitedDataFlowManagementStateContext } from './state/data-flow/limited-data-flow-management-state.context';
 import { ListItemComponent } from './controls/list-item/list-item.component';
 import { LcuDataFlowModule } from '@napkin-ide/lcu-data-flow-common';
-import { ConfirmationModalComponent } from './elements/data-flow/modals/confirmation-modal/confirmation-modal.component';
 import { AddAppComponent } from './controls/data-apps/add-app/add-app.component';
 import { ProvisioningModalComponent } from './elements/data-flow/modals/provisioning-modal/provisioning-modal.component';
 import { DataAppsConfigComponent } from './controls/data-apps/data-apps-config/data-apps-config.component';
@@ -24,8 +23,7 @@ import { DataAppsConfigComponent } from './controls/data-apps/data-apps-config/d
     ProvisioningModalComponent,
     DataAppsConfigComponent,
     AppListComponent,
-    AddAppComponent // need to remove this one and replace with the ListItemComponent
-    AppListComponent, // need to remove this one and replace with the ListItemComponent
+    AddAppComponent,
     SafePipe
   ],
   imports: [
