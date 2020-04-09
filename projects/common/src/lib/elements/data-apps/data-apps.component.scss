@@ -5,9 +5,14 @@
       height: calc(100% - 64px);
     }
   
+    .open-icon {
+      transform: rotate(180deg);
+    }
+
     .content {
       padding: 2rem;
     }
+    
   
     .actions {
       padding: 2rem;

@@ -6,6 +6,7 @@ import {
 } from '@lcu/common';
 import { LimitedDataAppsManagementStateContext } from '../../state/data-apps/limited-data-apps-management-state.context';
 import { LimitedDataAppsManagementState } from '../../state/data-apps/limited-data-apps-management.state';
+import { ListItemModel } from '../../models/list-item.model';
 
 export class LcuLimitedTrialDataAppsElementState {}
 
@@ -22,11 +23,12 @@ export const SELECTOR_LCU_LIMITED_TRIAL_DATA_APPS_ELEMENT =
   styleUrls: ['./data-apps.component.scss']
 })
 export class LcuLimitedTrialDataAppsElementComponent
-  extends LcuElementComponent<LcuLimitedTrialDataAppsContext>
-  implements OnInit {
+  extends LcuElementComponent<LcuLimitedTrialDataAppsContext> implements OnInit {
   //  Fields
 
   //  Properties
+  public ListItemData: Array<ListItemModel>;
+
   public PublicDataSource: Array<Application>;
 
   public PrivateDataSource: Array<Application>;
@@ -79,6 +81,23 @@ export class LcuLimitedTrialDataAppsElementComponent
   protected handleStateChanges(): void {
     if (this.State.Applications) {
       this.separateAppTypes();
+      // this.setData();
+    }
+  }
+
+  // Attempt to use the generic list-item component
+  protected setData(): void {
+    this.ListItemData = [];
+    const listItem: ListItemModel = new ListItemModel();
+
+    for (const itm of this.State.Applications) {
+      listItem.Active = true;
+      listItem.Deletable = false;
+      listItem.Description = itm.Description;
+      listItem.MaterialIcon = 'home';
+      listItem.MaterialActiveIcon = 'beenhere';
+      listItem.Name = itm.Name;
+      // this.ListItemData.push(listItem);
     }
   }
 

@@ -1,10 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
-export class ListItemModel {
-  Name: string;
-  Description: string;
-  MaterialIcon: string;
-}
+import { ListItemModel } from '../../models/list-item.model';
 
 @Component({
   selector: 'lcu-list-item',

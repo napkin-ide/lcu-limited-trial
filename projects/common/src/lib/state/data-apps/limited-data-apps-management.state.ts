@@ -1,4 +1,4 @@
-import { Application, DAFApplicationConfig, DAFAPIApplicationConfig, Status } from '@lcu/common';
+import { Application, DAFApplicationConfig, DAFAPIApplicationConfig, Status, DAFViewApplicationConfig } from '@lcu/common';
 
 export class LimitedDataAppsManagementState {
   public ActiveApp: Application;
@@ -8,6 +8,9 @@ export class LimitedDataAppsManagementState {
   public ActiveDAFAPIs: DAFAPIApplicationConfig[];
 
   public ActiveHost: string;
+
+  // I'm adding this property
+  public CurrentAppView: DAFViewApplicationConfig;
 
   public AddingApp: boolean;
 
@@ -25,7 +28,8 @@ export class LimitedDataAppsManagementState {
 
   public Loading?: boolean;
 
-  public VersionLookups?: boolean;
+  // public VersionLookups?: boolean;
+  public VersionLookups?: any;
 }
 
 export enum DAFAppTypes {
