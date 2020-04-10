@@ -18,7 +18,7 @@ export class LcuLimitedTrialWelcomeElementComponent extends LcuElementComponent<
   //  Fields
 
   //  Properties
-  public DividedJourneys: Array<{ journeyName: string, journeys: Array<any> }>;
+  public DividedJourneys: Array<{ JourneyName: string, Journeys: Array<any> }>;
   public Journeys: Array<any>;
   public PanelOpenState: boolean;
 
@@ -43,79 +43,79 @@ export class LcuLimitedTrialWelcomeElementComponent extends LcuElementComponent<
   //  Helpers
   protected divideJourneys() {
     this.UserRoles.forEach(role => {
-      this.DividedJourneys.push({ journeyName: role, journeys: [] });
+      this.DividedJourneys.push({ JourneyName: role, Journeys: [] });
     });
     this.Journeys.forEach(journey => {
-      journey.roles.forEach((role: any) => {
-        this.DividedJourneys.find(j => j.journeyName === role).journeys.push(journey);
+      journey.Roles.forEach((role: any) => {
+        this.DividedJourneys.find(j => j.JourneyName === role).Journeys.push(journey);
       });
     });
   }
   protected getJourneys(): Array<any> {
     return [
       {
-        name: 'IOT - To the Edge and Beyond!',
-        videoUrl: 'https://player.vimeo.com/video/403508452',
-        uses: ['Devices', 'Data Flow', 'Data Science'],
-        description: 'Build and connect edge devices, securely manage, visualize and analyze your data, and take action on your intelligence.',
-        roles: [UserRole.Developer],
-        active: true
+        Name: 'IOT - To the Edge and Beyond!',
+        VideoUrl: 'https://player.vimeo.com/video/403508452',
+        Uses: ['Devices', 'Data Flow', 'Data Science'],
+        Description: 'Build and connect edge devices, securely manage, visualize and analyze your data, and take action on your intelligence.',
+        Roles: [UserRole.Developer],
+        Active: true
       },
       {
-        name: 'Application Development',
-        videoUrl: 'https://player.vimeo.com/video/403508452',
-        uses: ['JS Apps', 'Security', 'Dev Tools'],
-        description: 'Develop JavaScript applications in the framework of your choosing and easily deploy, secure, and manage at scale.',
-        roles: [UserRole.Developer],
-        active: false
+        Name: 'Application Development',
+        VideoUrl: 'https://player.vimeo.com/video/403508452',
+        Uses: ['JS Apps', 'Security', 'Dev Tools'],
+        Description: 'Develop JavaScript applications in the framework of your choosing and easily deploy, secure, and manage at scale.',
+        Roles: [UserRole.Developer],
+        Active: false
       },
       {
-        name: 'Cloud Development',
-        videoUrl: 'https://player.vimeo.com/video/403508452',
-        uses: ['DevOps', 'IaC', 'Data Flow'],
-        description: 'Rapidly set up and manage enterprise grade, best practice cloud infrastructures and leverage them to build apps and APIs.',
-        roles: [UserRole.Developer],
-        active: false
+        Name: 'Cloud Development',
+        VideoUrl: 'https://player.vimeo.com/video/403508452',
+        Uses: ['DevOps', 'IaC', 'Data Flow'],
+        Description: 'Rapidly set up and manage enterprise grade, best practice cloud infrastructures and leverage them to build apps and APIs.',
+        Roles: [UserRole.Developer],
+        Active: false
       },
       {
-        name: 'Data Development',
-        videoUrl: 'https://player.vimeo.com/video/403508452',
-        uses: ['AI/ML', 'Analytics', 'Reporting'],
-        description: 'Develop data applications from existing and new enterprise data. Leverage existing tools with new at a rapid pace.',
-        roles: [UserRole.Developer],
-        active: false
+        Name: 'Data Development',
+        VideoUrl: 'https://player.vimeo.com/video/403508452',
+        Uses: ['AI/ML', 'Analytics', 'Reporting'],
+        Description: 'Develop data applications from existing and new enterprise data. Leverage existing tools with new at a rapid pace.',
+        Roles: [UserRole.Developer],
+        Active: false
       },
       {
-        name: 'Cloud Orchestration',
-        videoUrl: 'https://player.vimeo.com/video/403508452',
-        uses: ['DevOps', 'IaC', 'Data Flow'],
-        description: 'Rapidly set up and manage enterprise grade, best practice cloud infrastructures and leverage them to build apps and APIs.',
-        roles: [UserRole.Developer],
-        active: false
+        Name: 'Cloud Orchestration',
+        VideoUrl: 'https://player.vimeo.com/video/403508452',
+        Uses: ['DevOps', 'IaC', 'Data Flow'],
+        Description: 'Rapidly set up and manage enterprise grade, best practice cloud infrastructures and leverage them to build apps and APIs.',
+        Roles: [UserRole.Developer],
+        Active: false
       },
       {
-        name: 'Enterprise Intranets',
-        videoUrl: 'https://player.vimeo.com/video/403508452',
-        uses: ['Dashboards', 'Reporting', 'Identity'],
-        description: 'Leverage our Enterprise IDE to rapidly pull together open source and custom LCUs to drive value in your organization.',
-        roles: [UserRole.Developer],
-        active: false
+        Name: 'Enterprise Intranets',
+        VideoUrl: 'https://player.vimeo.com/video/403508452',
+        Uses: ['Dashboards', 'Reporting', 'Identity'],
+        Description: 'Leverage our Enterprise IDE to rapidly pull together open source and custom LCUs to drive value in your organization.',
+        Roles: [UserRole.Developer],
+        Active: false
       },
       {
-        name: 'Designer Tools',
-        videoUrl: 'https://player.vimeo.com/video/403508452',
-        uses: ['AI/ML', 'Analytics', 'Reporting'],
-        description: 'Develop data applications from existing and new enterprise data. Leverage existing tools with new at a rapid pace.',
-        roles: [UserRole.Designer],
-        active: false
+        Name: 'Designer Tools',
+        VideoUrl: 'https://player.vimeo.com/video/403508452',
+        Uses: ['AI/ML', 'Analytics', 'Reporting'],
+        Description: 'Develop data applications from existing and new enterprise data. Leverage existing tools with new at a rapid pace.',
+        Roles: [UserRole.Designer],
+        Active: false
       },
       {
-        name: 'Admin Tools',
-        videoUrl: 'https://player.vimeo.com/video/403508452',
-        uses: ['AI/ML', 'Analytics', 'Reporting'],
-        description: 'Develop data applications from existing and new enterprise data. Leverage existing tools with new at a rapid pace.',
-        roles: [UserRole.Administrator],
-        active: false
+        Name: 'Admin Tools',
+        VideoUrl: 'https://player.vimeo.com/video/403508452',
+        Uses: ['AI/ML', 'Analytics', 'Reporting'],
+        Description: 'Develop data applications from existing and new enterprise data. Leverage existing tools with new at a rapid pace.',
+        Roles: [UserRole.Administrator],
+        Active: false
       }
     ];
   }

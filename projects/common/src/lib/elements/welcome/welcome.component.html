@@ -11,27 +11,27 @@
     <mat-expansion-panel *ngFor="let journey of DividedJourneys">
         <mat-expansion-panel-header fxLayoutAlign="center center" class="mat-xpx-header">
             <mat-panel-title>
-                {{ journey.journeyName }}
+                {{ journey.JourneyName }}
             </mat-panel-title>
         </mat-expansion-panel-header>
         <div fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="20px grid">
-            <div *ngFor="let j of journey.journeys" [fxFlex.gt-sm]="100 / 3.5 + '%'">
+            <div *ngFor="let j of journey.Journeys" [fxFlex.gt-sm]="100 / 3.5 + '%'">
                 <!-- the journey card -->
                 <div class="journey-card">
                     <div class="journey-video-section">
-                        <div class="coming-soon-overlay" *ngIf="!j.active">
+                        <div class="coming-soon-overlay" *ngIf="!j.Active">
                             <p>Coming Soon!</p>
                         </div>
-                        <iframe [src]="j.videoUrl | safe" width="100%" height="100%" webkitallowfullscreen
+                        <iframe [src]="j.VideoUrl | safe" width="100%" height="100%" webkitallowfullscreen
                             mozallowfullscreen allowfullscreen></iframe>
                     </div>
                     <div class="journey-title-description-section">
                         <div class="title-section">
-                            <p class="journey-name">{{ j.name }}</p>
-                            <p class="journey-uses">{{ j.uses.join(', ') }}</p>
+                            <p class="journey-name">{{ j.Name }}</p>
+                            <p class="journey-uses">{{ j.Uses.join(', ') }}</p>
                         </div>
                         <div class="description-section">
-                            <div>{{ j.description }}</div>
+                            <div>{{ j.Description }}</div>
                         </div>
                     </div>
                 </div>
