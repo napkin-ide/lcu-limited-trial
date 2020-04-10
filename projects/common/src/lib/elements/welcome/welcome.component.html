@@ -1,35 +1,37 @@
 <div class="welcome-intro-section">
     <h1>Welcome to Fathym!</h1>
-    <p>Fathym's low-code framework is designed to give developers, developers, developers, developers, developers,
-        developers, developers, developers, developers, developers, developers, developers, developers, developers,
-        developers, developers, developers, developers, developers, developers, developers, developers, developers,
-        developers, developers, developers, developers, developers, developers, developers ...</p>
+    <p>Fathym's low-code framework is designed to give developers the freedom and best practice workflows to rapidly
+        create IoT and data-driven applications that are agnostic to tools, platforms and clouds. The framework
+        drastically cuts down development time by applying and automating a set of best practices. The cloud
+        infrastructure Fathym uses is Microsoft Azure. You can set up an automated, enterprise-grade, Azure-hosted
+        environment with just a few clicks.</p>
 </div>
 
 <mat-accordion>
-    <mat-expansion-panel *ngFor="let role of UserRoles">
-        <mat-expansion-panel-header>
+    <mat-expansion-panel *ngFor="let journey of DividedJourneys">
+        <mat-expansion-panel-header fxLayoutAlign="center center" class="mat-xpx-header">
             <mat-panel-title>
-                {{ role }}
+                {{ journey.journeyName }}
             </mat-panel-title>
         </mat-expansion-panel-header>
         <div fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="20px grid">
-            <div *ngFor="let journey of Journeys" [fxFlex.gt-md]="100 / 3.5 + '%'">
-                <div *ngIf="journey.roles.includes(role)">
-                    <!-- build out the section card here -->
-                    <div class="journey-card">
-                        <div class="journey-video-section">
-                            <iframe [src]="journey.videoUrl | safe" width="100%" height="100%" webkitallowfullscreen
-                                mozallowfullscreen allowfullscreen></iframe>
+            <div *ngFor="let j of journey.journeys" [fxFlex.gt-sm]="100 / 3.5 + '%'">
+                <!-- the journey card -->
+                <div class="journey-card">
+                    <div class="journey-video-section">
+                        <div class="coming-soon-overlay" *ngIf="!j.active">
+                            <p>Coming Soon!</p>
                         </div>
-                        <div class="journey-title-description-section">
-                            <div class="title-section">
-                                <p class="journey-name">{{ journey.name }}</p>
-                                <p class="journey-uses">{{ journey.uses.join(', ') }}</p>
-                            </div>
-                            <div class="description-section">
-                                {{ journey.description }}
-                            </div>
+                        <iframe [src]="j.videoUrl | safe" width="100%" height="100%" webkitallowfullscreen
+                            mozallowfullscreen allowfullscreen></iframe>
+                    </div>
+                    <div class="journey-title-description-section">
+                        <div class="title-section">
+                            <p class="journey-name">{{ j.name }}</p>
+                            <p class="journey-uses">{{ j.uses.join(', ') }}</p>
+                        </div>
+                        <div class="description-section">
+                            <div>{{ j.description }}</div>
                         </div>
                     </div>
                 </div>

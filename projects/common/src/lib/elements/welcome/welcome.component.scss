@@ -8,20 +8,35 @@
 }
 .journey-video-section {
     height: 50%;
+    position: relative;
+
+    .coming-soon-overlay {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.8);
+        height: 100%;
+        width: 100%;
+
+        p {
+            text-align: center;
+            font-size: 28pt;
+            margin-top: 15%;
+        }
+    }
 }
 .journey-title-description-section {
     height: 50%;
 
     .title-section {
         height: 45%;
+        background-color: #a4bab3;
 
         .journey-name {
-            font-size: 14pt;
+            font-size: 16pt;
             border-bottom: 1px solid black;
         }
 
         .journey-uses {
-            font-size: 12pt;
+            font-size: 14pt;
         }
 
         p {
@@ -33,5 +48,19 @@
 
     .description-section {
         height: 55%;
+        display: table;
+        padding: 5px;
+
+        div {
+            font-size: 12pt;
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
+            width: 95%;
+        }
     }
+}
+
+::ng-deep .mat-xpx-header .mat-content {
+    flex: initial !important;
 }
