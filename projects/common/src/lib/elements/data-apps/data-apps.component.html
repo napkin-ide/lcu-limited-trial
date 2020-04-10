@@ -20,14 +20,18 @@
     <h2>Data Applications</h2>
     <span class="filler"></span>
   
-    <div>
+    <div *ngIf="!State.Loading">
       <button 
-        *ngIf="!State.AddingApp" mat-flat-button matTooltip="Create a new application" color="accent">
+        *ngIf="!State.AddingApp" 
+        (click)="ToggleAddingApp()"
+        mat-flat-button matTooltip="Create a new application" color="accent">
         <mat-icon>add_circle</mat-icon>
         Add New Data App
       </button>
       <button 
-        *ngIf="State.AddingApp" mat-flat-button matTooltip="Cancel new application" color="warn">
+        *ngIf="State.AddingApp"
+        (click)="ToggleAddingApp()" 
+        mat-flat-button matTooltip="Cancel new application" color="warn">
         <mat-icon>cancel</mat-icon>
         Cancel Add New
       </button>
@@ -71,9 +75,9 @@
     <!--Content-->
     
     <mat-drawer-content>
-      <div>
-        <lcu-data-apps-config *ngIf="State.ActiveApp"></lcu-data-apps-config>
-      </div>
+      <lcu-add-app [state]="State" *ngIf="!State.Loading && State.AddingApp"></lcu-add-app>
+      <lcu-data-apps-config *ngIf="!State.Loading && State.ActiveApp"></lcu-data-apps-config>
     </mat-drawer-content>
+  
 </mat-drawer-container>
 </div>

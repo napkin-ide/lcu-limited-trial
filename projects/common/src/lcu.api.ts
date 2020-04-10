@@ -9,3 +9,4 @@ export * from './lib/state/data-apps/limited-data-apps-management.state';
 export * from './lib/state/data-flow/limited-data-flow-management-state.context';
 export * from './lib/state/data-flow/limited-data-flow-management.state';
 export * from './lib/models/list-item.model';
+export * from './lib/controls/data-apps/app-list/app-list.component';

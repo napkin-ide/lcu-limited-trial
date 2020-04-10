@@ -44,12 +44,23 @@ export class LimitedDataAppsManagementStateContext extends StateContext<
   }
 
   // leave id null and it will create a new one
-  public SaveDataApp(app: Application) {
+  public SaveDataApp(app: Application): void {
     this.Execute({
       Arguments: {
         App: app
       },
       Type: 'SaveDataApp'
+    });
+  }
+
+  /**
+   * Toggle between adding and canceling a new app
+   */
+  public ToggleAddNew(): void {
+    this.Execute({
+      Arguments: {
+      },
+      Type: 'ToggleAddNew'
     });
   }
 

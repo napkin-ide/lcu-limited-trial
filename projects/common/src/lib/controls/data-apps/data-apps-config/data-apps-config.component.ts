@@ -167,7 +167,7 @@ export class DataAppsConfigComponent implements OnInit {
   }
 
   protected onChanges(): void {
-    this.DAFViewAppFormGroup.controls.npmPkg.valueChanges
+    this.NPMPackageControl.valueChanges
       .pipe(
         debounceTime(500),
         switchMap(value => this.npm.Search(value ? value.toString() : '')),
