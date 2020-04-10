@@ -23,6 +23,8 @@ export class LcuLimitedTrialDataFlowElementComponent extends LcuElementComponent
   protected subscriptions: { [key: string]: Subscription };
 
   //  Properties
+  public AllowDelete: boolean = false;
+
   public DataFlowLists: { emulatedDataFlows: DataFlow[], trialDataFlows: DataFlow[] };
 
   public State: LimitedDataFlowManagementState;
