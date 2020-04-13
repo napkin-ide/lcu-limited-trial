@@ -1,6 +1,6 @@
 {
 	"name": "@napkin-ide/lcu-limited-trial",
-	"version": "0.0.7",
+	"version": "0.0.4",
 	"scripts": {
 		"build:common": "ng build common",
 		"build:demo": "ng build demo --prod",
