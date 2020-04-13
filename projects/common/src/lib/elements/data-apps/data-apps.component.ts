@@ -102,7 +102,7 @@ export class LcuLimitedTrialDataAppsElementComponent
     this.State.Loading = true;
 
     // toggle
-    this.state.ToggleAddNew();
+    this.state.ToggleAddNew(addNew);
 
     /**
      * when cancelling creating a new app, setActiveApp
