@@ -61,7 +61,7 @@
                   <mat-form-field class="mat-full-width">
                     <!-- <input matInput placeholder="Package Version" formControlName="pkgVer" required /> -->
 
-                      <mat-select formControlName="pkgVer">
+                      <mat-select formControlName="pkgVer" placeholder="NPM Package Version">
                         <mat-option *ngFor="let ver of NPMPackageVersions" [value]="ver">
                           <span>{{ ver }}</span>
                         </mat-option>
