@@ -1,3 +1,4 @@
+// import { DataAppService } from '../../services/data-apps/data-apps.service';
 import { Component, OnInit, Injector } from '@angular/core';
 import {
   LCUElementContext,
@@ -29,10 +30,19 @@ export class LcuLimitedTrialDataAppsElementComponent
   //  Properties
   public ListItemData: Array<ListItemModel>;
 
+  /**
+   * Public data applications
+   */
   public PublicDataSource: Array<Application>;
 
+  /**
+   * Private data applications
+   */
   public PrivateDataSource: Array<Application>;
 
+  /**
+   * Current state
+   */
   public State: LimitedDataAppsManagementState;
 
   //  Constructors
@@ -70,17 +80,38 @@ export class LcuLimitedTrialDataAppsElementComponent
   public SetActiveApp(app: Application): void {
     this.State.Loading = true;
 
+    /**
+     * Keep a copy of the previous ActiveApp
+     * This should be handled in the State,
+     * but doing it here for now - Shannon
+     */
+
+    if (app !== null) {
+      // this.dataAppService.PreviousActiveApp = app;
+    }
+
     this.state.SetActiveApp(app);
   }
 
   /**
    * Toggle between adding and canceling a new app
+   * 
+   * @param addNew boolean for adding or canceling the creatinon of a new app
    */
-  public ToggleAddingApp(): void {
+  public ToggleAddingApp(addNew: boolean): void {
     this.State.Loading = true;
 
     // toggle
     this.state.ToggleAddNew();
+
+    /**
+     * when cancelling creating a new app, setActiveApp
+     * to the previous ActiveApp
+     */
+
+    if (!addNew) {
+     // this.state.SetActiveApp(this.dataAppService.PreviousActiveApp);
+    }
   }
 
   //  Helpers
@@ -91,23 +122,6 @@ export class LcuLimitedTrialDataAppsElementComponent
   protected handleStateChanges(): void {
     if (this.State.Applications) {
       this.separateAppTypes();
-      // this.setData();
-    }
-  }
-
-  // Attempt to use the generic list-item component
-  protected setData(): void {
-    this.ListItemData = [];
-    const listItem: ListItemModel = new ListItemModel();
-
-    for (const itm of this.State.Applications) {
-      listItem.Active = true;
-      listItem.Deletable = false;
-      listItem.Description = itm.Description;
-      listItem.MaterialIcon = 'home';
-      listItem.MaterialActiveIcon = 'beenhere';
-      listItem.Name = itm.Name;
-      // this.ListItemData.push(listItem);
     }
   }
 

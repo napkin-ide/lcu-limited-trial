@@ -24,13 +24,16 @@ export class DataAppsConfigComponent implements OnInit {
   /**
    * Disable / Enable fields
    */
-  protected disabledFields: boolean;
+  public DisableFormFields: boolean;
 
   /**
    * Array of NPM packages and versions, when doing an NPM package search
    */
   public NPMPackages: { Name: string; NPMLink: string; Version: string }[];
 
+  /**
+   * List of NPM package versions
+   */
   public NPMPackageVersions: Array<string>;
 
   /**
@@ -70,7 +73,7 @@ export class DataAppsConfigComponent implements OnInit {
               protected formBldr: FormBuilder,
               protected npm: NPMService) {
 
-                this.disabledFields = true;
+                this.DisableFormFields = true;
   }
 
   public ngOnInit(): void {
@@ -152,15 +155,15 @@ export class DataAppsConfigComponent implements OnInit {
    */
   protected setupForm(): void {
     this.SaveDataAppFormGroup = this.formBldr.group({
-      name: new FormControl({ value: '', disabled: this.disabledFields }, [Validators.required]),
-      desc: new FormControl({ value: '', disabled: this.disabledFields }, [Validators.required]),
-      path: new FormControl({ value: '', disabled: this.disabledFields }, [Validators.required])
+      name: new FormControl({ value: '', disabled: this.DisableFormFields }, [Validators.required]),
+      desc: new FormControl({ value: '', disabled: this.DisableFormFields }, [Validators.required]),
+      path: new FormControl({ value: '', disabled: this.DisableFormFields }, [Validators.required])
     });
 
     this.DAFViewAppFormGroup = this.formBldr.group({
-      npmPkg: new FormControl({ value: '', disabled: this.disabledFields }, [Validators.required]),
+      npmPkg: new FormControl({ value: '', disabled: this.DisableFormFields }, [Validators.required]),
       pkgVer: new FormControl({ value: '', disabled: false }, [Validators.required]),
-      appId: new FormControl({ value: '', disabled: this.disabledFields }, [Validators.required])
+      appId: new FormControl({ value: '', disabled: this.DisableFormFields }, [Validators.required])
     });
 
     this.onChanges();

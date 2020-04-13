@@ -26,6 +26,7 @@ export class LimitedDataAppsManagementStateContext extends StateContext<
   }
 
   public SetActiveApp(app: Application) {
+    
     this.Execute({
       Arguments: {
         App: app
