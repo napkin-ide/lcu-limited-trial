@@ -1,10 +1,7 @@
 <mat-card class="margin-bottom-1 margin-left-3 margin-top-5">
   <mat-card-header>
-    <div mat-card-avatar>
-      <mat-icon color="accent">edit</mat-icon>
-    </div>
     <mat-card-title>
-        Create a new Data Application
+      <mat-icon color="accent">edit</mat-icon> Create a new Data Application
     </mat-card-title>
     <mat-card-subtitle matTooltip="Data Application">
       (DA)
@@ -21,7 +18,7 @@
         
       </div>
       <div class="accent-divider"></div>
-        <form class="padding-left-3 margin-top-3" [formGroup]="NewDataAppFormGroup">
+        <form class="padding-left-3 margin-top-3" [formGroup]="NewDataAppFormGroup" (ngSubmit)="CreateApp()">
           <mat-form-field class="mat-full-width">
             <input matInput placeholder="Application Name" formControlName="name" 
                     matTooltip="Give your app a name" />
