@@ -19,7 +19,6 @@ import { environment } from '../environments/environment';
     HomeComponent,
     DataAppComponent,
     DataFlowComponent
-    // DocumentationComponent
   ],
   imports: [
     AppRoutingModule,
