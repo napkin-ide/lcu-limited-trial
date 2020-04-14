@@ -1,5 +1,5 @@
 {
-	"name": "@napkin-ide/lcu-limited-trial-lcu",
+	"name": "@semanticjs/lcu-limited-trial-lcu",
 	"version": "0.0.8",
 	"peerDependencies": {
 		"@angular/common": "^9.0.7",
