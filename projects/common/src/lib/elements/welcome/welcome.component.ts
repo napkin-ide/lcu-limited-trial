@@ -19,8 +19,6 @@ export class LcuLimitedTrialWelcomeElementComponent extends LcuElementComponent<
   //  Fields
 
   //  Properties
-  public DividedJourneys: Array<{ JourneyName: string, Journeys: Array<any> }>;
-  public Journeys: Array<any>;
   public PanelOpenState: boolean;
 
   public get UserRoles() { return Object.keys(JourneyRoleTypes); }
