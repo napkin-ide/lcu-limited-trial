@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, Validators, FormBuilder, AbstractControl, FormControl } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { debounceTime, switchMap, map } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { LimitedDataAppsManagementState } from '../../../state/data-apps/limited-data-apps-management.state';
@@ -14,66 +14,17 @@ import { NPMService } from '@napkin-ide/lcu-data-apps-common';
 export class DataAppsConfigComponent implements OnInit {
 
   // Properties
-
-  /**
-   * Data view app form group
-   */
   public DAFViewAppFormGroup: FormGroup;
 
-  /**
-   * Disable / Enable fields
-   */
-  public DisableFormFields: boolean;
-
-  /**
-   * Array of NPM packages and versions, when doing an NPM package search
-   */
   public NPMPackages: { Name: string; NPMLink: string; Version: string }[];
 
-  /**
-   * List of NPM package versions
-   */
-  public NPMPackageVersions: Array<string>;
-
-  /**
-   * Save data form group
-   */
   public SaveDataAppFormGroup: FormGroup;
 
-  /**
-   * Data Apps state data
-   */
   public State: LimitedDataAppsManagementState;
-
-  // Fields
-
-  /**
-   * NPM package field
-   */
-  public get NPMPackageControl(): AbstractControl {
-    return this.DAFViewAppFormGroup.get('npmPkg');
-  }
-
-  /**
-   * NPM package version
-   */
-  public get NPMPackageVersionControl(): AbstractControl {
-    return this.DAFViewAppFormGroup.get('pkgVer');
-  }
-
-  /**
-   * App ID field
-   */
-  public get AppIdControl(): AbstractControl {
-    return this.DAFViewAppFormGroup.get('appId');
-  }
 
   constructor(protected state: LimitedDataAppsManagementStateContext,
               protected formBldr: FormBuilder,
-              protected npm: NPMService) {
-
-                this.DisableFormFields = true;
-  }
+              protected npm: NPMService) { }
 
   public ngOnInit(): void {
 
@@ -134,8 +85,8 @@ export class DataAppsConfigComponent implements OnInit {
   public PackageSelected(event: MatAutocompleteSelectedEvent) {
     const pkg = this.NPMPackages.find(p => p.Name === event.option.value);
 
-    if (!this.NPMPackageVersionControl.value) {
-      this.NPMPackageVersionControl.value.setValue(pkg.Version);
+    if (!this.DAFViewAppFormGroup.controls.pkgVer.value) {
+      this.DAFViewAppFormGroup.controls.pkgVer.setValue(pkg.Version);
     }
   }
 
@@ -143,9 +94,9 @@ export class DataAppsConfigComponent implements OnInit {
     this.State.Loading = true;
 
     this.state.SaveAppView({
-      ...this.State.ActiveDAFApp,
-      NPMPackage: this.NPMPackageControl.value,
-      PackageVersion: this.NPMPackageVersionControl.value
+      ...this.State.ActiveView,
+      NPMPackage: this.DAFViewAppFormGroup.controls.npmPkg.value,
+      PackageVersion: this.DAFViewAppFormGroup.controls.pkgVer.value
     });
   }
 
@@ -154,22 +105,21 @@ export class DataAppsConfigComponent implements OnInit {
    */
   protected setupForm(): void {
     this.SaveDataAppFormGroup = this.formBldr.group({
-      name: new FormControl({ value: '', disabled: this.DisableFormFields }, [Validators.required]),
-      desc: new FormControl({ value: '', disabled: this.DisableFormFields }, [Validators.required]),
-      path: new FormControl({ value: '', disabled: this.DisableFormFields }, [Validators.required])
+      name: ['', Validators.required],
+      desc: ['', Validators.required],
+      path: ['', Validators.required]
     });
 
     this.DAFViewAppFormGroup = this.formBldr.group({
-      npmPkg: new FormControl({ value: '', disabled: this.DisableFormFields }, [Validators.required]),
-      pkgVer: new FormControl({ value: '', disabled: false }, [Validators.required]),
-      appId: new FormControl({ value: '', disabled: this.DisableFormFields }, [Validators.required])
+      npmPkg: ['', Validators.required],
+      pkgVer: ['', Validators.required]
     });
 
     this.onChanges();
   }
 
   protected onChanges(): void {
-    this.NPMPackageControl.valueChanges
+    this.DAFViewAppFormGroup.controls.npmPkg.valueChanges
       .pipe(
         debounceTime(500),
         switchMap(value => this.npm.Search(value ? value.toString() : '')),
@@ -188,13 +138,8 @@ export class DataAppsConfigComponent implements OnInit {
       });
   }
 
-  /**
-   * Do something when state changes
-   */
   protected handleStateChanges(): void {
     console.log('data-apps-config', this.State);
-
-    this.State.CurrentAppView = this.State.ActiveDAFApp;
 
     this.setNPMPackage();
     this.setSaveDataApp();
@@ -202,34 +147,24 @@ export class DataAppsConfigComponent implements OnInit {
 
   protected setNPMPackage(): void {
 
+    // if (this.DAFViewAppFormGroup) {
+    //   if (this.State.ActiveView) {
+    //     this.DAFViewAppFormGroup.controls.npmPkg.setValue(this.State.ActiveView.NPMPackage);
+
+    //     this.DAFViewAppFormGroup.controls.pkgVer.setValue(this.State.ActiveView.PackageVersion);
+    //   } else {
+    //     this.DAFViewAppFormGroup.reset();
+    //   }
+    // }
+
     if (this.DAFViewAppFormGroup) {
-      if (this.State.CurrentAppView) {
-
-        this.NPMPackageControl.setValue(this.State.CurrentAppView.NPMPackage);
-        this.NPMPackageVersionControl.setValue(this.State.CurrentAppView.PackageVersion);
-        this.NPMPackageVersions = this.npmVersionLookup();
-
-        this.AppIdControl.setValue(this.State.CurrentAppView.ID);
-
+      if (this.State.ActiveDAFApp) {
+        this.DAFViewAppFormGroup.controls.npmPkg.setValue( this.State.ActiveDAFApp['NPMPackage']);
+        this.DAFViewAppFormGroup.controls.pkgVer.setValue( this.State.ActiveDAFApp['PackageVersion']);
       } else {
         this.DAFViewAppFormGroup.reset();
       }
     }
-  }
-
-  /**
-   * Return array of npm versions
-   */
-  protected npmVersionLookup(): Array<string> {
-    let versions: Array<string>;
-    Object.entries(this.State.VersionLookups).find((el: object) => {
-      if (el[0] === this.State.CurrentAppView.NPMPackage) {
-        versions = el[1];
-      }
-      return;
-    });
-
-    return versions;
   }
 
   protected setSaveDataApp(): void {
