@@ -1,18 +1,36 @@
 <div class="welcome-intro-section">
-  <h1>Welcome to Fathym!</h1>
-  <p>
-    Fathym's low-code framework is designed to give developers the freedom and
-    best practice workflows to rapidly create IoT and data-driven applications
-    that are agnostic to tools, platforms and clouds. The framework drastically
-    cuts down development time by applying and automating a set of best
-    practices. The cloud infrastructure Fathym uses is Microsoft Azure. You can
-    set up an automated, enterprise-grade, Azure-hosted environment with just a
-    few clicks.
-  </p>
+    <h1>Welcome to Fathym!</h1>
+    <p>
+        Fathym's low-code framework is designed to give developers the freedom and
+        best practice workflows to rapidly create IoT and data-driven applications
+        that are agnostic to tools, platforms and clouds. The framework drastically
+        cuts down development time by applying and automating a set of best
+        practices. The cloud infrastructure Fathym uses is Microsoft Azure. You can
+        set up an automated, enterprise-grade, Azure-hosted environment with just a
+        few clicks.
+    </p>
 </div>
 
 <ng-container *ngIf="!State.Loading">
-  <mat-accordion>
+    <mat-tab-group mat-align-tabs="center">
+        <mat-tab *ngFor="let journeyRole of JourneyRoles" label="{{ journeyRole }}">
+            <div 
+                fxLayout="row wrap" 
+                fxLayoutAlign="space-between"
+                fxLayout.sm="column">
+
+                <div *ngFor="let journey of State.Journeys"
+                    fxFlex.gt-sm="33"
+                    fxFlex.lt-md="50">
+                    <lcu-journey-card
+                        *ngIf="ContainsRoleType(journey, journeyRole)"
+                        [journey-data]="journey"></lcu-journey-card>
+                </div>
+
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+    <!-- <mat-accordion>
     <mat-expansion-panel *ngFor="let journeyRole of JourneyRoles">
       <mat-expansion-panel-header
         fxLayoutAlign="center center"
@@ -30,10 +48,10 @@
         <div
           *ngFor="let journey of State.Journeys"
           [fxFlex.gt-sm]="100 / 3.5 + '%'"
-        >
-          <!--TODO:  Use mat-card instead of your own cards (https://material.angular.io/components/card/overview).....................
+        > -->
+    <!--TODO:  Use mat-card instead of your own cards (https://material.angular.io/components/card/overview).....................
             Always look here for controls to use before creating your own:  https://material.angular.io/components/categories  -->
-          <ng-container *ngIf="ContainsRoleType(journey, journeyRole)">
+    <!-- <ng-container *ngIf="ContainsRoleType(journey, journeyRole)">
             <div class="journey-card">
               <div class="journey-video-section">
                 <div class="coming-soon-overlay" *ngIf="!journey.Active">
@@ -47,10 +65,10 @@
                   webkitallowfullscreen
                   mozallowfullscreen
                   allowfullscreen
-                ></iframe>
+                ></iframe> -->
 
-                <!--TODO:  Implement for Image Content tpe -->
-                <img *ngIf="journey.ContentType == ContentTypes.Image" />
+    <!--TODO:  Implement for Image Content tpe -->
+    <!-- <img *ngIf="journey.ContentType == ContentTypes.Image" />
               </div>
               <div class="journey-title-description-section">
                 <div class="title-section">
@@ -66,14 +84,14 @@
         </div>
       </div>
     </mat-expansion-panel>
-  </mat-accordion>
+  </mat-accordion> -->
 </ng-container>
 
 <div class="spread" *ngIf="State.Loading">
-  <mat-spinner></mat-spinner>
+    <mat-spinner></mat-spinner>
 </div>
 
-<!-- <div class="tool-display-section">
+    <!-- <div class="tool-display-section">
     <h2 class="tool-display-title">Data Flow Tool</h2>
     <div class="video-link-section">
         <iframe src="https://player.vimeo.com/video/388372834" width="220" height="140" webkitallowfullscreen
@@ -91,7 +109,7 @@
     </div>
 </div> -->
 
-<!--
+    <!--
 https://player.vimeo.com/video/388372834
 https://player.vimeo.com/video/389146508
 -->

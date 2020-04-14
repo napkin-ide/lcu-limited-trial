@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { JourneyContentTypes } from '../../../state/journeys/journeys.state';
 
 @Component({
   selector: 'lcu-journey-card',
@@ -7,21 +8,28 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class JourneyCardComponent implements OnInit {
 
-  protected _data: {};
+  protected _journeyData: any;
 
-  @Input('data')
-  set Data(val: {}) {
-    this._data = val;
+  @Input('journey-data')
+  set JourneyData(val: any) {
+    this._journeyData = val;
   }
-  get Data(): {} {
-    return this._data;
+  get JourneyData(): any {
+    return this._journeyData;
+  }
+
+  get JourneyContentTypes(): any {
+    return JourneyContentTypes;
   }
 
   constructor() {
-    console.log(this.Data);
   }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewInit() {
+    console.log(this.JourneyData);
   }
 
 }
