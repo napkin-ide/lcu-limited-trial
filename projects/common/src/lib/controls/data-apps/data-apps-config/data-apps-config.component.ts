@@ -4,7 +4,7 @@ import { debounceTime, switchMap, map } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { LimitedDataAppsManagementState } from '../../../state/data-apps/limited-data-apps-management.state';
 import { LimitedDataAppsManagementStateContext } from '../../../state/data-apps/limited-data-apps-management-state.context';
-import { NPMService } from '../../../state/limited-trial/npm.service';
+import { NPMService } from '../../../state/journeys/npm.service';
 import { DAFViewApplicationConfig } from '@lcu/common';
 
 @Component({
@@ -88,7 +88,7 @@ export class DataAppsConfigComponent implements OnInit {
   }
 
   /**
-   * 
+   *
    * @param appId id of active app
    */
   public CopyAppIdToClipBoard(appId: string) {
@@ -126,7 +126,7 @@ export class DataAppsConfigComponent implements OnInit {
   }
 
   /**
-   * 
+   *
    * @param event mat option selected event
    */
   public PackageSelected(event: MatAutocompleteSelectedEvent) {
