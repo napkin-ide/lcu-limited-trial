@@ -44,6 +44,7 @@ export class LimitedDataAppsManagementStateContext extends StateContext<
   }
 
   public SaveDataApp(app: Application) {
+    debugger;
     this.Execute({
       Arguments: {
         App: app
