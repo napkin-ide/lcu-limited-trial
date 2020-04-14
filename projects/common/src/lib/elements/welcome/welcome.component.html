@@ -1,60 +1,76 @@
 <div class="welcome-intro-section">
-    <h1>Welcome to Fathym!</h1>
-    <p>
-        Fathym's low-code framework is designed to give developers the freedom and
-        best practice workflows to rapidly create IoT and data-driven applications
-        that are agnostic to tools, platforms and clouds. The framework drastically
-        cuts down development time by applying and automating a set of best
-        practices. The cloud infrastructure Fathym uses is Microsoft Azure. You can
-        set up an automated, enterprise-grade, Azure-hosted environment with just a
-        few clicks.
-    </p>
+  <h1>Welcome to Fathym!</h1>
+  <p>
+    Fathym's low-code framework is designed to give developers the freedom and
+    best practice workflows to rapidly create IoT and data-driven applications
+    that are agnostic to tools, platforms and clouds. The framework drastically
+    cuts down development time by applying and automating a set of best
+    practices. The cloud infrastructure Fathym uses is Microsoft Azure. You can
+    set up an automated, enterprise-grade, Azure-hosted environment with just a
+    few clicks.
+  </p>
 </div>
 
-<ng-container *ngIf="State.Loading">
-    <mat-accordion>
-        <mat-expansion-panel *ngFor="let journeyRole of JourneyRoles">
-            <mat-expansion-panel-header fxLayoutAlign="center center" class="mat-xpx-header">
-                <mat-panel-title>
-                    {{ journeyRole }}
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <div fxLayout="row wrap" fxLayoutAlign="space-around" fxLayoutGap="20px grid">
-                <div *ngFor="let journey of State.Journeys" [fxFlex.gt-sm]="100 / 3.5 + '%'">
-                    <!--TODO:  Use mat-card instead of your own cards (https://material.angular.io/components/card/overview).....................
+<ng-container *ngIf="!State.Loading">
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let journeyRole of JourneyRoles">
+      <mat-expansion-panel-header
+        fxLayoutAlign="center center"
+        class="mat-xpx-header"
+      >
+        <mat-panel-title>
+          {{ journeyRole }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div
+        fxLayout="row wrap"
+        fxLayoutAlign="space-around"
+        fxLayoutGap="20px grid"
+      >
+        <div
+          *ngFor="let journey of State.Journeys"
+          [fxFlex.gt-sm]="100 / 3.5 + '%'"
+        >
+          <!--TODO:  Use mat-card instead of your own cards (https://material.angular.io/components/card/overview).....................
             Always look here for controls to use before creating your own:  https://material.angular.io/components/categories  -->
-                    <ng-container *ngIf="ContainsRoleType(journey, journeyRole)">
-                        <div class="journey-card">
-                            <div class="journey-video-section">
-                                <div class="coming-soon-overlay" *ngIf="!journey.Active">
-                                    <p>Coming Soon!</p>
-                                </div>
-                                <iframe *ngIf="journey.ContentType == ContentTypes.Video"
-                                    [src]="journey.ContentURL | safe" width="100%" height="100%" webkitallowfullscreen
-                                    mozallowfullscreen allowfullscreen></iframe>
-
-                                <!--TODO:  Implement for Image Content tpe -->
-                                <img *ngIf="journey.ContentType == ContentTypes.Image" />
-                            </div>
-                            <div class="journey-title-description-section">
-                                <div class="title-section">
-                                    <p class="journey-name">{{ journey.Name }}</p>
-                                    <p class="journey-uses">{{ journey.Uses.join(", ") }}</p>
-                                </div>
-                                <div class="description-section">
-                                    <div>{{ journey.Description }}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </ng-container>
+          <ng-container *ngIf="ContainsRoleType(journey, journeyRole)">
+            <div class="journey-card">
+              <div class="journey-video-section">
+                <div class="coming-soon-overlay" *ngIf="!journey.Active">
+                  <p>Coming Soon!</p>
                 </div>
+                <iframe
+                  *ngIf="journey.ContentType == ContentTypes.Video"
+                  [src]="journey.ContentURL | safe"
+                  width="100%"
+                  height="100%"
+                  webkitallowfullscreen
+                  mozallowfullscreen
+                  allowfullscreen
+                ></iframe>
+
+                <!--TODO:  Implement for Image Content tpe -->
+                <img *ngIf="journey.ContentType == ContentTypes.Image" />
+              </div>
+              <div class="journey-title-description-section">
+                <div class="title-section">
+                  <p class="journey-name">{{ journey.Name }}</p>
+                  <p class="journey-uses">{{ journey.Uses.join(", ") }}</p>
+                </div>
+                <div class="description-section">
+                  <div>{{ journey.Description }}</div>
+                </div>
+              </div>
             </div>
-        </mat-expansion-panel>
-    </mat-accordion>
+          </ng-container>
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
 </ng-container>
 
 <div class="spread" *ngIf="State.Loading">
-    <mat-spinner></mat-spinner>
+  <mat-spinner></mat-spinner>
 </div>
 
 <!-- <div class="tool-display-section">
