@@ -1,3 +1,5 @@
+import { DataFlowManagerEventService } from '@napkin-ide/lcu-data-flow-common';
+
 import { Component, OnInit, Injector } from '@angular/core';
 import { LimitedDataFlowManagementStateContext } from './../../state/data-flow/limited-data-flow-management-state.context';
 import { LimitedDataFlowManagementState } from '../../state/data-flow/limited-data-flow-management.state';
@@ -6,7 +8,6 @@ import { LCUElementContext, LcuElementComponent, DataFlow } from '@lcu/common';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { ProvisioningModalComponent } from './modals/provisioning-modal/provisioning-modal.component';
-import { DataFlowManagerEventService } from '@napkin-ide/lcu-data-flow-common/lib/elements/data-flow-manager/data-flow-manager-event.service';
 
 export class LcuLimitedTrialDataFlowElementState {}
 
