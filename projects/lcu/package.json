@@ -1,8 +1,8 @@
 {
 	"name": "@napkin-ide/lcu-limited-trial-lcu",
-	"version": "0.0.5",
+	"version": "0.0.10",
 	"peerDependencies": {
-		"@angular/common": "~8.1.2",
-		"@angular/core": "~8.1.2"
+		"@angular/common": "^9.0.7",
+		"@angular/core": "^9.0.7"
 	}
 }

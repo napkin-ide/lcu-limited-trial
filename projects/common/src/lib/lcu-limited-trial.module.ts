@@ -10,8 +10,11 @@ import { LimitedDataAppsManagementStateContext } from './state/data-apps/limited
 import { LimitedDataFlowManagementStateContext } from './state/data-flow/limited-data-flow-management-state.context';
 import { ListItemComponent } from './controls/list-item/list-item.component';
 import { LcuDataFlowModule } from '@napkin-ide/lcu-data-flow-common';
+import { AddAppComponent } from './elements/data-apps/add-app/add-app.component';
 import { ProvisioningModalComponent } from './elements/data-flow/modals/provisioning-modal/provisioning-modal.component';
-import { DataAppsConfigComponent } from './controls/data-apps/data-apps-config/data-apps-config.component';
+import { DataAppsConfigComponent } from './elements/data-apps/data-apps-config/data-apps-config.component';
+import { JourneyCardComponent } from './elements/welcome/journey-card/journey-card.component';
+import { NPMService } from '@napkin-ide/lcu-data-apps-common';
 
 @NgModule({
   declarations: [
@@ -21,8 +24,10 @@ import { DataAppsConfigComponent } from './controls/data-apps/data-apps-config/d
     ListItemComponent,
     ProvisioningModalComponent,
     DataAppsConfigComponent,
-    AppListComponent, // need to remove this one and replace with the ListItemComponent
-    SafePipe
+    AppListComponent,
+    AddAppComponent,
+    SafePipe,
+    JourneyCardComponent
   ],
   imports: [
     FathymSharedModule,
@@ -38,7 +43,9 @@ import { DataAppsConfigComponent } from './controls/data-apps/data-apps-config/d
     LcuLimitedTrialDataFlowElementComponent,
     ListItemComponent,
     DataAppsConfigComponent,
-    AppListComponent // need to remove this one and replace with the ListItemComponent
+    JourneyCardComponent,
+    AppListComponent,
+    AddAppComponent // need to remove this one and replace with the ListItemComponent
   ],
   entryComponents: [
     LcuLimitedTrialWelcomeElementComponent,
@@ -47,7 +54,9 @@ import { DataAppsConfigComponent } from './controls/data-apps/data-apps-config/d
     ListItemComponent,
     ProvisioningModalComponent,
     DataAppsConfigComponent,
-    AppListComponent // need to remove this one and replace with the ListItemComponent
+    JourneyCardComponent,
+    AppListComponent,
+    AddAppComponent // need to remove this one and replace with the ListItemComponent
   ]
 })
 export class LcuLimitedTrialModule {
@@ -56,7 +65,8 @@ export class LcuLimitedTrialModule {
       ngModule: LcuLimitedTrialModule,
       providers: [
         LimitedDataAppsManagementStateContext,
-        LimitedDataFlowManagementStateContext
+        LimitedDataFlowManagementStateContext,
+        NPMService
       ]
     };
   }

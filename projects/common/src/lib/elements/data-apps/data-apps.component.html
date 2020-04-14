@@ -4,7 +4,7 @@
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </ng-container>
   <mat-toolbar>
-    <button mat-icon-button (click)="drawer.toggle()">
+    <button *ngIf="drawer" mat-icon-button (click)="drawer.toggle()">
       <mat-icon 
         class="open-icon"
         *ngIf="!drawer.opened"
@@ -20,14 +20,18 @@
     <h2>Data Applications</h2>
     <span class="filler"></span>
   
-    <div>
+    <div *ngIf="!State.Loading">
       <button 
-        *ngIf="!State.AddingApp" mat-flat-button matTooltip="Create a new application" color="accent">
+        *ngIf="!State.AddingApp" 
+        (click)="ToggleAddingApp(true)"
+        mat-flat-button matTooltip="Create a new application" color="accent">
         <mat-icon>add_circle</mat-icon>
-        Add New Data App
+        Create a New Data App
       </button>
       <button 
-        *ngIf="State.AddingApp" mat-flat-button matTooltip="Cancel new application" color="warn">
+        *ngIf="State.AddingApp"
+        (click)="ToggleAddingApp(false)" 
+        mat-flat-button matTooltip="Cancel new application" color="warn">
         <mat-icon>cancel</mat-icon>
         Cancel Add New
       </button>
@@ -54,7 +58,7 @@
           </mat-tab>
 
           <!-- Private Applications -->
-          <mat-tab *ngIf="PrivateDataSource.length > 0"> 
+          <mat-tab> 
             <ng-template matTabLabel>
               <span matBadge="{{ PrivateDataSource.length }}" 
                     matBadgeOverlap="false">Private Apps</span>
@@ -71,9 +75,12 @@
     <!--Content-->
     
     <mat-drawer-content>
-      <div>
-        <lcu-data-apps-config *ngIf="State.ActiveApp"></lcu-data-apps-config>
-      </div>
+      <!--Adding a new app-->
+      <lcu-add-app [state]="State" *ngIf="!State.Loading && State.AddingApp"></lcu-add-app>
+
+      <!--App configuration-->
+      <lcu-data-apps-config *ngIf="!State.Loading && State.ActiveApp && !State.AddingApp"></lcu-data-apps-config>
     </mat-drawer-content>
+  
 </mat-drawer-container>
 </div>

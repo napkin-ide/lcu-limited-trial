@@ -1,28 +1,28 @@
 
 
-<mat-card *ngIf="!State.Loading" class="margin-bottom-1 margin-left-3 margin-top-5">
+<mat-card *ngIf="!State.Loading" class="margin-bottom-1 margin-left-1 margin-top-5">
     <div fxLayout="row">
         <mat-card-header>
-
             <mat-card-title>
-                {{ State.ActiveApp.Name }}
+              <div fxLayout="row" fxLayoutAlign="start center">
+                <span class="data-application-label" class="margin-top-2">{{ State.ActiveApp.Name }}</span>
                 <a
                   *ngIf="State.CurrentAppView?.BaseHref"
                   matTooltip="Open Application in Browser"
                   mat-icon-button
-                  color="accent"
+                  color="primary"
                   [href]="State.ActiveDAFApp['BaseHref']"
                   target="_blank">
-                <mat-icon>open_in_browser</mat-icon>
-              </a>
+                  <mat-icon>open_in_browser</mat-icon>
+                </a>
+              </div>
             </mat-card-title>
-             
-            <mat-card-subtitle color="accent">
-                <!-- {{ State.ActiveApp.Name }} -->
-              <mat-chip-list *ngIf="State.ActiveApp.IsPrivate">
-                <mat-chip color="accent" selected>private</mat-chip>
-              </mat-chip-list>
+            <mat-card-subtitle>
+              Brief Description
             </mat-card-subtitle>
+            <!-- <mat-chip-list  *ngIf="State.ActiveApp.IsPrivate">
+              <mat-chip color="accent" selected>private</mat-chip>
+            </mat-chip-list> -->
         </mat-card-header>
     </div>
     <mat-divider></mat-divider>
@@ -61,7 +61,7 @@
                   <mat-form-field class="mat-full-width">
                     <!-- <input matInput placeholder="Package Version" formControlName="pkgVer" required /> -->
 
-                      <mat-select formControlName="pkgVer">
+                      <mat-select formControlName="pkgVer" placeholder="NPM Package Version">
                         <mat-option *ngFor="let ver of NPMPackageVersions" [value]="ver">
                           <span>{{ ver }}</span>
                         </mat-option>
@@ -80,8 +80,11 @@
                     </a>
                   </mat-form-field>
 
-                  <div class="state-actions">
-                    <button type="submit" mat-raised-button color="accent" [disabled]="!DAFViewAppFormGroup.valid">
+                  <div class="state-actions" fxLayoutAlign="end">
+                    <button 
+                      type="submit" 
+                      mat-raised-button color="accent" 
+                      [disabled]="!DAFViewAppFormGroup.valid || DisableFormFields">
                       Save View Config
                     </button>
                   </div>
@@ -104,6 +107,13 @@
 
                   <mat-form-field class="mat-full-width">
                     <input matInput placeholder="Path" formControlName="path" />
+                    <button
+                    mat-icon-button
+                    matSuffix
+                    color="accent"
+                    matTooltip="Path to your application based off host URL">
+                    <mat-icon>help</mat-icon>
+                  </button>
                   </mat-form-field>
 
                   <!-- <a mat-raised-button color="accent" (click)="SaveDataApp(false)">Save Data App</a> -->
