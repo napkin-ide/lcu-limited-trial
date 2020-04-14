@@ -1,4 +1,7 @@
 <mat-card>
+    <div class="coming-soon-overlay" *ngIf="JourneyData.ComingSoon">
+        <h1>Coming Soon!</h1>
+    </div>
     <mat-card-header>
         <mat-card-title>{{ JourneyData.Name }}</mat-card-title>
         <mat-card-subtitle>{{ JourneyData.Uses.join(', ') }}</mat-card-subtitle>
@@ -6,7 +9,6 @@
     <div fxLayout="row">
         <div fxFlex="50" class="mat-body">{{ JourneyData.Description }}</div>
         
-
         <div>
             <iframe 
                 *ngIf="JourneyData.ContentType === JourneyContentTypes.Video" 
