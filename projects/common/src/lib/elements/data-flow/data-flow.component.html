@@ -47,7 +47,7 @@
     <mat-drawer-content>
       <div class="data-flow-manager-content">
         <ng-container *ngIf="!State.Loading">
-          <div *ngIf="!State.ActiveDataFlow" class="data-flow-manager-content-form spread">
+          <div *ngIf="!State.ActiveDataFlow" class="data-flow-manager-content-form">
             <lcu-data-flow-create-element [context]="{ State: State }"></lcu-data-flow-create-element>
           </div>
 

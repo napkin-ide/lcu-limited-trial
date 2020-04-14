@@ -14,11 +14,14 @@
       }
       .mat-drawer-content {
         .data-flow-manager-content {
+          height: 100%;
+
           .data-flow-manager-content-form {
+            align-items: center;
+            box-sizing: border-box;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            margin: 5%;
+            padding: 5%;
           }
         }
       }
