@@ -13,6 +13,7 @@ import { LcuDataFlowModule } from '@napkin-ide/lcu-data-flow-common';
 import { AddAppComponent } from './elements/data-apps/add-app/add-app.component';
 import { ProvisioningModalComponent } from './elements/data-flow/modals/provisioning-modal/provisioning-modal.component';
 import { DataAppsConfigComponent } from './elements/data-apps/data-apps-config/data-apps-config.component';
+import { JourneyCardComponent } from './elements/welcome/journey-card/journey-card.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { DataAppsConfigComponent } from './elements/data-apps/data-apps-config/d
     DataAppsConfigComponent,
     AppListComponent,
     AddAppComponent,
-    SafePipe
+    SafePipe,
+    JourneyCardComponent
   ],
   imports: [
     FathymSharedModule,
@@ -40,6 +42,7 @@ import { DataAppsConfigComponent } from './elements/data-apps/data-apps-config/d
     LcuLimitedTrialDataFlowElementComponent,
     ListItemComponent,
     DataAppsConfigComponent,
+    JourneyCardComponent,
     AppListComponent,
     AddAppComponent // need to remove this one and replace with the ListItemComponent
   ],
@@ -50,6 +53,7 @@ import { DataAppsConfigComponent } from './elements/data-apps/data-apps-config/d
     ListItemComponent,
     ProvisioningModalComponent,
     DataAppsConfigComponent,
+    JourneyCardComponent,
     AppListComponent,
     AddAppComponent // need to remove this one and replace with the ListItemComponent
   ]

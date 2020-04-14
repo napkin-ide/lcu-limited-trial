@@ -2,6 +2,7 @@ import { Component, OnInit, Injector } from '@angular/core';
 import { LCUElementContext, LcuElementComponent } from '@lcu/common';
 import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { LimitedTrialStateContext } from '../../state/limited-trial/limited-trial-state.context';
 
 export class LcuLimitedTrialWelcomeElementState { }
 
@@ -18,16 +19,35 @@ export class LcuLimitedTrialWelcomeElementComponent extends LcuElementComponent<
   //  Fields
 
   //  Properties
-  public DividedJourneys: Array<{ JourneyName: string, Journeys: Array<any> }>;
-  public Journeys: Array<any>;
-  public PanelOpenState: boolean;
 
+  public JourneyData: any = {JourneyName: 'TestTest', Journeys: []};
+
+  /**
+   * array of journeys divided by journey type (user role)
+   */
+  public DividedJourneys: Array<{ JourneyName: string, Journeys: Array<any> }>;
+
+  /**
+   * array of journeys
+   */
+  public Journeys: Array<any>;
+
+  /**
+   * the state
+   */
+  public State: LimitedTrialStateContext;
+
+  /**
+   * getter for user roles enum
+   */
   public get UserRoles() { return Object.keys(UserRole); }
 
   //  Constructors
-  constructor(protected injector: Injector) {
+  constructor(
+    protected injector: Injector,
+    protected state: LimitedTrialStateContext
+  ) {
     super(injector);
-    this.PanelOpenState = false;
     this.DividedJourneys = [];
     this.Journeys = this.getJourneys();
     this.divideJourneys();
@@ -36,11 +56,29 @@ export class LcuLimitedTrialWelcomeElementComponent extends LcuElementComponent<
   //  Life Cycle
   public ngOnInit() {
     super.ngOnInit();
+
+    /**
+     * Listen for state changes
+     */
+    this.state.Context.subscribe((state: any) => {
+      this.State = state;
+
+      this.stateChanged();
+    });
   }
 
   //  API Methods
 
   //  Helpers
+  protected stateChanged(): void {
+    if (this.State) {
+      console.log('state changed');
+      console.log('new state: ', this.State);
+
+      // this.State.Journeys = this.getJourneys();
+    }
+  }
+
   protected divideJourneys() {
     this.UserRoles.forEach(role => {
       this.DividedJourneys.push({ JourneyName: role, Journeys: [] });
