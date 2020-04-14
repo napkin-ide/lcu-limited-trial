@@ -26,6 +26,7 @@ export class LimitedDataAppsManagementStateContext extends StateContext<
   }
 
   public SetActiveApp(app: Application) {
+    
     this.Execute({
       Arguments: {
         App: app
@@ -56,9 +57,11 @@ export class LimitedDataAppsManagementStateContext extends StateContext<
   /**
    * Toggle between adding and canceling a new app
    */
-  public ToggleAddNew(): void {
+  public ToggleAddNew(addNew: boolean): void {
+    debugger;
     this.Execute({
       Arguments: {
+        New: addNew
       },
       Type: 'ToggleAddNew'
     });

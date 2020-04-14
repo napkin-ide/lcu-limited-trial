@@ -3,6 +3,7 @@
 @import "../../../node_modules/@lcu/common/assets/theming/fathym_themes";
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap");
 @import "./app/app.component.scss";
+@import "../../common/src/lib/assets/styles/common-styles.scss";
 
 @mixin opacity($opacity) {
   opacity: $opacity;
@@ -28,20 +29,6 @@
   @include theme-extras($theme);
   @include lcu-component-theme($theme);
   @include specific-theme-styles($theme);
-}
-
-/**
-  Set specific theme styles
-*/
-@mixin specific-theme-styles($theme) {
-  // set the background color of the active application
-  .active-app {
-    background-color: mat-color(map-get($theme, primary), 500) !important;
-
-    .active-icon {
-      color: mat-color(map-get($theme, accent), A400) !important;
-    }
-  }
 }
 
 @include theme-setup(fathym-sea-green-theme(true));

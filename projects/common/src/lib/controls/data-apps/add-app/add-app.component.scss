@@ -1,9 +1,0 @@
-@import "../../../../../../../node_modules/@lcu/common/assets/styles/utils/margins-padding";
-  
-.accent-divider {
-    width: 1px;
-    // background-color:rgba(255, 255, 255, 0.12);
-    background-color: #67c7c5;
-    @extend .margin-top-3;
-    @extend .padding-bottom-3;
-}

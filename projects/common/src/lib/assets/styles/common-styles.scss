@@ -1,0 +1,24 @@
+/**
+  Set specific theme styles
+*/
+@mixin specific-theme-styles($theme) {
+  // set the background color of the active application list item
+  .active-app {
+    background-color: mat-color(map-get($theme, primary), 500) !important;
+
+    .active-icon {
+      color: mat-color(map-get($theme, accent), 500) !important;
+    }
+  }
+
+  .data-application-label {
+    color: mat-color(map-get($theme, accent), 500) !important;
+  }
+
+  .accent-divider {
+    background-color: mat-color(map-get($theme, primary), 500) !important;
+    width: 1px;
+    @extend .margin-top-3;
+    @extend .padding-bottom-3;
+  }
+}
