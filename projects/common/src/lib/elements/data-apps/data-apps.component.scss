@@ -1,10 +1,10 @@
 .lcu-data-apps-config-manager {
     height: 100%;
-  
+
     .drawer {
       height: calc(100% - 64px);
     }
-  
+
     .open-icon {
       transform: rotate(180deg);
     }
@@ -12,41 +12,40 @@
     .content {
       padding: 2rem;
     }
-    
-  
+
+
     .actions {
       padding: 2rem;
       text-align: right;
     }
-  
+
     .mat-drawer,
-    .mat-drawer-container,
-    .mat-toolbar {
+    .mat-drawer-container {
       background-color: transparent;
     }
-  
+
     .mat-chip-list {
       display: inline-block;
     }
-  
+
     .app-id {
       width: 250px;
     }
-  
+
     .content {
       ::ng-deep {
         .mat-form-field {
           display: block;
         }
-  
+
         .mat-card {
           margin: 2rem;
-  
+
           .mat-subtitle {
             margin: 1rem;
           }
         }
-  
+
         .mat-raised-button {
           width: 80%;
           font-size: 24px;
@@ -55,4 +54,3 @@
       }
     }
   }
-  
