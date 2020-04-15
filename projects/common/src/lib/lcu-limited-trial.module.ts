@@ -1,3 +1,4 @@
+import { NPMService } from '@napkin-ide/lcu-data-apps-common';
 import { LcuDataFlowModule } from '@napkin-ide/lcu-data-flow-common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,7 +16,6 @@ import { LcuLimitedTrialWelcomeElementComponent } from './elements/welcome/welco
 import { LcuLimitedTrialDataAppsElementComponent } from './elements/data-apps/data-apps.component';
 import { LcuLimitedTrialDataFlowElementComponent } from './elements/data-flow/data-flow.component';
 import { JourneyCardComponent } from './elements/welcome/journey-card/journey-card.component';
-import { NPMService } from '@napkin-ide/lcu-data-apps-common';
 
 @NgModule({
   declarations: [
