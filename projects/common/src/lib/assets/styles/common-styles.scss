@@ -3,7 +3,7 @@
 */
 @mixin specific-theme-styles($theme) {
   // set the background color of the active application list item
-  .active-app {
+  .active-item {
     background-color: mat-color(map-get($theme, primary), 500) !important;
 
     .active-icon {

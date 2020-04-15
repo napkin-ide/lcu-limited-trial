@@ -1,9 +1,9 @@
-<mat-card 
-  *ngFor="let item of ListData; 
-          let first = first; 
-          let last = last" 
-            [ngClass]="{ 'no-class-just-leaving-for-now': first, 
-                        'active-app': item.Active }"
+<mat-card
+  *ngFor="let item of ListData;
+          let first = first;
+          let last = last"
+            [ngClass]="{ 'no-class-just-leaving-for-now': first,
+                        'active-item': item.Active }"
             class="margin-bottom-1">
   <div fxLayout="row">
 

@@ -1,10 +1,10 @@
 <mat-card
     *ngFor="
-            let app of AppData; 
-            let first = first; 
-            let last = last" 
-            [ngClass]="{ 'no-class-just-leaving-for-now': first, 
-                        'active-app': State?.ActiveApp?.Name === app.Name && State.AddingApp === false }"
+            let app of AppData;
+            let first = first;
+            let last = last"
+            [ngClass]="{ 'no-class-just-leaving-for-now': first,
+                        'active-item': State?.ActiveApp?.Name === app.Name && State.AddingApp === false }"
             class="margin-1">
     <div fxLayout="row">
         <div>
@@ -15,7 +15,7 @@
                   *ngIf="State?.ActiveApp?.Name === app.Name && State.AddingApp === false">check_box</mat-icon> -->
         <mat-card-header>
             <mat-card-title>{{ app.Name }}</mat-card-title>
-            <!--This should be a description or something of interest, 
+            <!--This should be a description or something of interest,
                 just adding PathRegex for now - Shannon -->
             <mat-card-subtitle>{{ app.PathRegex }}</mat-card-subtitle>
         </mat-card-header>

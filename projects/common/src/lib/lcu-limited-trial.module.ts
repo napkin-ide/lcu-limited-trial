@@ -14,6 +14,8 @@ import { DataAppsConfigComponent } from './elements/data-apps/data-apps-config/d
 import { LcuLimitedTrialWelcomeElementComponent, SafePipe } from './elements/welcome/welcome.component';
 import { LcuLimitedTrialDataAppsElementComponent } from './elements/data-apps/data-apps.component';
 import { LcuLimitedTrialDataFlowElementComponent } from './elements/data-flow/data-flow.component';
+import { JourneyCardComponent } from './elements/welcome/journey-card/journey-card.component';
+import { NPMService } from '@napkin-ide/lcu-data-apps-common';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { LcuLimitedTrialDataFlowElementComponent } from './elements/data-flow/da
     DataAppsConfigComponent,
     AppListComponent,
     AddAppComponent,
-    SafePipe
+    SafePipe,
+    JourneyCardComponent
   ],
   imports: [
     FathymSharedModule,
@@ -39,6 +42,7 @@ import { LcuLimitedTrialDataFlowElementComponent } from './elements/data-flow/da
     LcuLimitedTrialDataAppsElementComponent,
     LcuLimitedTrialDataFlowElementComponent,
     DataAppsConfigComponent,
+    JourneyCardComponent,
     AppListComponent,
     AddAppComponent
   ],
@@ -48,6 +52,7 @@ import { LcuLimitedTrialDataFlowElementComponent } from './elements/data-flow/da
     LcuLimitedTrialDataFlowElementComponent,
     ProvisioningModalComponent,
     DataAppsConfigComponent,
+    JourneyCardComponent,
     AppListComponent,
     AddAppComponent
   ]
@@ -58,7 +63,8 @@ export class LcuLimitedTrialModule {
       ngModule: LcuLimitedTrialModule,
       providers: [
         LimitedDataAppsManagementStateContext,
-        LimitedDataFlowManagementStateContext
+        LimitedDataFlowManagementStateContext,
+        NPMService
       ]
     };
   }

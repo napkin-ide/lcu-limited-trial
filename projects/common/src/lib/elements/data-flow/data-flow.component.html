@@ -1,26 +1,53 @@
 <div class="data-flow-manager-container" *ngIf="State">
   <mat-toolbar>
-    <button mat-icon-button (click)="drawer.toggle()">
-      <mat-icon>menu</mat-icon>
+    <button *ngIf="drawer" mat-icon-button (click)="drawer.toggle()">
+      <mat-icon
+        class="open-icon"
+        *ngIf="!drawer.opened"
+        matTooltip="Open Data Flow List">
+        menu_open
+      </mat-icon>
+      <mat-icon
+        *ngIf="drawer.opened"
+        matTooltip="Close Data Flow List">
+        menu_open
+      </mat-icon>
     </button>
 
     <h2>Data Flow Management</h2>
 
     <span class="filler"></span>
+
+    <div *ngIf="!State.Loading && !State.ActiveDataFlow">
+      <button
+        *ngIf="!State.IsCreating"
+        (click)="ToggleIsCreating()"
+        mat-flat-button matTooltip="Create a new application" color="accent">
+        <mat-icon>add_circle</mat-icon>
+        Create New Data Flow
+      </button>
+      <button
+        *ngIf="State.IsCreating"
+        (click)="ToggleIsCreating()"
+        mat-flat-button matTooltip="Cancel new application" color="warn">
+        <mat-icon>cancel</mat-icon>
+        Cancel Add New
+      </button>
+    </div>
   </mat-toolbar>
 
-  <mat-drawer-container class="drawer">
+  <mat-drawer-container class="drawer" autosize>
     <!--SIDEBAR-->
-    <mat-drawer mode="side" #drawer>
+    <mat-drawer mode="side" #drawer opened>
       <div fxLayout="column" fxLayoutGap="3px">
-        <lcu-data-flow-list-element [context]="{ State: State }" [data-flow-lists]="DataFlowLists"></lcu-data-flow-list-element>
+        <lcu-data-flow-list-element [context]="{ State: State }" [data-flow-lists]="DataFlowLists" [allow-delete]="AllowDelete"></lcu-data-flow-list-element>
       </div>
     </mat-drawer>
     <!--CONTENT-->
     <mat-drawer-content>
       <div class="data-flow-manager-content">
         <ng-container *ngIf="!State.Loading">
-          <div *ngIf="!State.ActiveDataFlow" class="data-flow-manager-content-form spread">
+          <div *ngIf="!State.ActiveDataFlow" class="data-flow-manager-content-form">
             <lcu-data-flow-create-element [context]="{ State: State }"></lcu-data-flow-create-element>
           </div>
 
