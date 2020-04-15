@@ -1,24 +1,14 @@
-/**
-  Set specific theme styles
-*/
-@mixin specific-theme-styles($theme) {
-  // set the background color of the active application list item
-  .active-item {
-    background-color: mat-color(map-get($theme, primary), 500) !important;
+@import "../../../../../../node_modules/@lcu/common/assets/styles/fathym-global.styles";
 
-    .active-icon {
-      color: mat-color(map-get($theme, accent), 500) !important;
-    }
-  }
+$primary-theme-color: var(--primary-color);
 
-  .data-application-label {
-    color: mat-color(map-get($theme, accent), 500) !important;
-  }
+.active-item {
+  background-color: $primary-theme-color;
+}
 
-  .accent-divider {
-    background-color: mat-color(map-get($theme, primary), 500) !important;
-    width: 1px;
-    @extend .margin-top-3;
-    @extend .padding-bottom-3;
-  }
+.accent-divider {
+  background-color: $primary-theme-color;
+  width: 1px;
+  @extend .margin-top-3;
+  @extend .padding-bottom-3;
 }
