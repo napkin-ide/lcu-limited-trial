@@ -17,7 +17,7 @@ export class ProvisioningModalComponent {
     this.dialogRef.close();
   }
 
-  public BuyNow(): void {
-    window.location.href = 'https://fathym.com/low-code-framework/';
+  public UpgradeNow(): void {
+    window.location.href = 'https://fathym.com/pricing/';
   }
 }
