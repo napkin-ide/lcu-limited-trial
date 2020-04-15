@@ -18,7 +18,7 @@
 
     <span class="filler"></span>
 
-    <div *ngIf="!State.Loading">
+    <div *ngIf="!State.Loading && !State.ActiveDataFlow">
       <button
         *ngIf="!State.IsCreating"
         (click)="ToggleIsCreating()"
@@ -36,9 +36,9 @@
     </div>
   </mat-toolbar>
 
-  <mat-drawer-container class="drawer">
+  <mat-drawer-container class="drawer" autosize>
     <!--SIDEBAR-->
-    <mat-drawer mode="side" #drawer>
+    <mat-drawer mode="side" #drawer opened>
       <div fxLayout="column" fxLayoutGap="3px">
         <lcu-data-flow-list-element [context]="{ State: State }" [data-flow-lists]="DataFlowLists" [allow-delete]="AllowDelete"></lcu-data-flow-list-element>
       </div>
