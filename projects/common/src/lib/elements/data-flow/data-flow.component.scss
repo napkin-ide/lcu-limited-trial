@@ -2,21 +2,27 @@
   .data-flow-manager-container {
     height: 100%;
 
+    .open-icon {
+      transform: rotate(180deg);
+    }
+
     .mat-drawer-container {
       height: calc(100% - 64px);
 
       .mat-drawer-inner-container {
         background-color: #303030;
       }
+      .mat-drawer-content {
+        .data-flow-manager-content {
+          height: 100%;
 
-      .data-flow-manager-content {
-        height: 100%;
-
-        .data-flow-manager-content-form {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          margin: 5%;
+          .data-flow-manager-content-form {
+            align-items: center;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            padding: 5%;
+          }
         }
       }
     }
