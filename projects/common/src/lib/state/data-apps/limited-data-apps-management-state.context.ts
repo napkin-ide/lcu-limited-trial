@@ -58,7 +58,7 @@ export class LimitedDataAppsManagementStateContext extends StateContext<
    * Toggle between adding and canceling a new app
    */
   public ToggleAddNew(addNew: boolean): void {
-    debugger;
+  
     this.Execute({
       Arguments: {
         New: addNew

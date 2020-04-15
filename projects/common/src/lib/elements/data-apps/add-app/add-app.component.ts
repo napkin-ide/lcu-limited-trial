@@ -134,7 +134,7 @@ export class AddAppComponent implements OnInit {
    * Handle state changes
    */
   protected handleStateChanges(): void {
-
+   
   }
 
 }
