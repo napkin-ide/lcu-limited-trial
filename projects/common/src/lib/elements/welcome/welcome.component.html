@@ -17,18 +17,18 @@
         
         <div fxFlex="80" style="padding: 5px">
             <mat-tab-group mat-align-tabs="left">
-                <mat-tab *ngFor="let journeyRole of JourneyRoles" label="{{ journeyRole }}">
+                <mat-tab *ngFor="let journeySet of DividedJourneys" label="{{ journeySet.JourneyName }}">
                     <div 
                         fxLayout="row wrap" 
                         fxLayoutAlign="space-between"
                         fxLayout.sm="column">
         
-                        <div *ngFor="let journey of State.Journeys"
+                        <div *ngFor="let journey of journeySet.Journeys"
+                            fxFlex="50"
                             fxFlex.gt-sm="33"
-                            fxFlex.lt-md="50"
                             class="mat-body margin-top-3">
                             <lcu-journey-card
-                                *ngIf="ContainsRoleType(journey, journeyRole) && journey.Active"
+                                *ngIf="ContainsRoleType(journey, journeySet.JourneyName) && journey.Active"
                                 [journey-data]="journey"></lcu-journey-card>
                         </div>
         
