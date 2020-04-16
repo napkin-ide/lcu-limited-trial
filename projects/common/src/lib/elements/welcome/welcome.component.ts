@@ -35,6 +35,10 @@ export class LcuLimitedTrialWelcomeElementComponent
    */
   public ContentTypes = JourneyContentTypes;
 
+  public DividedJourneys: Array<{ JourneyName: string, Journeys: Array<any> }> = [];
+
+  public Journeys: Array<any> = [];
+
   public PanelOpenState: boolean;
 
   /**
@@ -72,9 +76,37 @@ export class LcuLimitedTrialWelcomeElementComponent
   }
 
   //  Helpers
+  protected divideJourneys() {
+    console.log('journeys before populationg: ', this.Journeys)
+    this.DividedJourneys = [];
+    this.JourneyRoles.forEach(role => {
+      this.DividedJourneys.push({ JourneyName: role, Journeys: [] });
+    });
+    this.Journeys.forEach(journey => {
+      journey.Roles.forEach((role: any) => {
+        this.DividedJourneys.find(j => j.JourneyName === role).Journeys.push(journey);
+      });
+    });
+    console.log('divided journeys after populating: ', this.DividedJourneys);
+  }
 
   /**
    * Handle when the state is returned
    */
-  protected handleStateChanges(): void {}
+  protected handleStateChanges(): void {
+    if (this.State.Journeys) {
+      this.Journeys = this.State.Journeys;
+      this.divideJourneys();
+    }
+  }
+}
+
+@Pipe({
+  name: 'safe',
+})
+export class SafePipe implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) {}
+  transform(url: string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
 }

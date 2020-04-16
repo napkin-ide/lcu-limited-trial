@@ -12,7 +12,7 @@ import { LimitedDataFlowManagementStateContext } from './state/data-flow/limited
 import { AddAppComponent } from './elements/data-apps/add-app/add-app.component';
 import { ProvisioningModalComponent } from './elements/data-flow/modals/provisioning-modal/provisioning-modal.component';
 import { DataAppsConfigComponent } from './elements/data-apps/data-apps-config/data-apps-config.component';
-import { LcuLimitedTrialWelcomeElementComponent } from './elements/welcome/welcome.component';
+import { LcuLimitedTrialWelcomeElementComponent, SafePipe } from './elements/welcome/welcome.component';
 import { LcuLimitedTrialDataAppsElementComponent } from './elements/data-apps/data-apps.component';
 import { LcuLimitedTrialDataFlowElementComponent } from './elements/data-flow/data-flow.component';
 import { JourneyCardComponent } from './elements/welcome/journey-card/journey-card.component';
@@ -26,7 +26,8 @@ import { JourneyCardComponent } from './elements/welcome/journey-card/journey-ca
     DataAppsConfigComponent,
     AppListComponent,
     AddAppComponent,
-    JourneyCardComponent
+    JourneyCardComponent,
+    SafePipe
   ],
   imports: [
     FathymSharedModule,
