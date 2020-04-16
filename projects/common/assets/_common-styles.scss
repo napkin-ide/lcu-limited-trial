@@ -10,7 +10,7 @@
 * --primary-color(etc.) are css variable assigned 
 * from the selected theme, coming from Ref Arch
 */
-$primary-theme-color: var(--primary-color, rgb(206, 25, 206));
+$primary-theme-color: var(--html-primary-color, rgb(206, 25, 206));
 $accent-theme-color: var(--accent-color);
 $warn-theme-color: var(--warn-color);
 
