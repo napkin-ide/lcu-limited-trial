@@ -1,22 +1,5 @@
-@import "../../../node_modules/@lcu/common/assets/styles/fathym-global.styles";
-@import "../../../node_modules/@lcu/common/assets/styles/branding/fathym-branding";
-@import "../../../node_modules/@lcu/common/assets/theming/fathym_themes";
-@import '../../../node_modules/jsplumbtoolkit/dist/css/syntax-highlighter.css';
-@import '../../../node_modules/jsplumbtoolkit/dist/css/jsplumbtoolkit-defaults.css';
-@import '../../../node_modules/jsplumbtoolkit/dist/css/jsplumbtoolkit-demo.css';
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap");
+@import "../../common/assets/common-styles";
 @import "./app/app.component.scss";
-
-@mixin opacity($opacity) {
-  opacity: $opacity;
-  filter: alpha(opacity=$opacity); /* For IE8 and earlier */
-}
-
-@mixin mat-icon-size($size: 24px) {
-  font-size: $size;
-  height: $size;
-  width: $size;
-}
 
 .app-background {
   display: flex;
