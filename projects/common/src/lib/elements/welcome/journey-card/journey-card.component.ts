@@ -8,6 +8,10 @@ import { JourneyContentTypes } from '../../../state/journeys/journeys.state';
 })
 export class JourneyCardComponent implements OnInit {
 
+  /**
+   * the individual journey data to be displayed in the card
+   */
+  // tslint:disable-next-line
   protected _journeyData: any;
 
   @Input('journey-data')
@@ -26,10 +30,6 @@ export class JourneyCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  ngAfterViewInit() {
-    console.log(this.JourneyData);
   }
 
 }

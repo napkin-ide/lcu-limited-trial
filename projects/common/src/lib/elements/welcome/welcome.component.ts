@@ -35,11 +35,10 @@ export class LcuLimitedTrialWelcomeElementComponent
    */
   public ContentTypes = JourneyContentTypes;
 
+  /**
+   * Array of journeys divided up into role types (used to populate UI)
+   */
   public DividedJourneys: Array<{ JourneyName: string, Journeys: Array<any> }> = [];
-
-  public Journeys: Array<any> = [];
-
-  public PanelOpenState: boolean;
 
   /**
    * Current state
@@ -56,7 +55,6 @@ export class LcuLimitedTrialWelcomeElementComponent
     protected state: LimitedJourneysManagementStateContext
   ) {
     super(injector);
-    this.PanelOpenState = false;
   }
 
   //  Life Cycle
@@ -76,18 +74,19 @@ export class LcuLimitedTrialWelcomeElementComponent
   }
 
   //  Helpers
+  /**
+   * Divides the journeys from the state into individual arrays of role-based journeys
+   */
   protected divideJourneys() {
-    console.log('journeys before populationg: ', this.Journeys)
     this.DividedJourneys = [];
     this.JourneyRoles.forEach(role => {
       this.DividedJourneys.push({ JourneyName: role, Journeys: [] });
     });
-    this.Journeys.forEach(journey => {
+    this.State.Journeys.forEach(journey => {
       journey.Roles.forEach((role: any) => {
         this.DividedJourneys.find(j => j.JourneyName === role).Journeys.push(journey);
       });
     });
-    console.log('divided journeys after populating: ', this.DividedJourneys);
   }
 
   /**
@@ -95,7 +94,6 @@ export class LcuLimitedTrialWelcomeElementComponent
    */
   protected handleStateChanges(): void {
     if (this.State.Journeys) {
-      this.Journeys = this.State.Journeys;
       this.divideJourneys();
     }
   }
