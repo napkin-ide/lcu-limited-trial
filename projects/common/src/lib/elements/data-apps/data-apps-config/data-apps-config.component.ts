@@ -5,6 +5,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { LimitedDataAppsManagementState } from '../../../state/data-apps/limited-data-apps-management.state';
 import { LimitedDataAppsManagementStateContext } from '../../../state/data-apps/limited-data-apps-management-state.context';
 import { NPMService } from '@napkin-ide/lcu-data-apps-common';
+import { DAFViewApplicationConfig } from '@lcu/common';
 
 @Component({
   selector: 'lcu-data-apps-config',
@@ -195,6 +196,13 @@ export class DataAppsConfigComponent implements OnInit {
     console.log('data-apps-config', this.State);
 
     this.State.CurrentAppView = this.State.ActiveDAFApp;
+
+    if (!this.State.ActiveDAFApp) {
+      this.State.CurrentAppView = new DAFViewApplicationConfig();
+      this.State.CurrentAppView.ID = this.State.ActiveApp.ID;
+      this.State.CurrentAppView.NPMPackage = 'N/A';
+      this.NPMPackageVersions = ['N/A'];
+    }
 
     this.setNPMPackage();
     this.setSaveDataApp();

@@ -1,3 +1,4 @@
+import { NPMService } from '@napkin-ide/lcu-data-apps-common';
 import { LcuDataFlowModule } from '@napkin-ide/lcu-data-flow-common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,11 +12,10 @@ import { LimitedDataFlowManagementStateContext } from './state/data-flow/limited
 import { AddAppComponent } from './elements/data-apps/add-app/add-app.component';
 import { ProvisioningModalComponent } from './elements/data-flow/modals/provisioning-modal/provisioning-modal.component';
 import { DataAppsConfigComponent } from './elements/data-apps/data-apps-config/data-apps-config.component';
-import { LcuLimitedTrialWelcomeElementComponent, SafePipe } from './elements/welcome/welcome.component';
+import { LcuLimitedTrialWelcomeElementComponent } from './elements/welcome/welcome.component';
 import { LcuLimitedTrialDataAppsElementComponent } from './elements/data-apps/data-apps.component';
 import { LcuLimitedTrialDataFlowElementComponent } from './elements/data-flow/data-flow.component';
 import { JourneyCardComponent } from './elements/welcome/journey-card/journey-card.component';
-import { NPMService } from '@napkin-ide/lcu-data-apps-common';
 
 @NgModule({
   declarations: [
@@ -26,7 +26,6 @@ import { NPMService } from '@napkin-ide/lcu-data-apps-common';
     DataAppsConfigComponent,
     AppListComponent,
     AddAppComponent,
-    SafePipe,
     JourneyCardComponent
   ],
   imports: [

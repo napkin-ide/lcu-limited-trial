@@ -58,7 +58,7 @@
                     </mat-autocomplete>
                   </mat-form-field>
 
-                  <mat-form-field class="mat-full-width">
+                  <mat-form-field class="mat-full-width" *ngIf="NPMPackageControl.value !== 'N/A'">
                     <!-- <input matInput placeholder="Package Version" formControlName="pkgVer" required /> -->
 
                       <mat-select formControlName="pkgVer" placeholder="NPM Package Version">
