@@ -78,7 +78,7 @@ export class LcuLimitedTrialDataFlowElementComponent extends LcuElementComponent
 
     // const ids = this.State.EmulatedDataFlowIDs;
     if (this.State && this.State.DataFlows) {
-      const ids = ['690e235c-0216-46b7-93f1-3cf002033ac6'];
+      const ids = ['27a2c473-95a5-4120-bb04-df45fd10c9ac'];
 
       if (ids && ids.length) {
         this.DataFlowLists.emulatedDataFlows = this.State.DataFlows.filter((df: DataFlow) => {
