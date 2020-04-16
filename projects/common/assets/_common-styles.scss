@@ -16,7 +16,7 @@ $accent-theme-color: var(--accent-color);
 $warn-theme-color: var(--warn-color);
 
 .active-item {
-  background-color: #{var(--accent-color)} !important;
+  background-color: #{$primary-theme-color} !important;
 }
 
 .active-icon {
