@@ -24,8 +24,9 @@
                         fxLayout.sm="column">
         
                         <div *ngFor="let journey of journeySet.Journeys"
-                            fxFlex="50"
-                            fxFlex.gt-sm="33"
+                            [fxFlex.sm]="100"
+                            [fxFlex.md]="50"
+                            [fxFlex.lg]="33"
                             class="mat-body margin-top-3">
                             <lcu-journey-card
                                 *ngIf="ContainsRoleType(journey, journeySet.JourneyName) && journey.Active"
