@@ -3,10 +3,17 @@
             let app of AppData;
             let first = first;
             let last = last"
-            [ngClass]="{ 'no-class-just-leaving-for-now': first,
-                        'active-item': State?.ActiveApp?.Name === app.Name && State.AddingApp === false }"
+            [ngClass]="{ 'active-item': State?.ActiveApp?.Name === app.Name && State.AddingApp === false }"
             class="margin-1">
     <div fxLayout="row">
+        <div style="width: 25px; height: 25px;" 
+            [ngClass]="{ 'active-item': State?.ActiveApp?.Name === app.Name && State.AddingApp === false}">
+            a
+        </div>
+        <div style="width: 25px; height: 25px;" 
+            [ngClass]="{ 'in-active-item': State?.ActiveApp?.Name === app.Name && State.AddingApp === false}">
+            b
+        </div>
         <div>
             <mat-icon matTooltip="Public App" *ngIf="!app.IsPrivate">lock_open</mat-icon>
             <mat-icon matTooltip="Private App" *ngIf="app.IsPrivate">lock</mat-icon>
