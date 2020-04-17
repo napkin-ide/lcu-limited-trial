@@ -19,7 +19,7 @@ $warn-theme-color: var(--warn-color);
 .active-item {
   // background-color: #{$primary-theme-color} !important;
   // background-color: $accent-color;
-  background-color: mat-color(mat-palette($fathym-ivy-primary)) !important;
+  background-color: mat-color(mat-palette($fathym-ivy-accent)) !important;  
   // $primary: mat-color(map-get($my-theme, primary), 500);
 }
 
