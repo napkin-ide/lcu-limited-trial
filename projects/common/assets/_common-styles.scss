@@ -12,14 +12,15 @@ $primary-test: mat-palette($fathym-ivy-primary);
 * --primary-color(etc.) are css variable assigned 
 * from the selected theme, coming from Ref Arch
 */
-$primary-theme-color: var(--primary-color);
+// $primary-theme-color: var(--primary-color);
+$primary-theme-color: mat-color(mat-palette($fathym-ivy-accent));
 $accent-theme-color: var(--accent-color);
 $warn-theme-color: var(--warn-color);
 
 .active-item {
   // background-color: #{$primary-theme-color} !important;
   // background-color: $accent-color;
-  background-color: mat-color(mat-palette($fathym-ivy-accent)) !important;  
+  background-color: $primary-theme-color !important;  
   // $primary: mat-color(map-get($my-theme, primary), 500);
 }
 
