@@ -1,0 +1,39 @@
+@import "../../../node_modules/@lcu/common/assets/styles/fathym-global.styles";
+@import "../../../node_modules/@lcu/common/assets/styles/branding/fathym-branding";
+@import "../../../node_modules/@lcu/common/assets/theming/fathym_themes";
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap");
+@import '../../../node_modules/jsplumbtoolkit/dist/css/syntax-highlighter.css';
+@import '../../../node_modules/jsplumbtoolkit/dist/css/jsplumbtoolkit-defaults.css';
+@import '../../../node_modules/jsplumbtoolkit/dist/css/jsplumbtoolkit-demo.css';
+
+/**
+* CSS variable work great, but don't work in web components
+* leaving this here for reference
+*/
+// $primary-theme-color: var(--primary-color);
+// $accent-theme-color: var(--accent-color);
+//$warn-theme-color: theme-color(primary, 100) !important;
+
+.active-item {
+  /**
+  * theme-color is set within each theme palette, so when
+  * loading multiple palettes, theme-color is returned from the
+  * last palette loaded. TODO - Figure out a solution to preven this
+  * and to not have to know a particular theme name
+  */
+  // background-color: theme-color(primary, 500) !important;
+
+  /**
+  * palette-color is set within the main theme stylesheet and works like
+  * the above theme-color, however, in this instance you need to know
+  * the name of the palette you want to use($fathym-ivy-primary, $fathym-ivy-accent, $fathym-ivy-warn, etc.)
+  */
+  background-color: palette-color($fathym-ivy-primary, A400) !important;
+}
+
+.accent-divider {
+  background-color: palette-color($fathym-ivy-primary, A400) !important;
+  width: 1px;
+  @extend .margin-top-3;
+  @extend .padding-bottom-3;
+}
