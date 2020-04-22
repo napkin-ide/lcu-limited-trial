@@ -136,14 +136,14 @@ export class LcuLimitedTrialDataFlowElementComponent extends LcuElementComponent
 
   protected setActiveDataFlow(): Subscription {
     return this.dataFlowEventService.GetSetActiveDataFlowEvent().subscribe(
-      (dataFlowLookup: string) => {
+      (dataFlow: DataFlow) => {
         this.State.Loading = true;
 
         if (this.State.IsCreating) {
           this.ToggleIsCreating();
         }
 
-        this.dfMgmt.SetActiveDataFlow(dataFlowLookup);
+        this.dfMgmt.SetActiveDataFlow(dataFlow);
       }
     );
   }
