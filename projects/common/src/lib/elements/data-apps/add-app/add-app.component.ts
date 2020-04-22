@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { LimitedDataAppsManagementState } from '../../../state/data-apps/limited-data-apps-management.state';
 import { LimitedDataAppsManagementStateContext } from '../../../state/data-apps/limited-data-apps-management-state.context';
-import { Application } from '@lcu/common';
+import { Application, DAFViewApplicationConfig } from '@lcu/common';
 
 
 @Component({
@@ -29,6 +29,8 @@ export class AddAppComponent implements OnInit {
    * Public/Private tooltip value
    */
   public ToggleTooltip: string;
+
+  public NewNPMPackageOptions: Array<string>;
 
   // Fields
   /**
@@ -135,6 +137,14 @@ export class AddAppComponent implements OnInit {
    */
   protected handleStateChanges(): void {
    
+  }
+
+  protected loadNewNPMPackageOptions(): void {
+    // this.NewNPMPackageOptions = Object.keys(this.State.VersionLookups).filter((npmPackage: string) => {
+    //   return !this.State.DAFApps.find((daf: DAFViewApplicationConfig) => {
+    //     return npmPackage === daf.NPMPackage;
+    //     );
+    // });
   }
 
 }

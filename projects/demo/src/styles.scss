@@ -13,8 +13,6 @@
   @include angular-material-theme($theme);
   @include theme-extras($theme);
   @include lcu-component-theme($theme);
-  
 }
 
 @include theme-setup(fathym-ivy-theme(false));
-

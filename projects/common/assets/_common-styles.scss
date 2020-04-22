@@ -6,12 +6,13 @@
 @import '../../../node_modules/jsplumbtoolkit/dist/css/jsplumbtoolkit-defaults.css';
 @import '../../../node_modules/jsplumbtoolkit/dist/css/jsplumbtoolkit-demo.css';
 
-// $primary-theme-color: mat-color(mat-palette($fathym-ivy-accent, A700));
+// $primary-theme-color: var(--primary-color);
 // $accent-theme-color: var(--accent-color);
-$warn-theme-color: theme-color(primary, 100) !important;
+//$warn-theme-color: theme-color(primary, 100) !important;
 
 .active-item {
-  background-color: theme-color(primary, A400) !important;
+  // background-color: theme-color(primary, 500) !important;
+  background-color: palette-color($fathym-ivy-primary, A400) !important;
 }
 
 .active-icon {
