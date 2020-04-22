@@ -35,7 +35,10 @@ export class LcuLimitedTrialWelcomeElementComponent
    */
   public ContentTypes = JourneyContentTypes;
 
-  public PanelOpenState: boolean;
+  /**
+   * Array of journeys divided up into role types (used to populate UI)
+   */
+  public DividedJourneys: Array<{ JourneyName: string, Journeys: Array<any> }> = [];
 
   /**
    * Current state
@@ -52,7 +55,6 @@ export class LcuLimitedTrialWelcomeElementComponent
     protected state: LimitedJourneysManagementStateContext
   ) {
     super(injector);
-    this.PanelOpenState = false;
   }
 
   //  Life Cycle
@@ -72,9 +74,37 @@ export class LcuLimitedTrialWelcomeElementComponent
   }
 
   //  Helpers
+  /**
+   * Divides the journeys from the state into individual arrays of role-based journeys
+   */
+  protected divideJourneys() {
+    this.DividedJourneys = [];
+    this.JourneyRoles.forEach(role => {
+      this.DividedJourneys.push({ JourneyName: role, Journeys: [] });
+    });
+    this.State.Journeys.forEach(journey => {
+      journey.Roles.forEach((role: any) => {
+        this.DividedJourneys.find(j => j.JourneyName === role).Journeys.push(journey);
+      });
+    });
+  }
 
   /**
    * Handle when the state is returned
    */
-  protected handleStateChanges(): void {}
+  protected handleStateChanges(): void {
+    if (this.State.Journeys) {
+      this.divideJourneys();
+    }
+  }
+}
+
+@Pipe({
+  name: 'safe',
+})
+export class SafePipe implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) {}
+  transform(url: string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
 }
