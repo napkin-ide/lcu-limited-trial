@@ -29,3 +29,9 @@
   @extend .margin-top-3;
   @extend .padding-bottom-3;
 }
+
+.thinky-logo {
+  background-image: fathym-logo(thinky-circle, #d81f1f, .7);
+  background-repeat:no-repeat;
+  background-position: center;
+}

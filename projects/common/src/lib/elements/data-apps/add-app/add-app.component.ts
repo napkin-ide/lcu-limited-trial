@@ -30,8 +30,6 @@ export class AddAppComponent implements OnInit {
    */
   public ToggleTooltip: string;
 
-  public NewNPMPackageOptions: Array<string>;
-
   // Fields
   /**
    * App ID field
@@ -138,13 +136,4 @@ export class AddAppComponent implements OnInit {
   protected handleStateChanges(): void {
    
   }
-
-  protected loadNewNPMPackageOptions(): void {
-    // this.NewNPMPackageOptions = Object.keys(this.State.VersionLookups).filter((npmPackage: string) => {
-    //   return !this.State.DAFApps.find((daf: DAFViewApplicationConfig) => {
-    //     return npmPackage === daf.NPMPackage;
-    //     );
-    // });
-  }
-
 }

@@ -93,11 +93,11 @@ export class DataAppsConfigComponent implements OnInit {
   public SaveAppView() {
     this.State.Loading = true;
 
-    this.state.SaveAppView({
-      ...this.State.ActiveView,
-      NPMPackage: this.DAFViewAppFormGroup.controls.npmPkg.value,
-      PackageVersion: this.DAFViewAppFormGroup.controls.pkgVer.value
-    });
+    // this.state.SaveAppView({
+    //   ...this.State.ActiveView,
+    //   NPMPackage: this.DAFViewAppFormGroup.controls.npmPkg.value,
+    //   PackageVersion: this.DAFViewAppFormGroup.controls.pkgVer.value
+    // });
   }
 
   /**
