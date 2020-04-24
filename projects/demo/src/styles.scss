@@ -1,5 +1,8 @@
 @import "../../common/assets/common-styles";
 @import "./app/app.component.scss";
+@import '../../../node_modules/jsplumbtoolkit/dist/css/syntax-highlighter.css';
+@import '../../../node_modules/jsplumbtoolkit/dist/css/jsplumbtoolkit-defaults.css';
+@import '../../../node_modules/jsplumbtoolkit/dist/css/jsplumbtoolkit-demo.css';
 
 .app-background {
   display: flex;
@@ -9,10 +12,4 @@
   max-height: -webkit-fill-available;
 }
 
-@mixin theme-setup($theme) {
-  @include angular-material-theme($theme);
-  @include theme-extras($theme);
-  @include lcu-component-theme($theme);
-}
-
-@include theme-setup(fathym-ivy-theme(true));
+ @include lcu-component-theme();
