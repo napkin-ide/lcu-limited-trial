@@ -15,4 +15,4 @@
   @include lcu-component-theme($theme);
 }
 
-@include theme-setup(fathym-ivy-theme(false));
+@include theme-setup(fathym-ivy-theme(true));

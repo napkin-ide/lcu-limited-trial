@@ -6,27 +6,19 @@
 @import '../../../node_modules/jsplumbtoolkit/dist/css/jsplumbtoolkit-defaults.css';
 @import '../../../node_modules/jsplumbtoolkit/dist/css/jsplumbtoolkit-demo.css';
 
-/**
-* CSS variable work great, but don't work in web components
-* leaving this here for reference
-*/
-// $primary-theme-color: var(--primary-color);
-// $accent-theme-color: var(--accent-color);
-//$warn-theme-color: theme-color(primary, 100) !important;
-
 .active-item {
   /**
   * theme-color is set within each theme palette, so when
   * loading multiple palettes, theme-color is returned from the
-  * last palette loaded. TODO - Figure out a solution to preven this
-  * and to not have to know a particular theme name
+  * last palette loaded. TODO - Figure out a solution to prevent this
+  * and to not have to know a particular theme name - Shannon
   */
   // background-color: theme-color(primary, 500) !important;
 
   /**
   * palette-color is set within the main theme stylesheet and works like
   * the above theme-color, however, in this instance you need to know
-  * the name of the palette you want to use($fathym-ivy-primary, $fathym-ivy-accent, $fathym-ivy-warn, etc.)
+  * the name of the palette you want to use($fathym-ivy-primary, $fathym-ivy-accent, $fathym-ivy-warn, etc.) - Shannon
   */
   background-color: palette-color($fathym-ivy-primary, A400) !important;
 }
