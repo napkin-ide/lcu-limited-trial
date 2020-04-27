@@ -58,8 +58,7 @@ export class LcuLimitedTrialDataFlowElementComponent extends LcuElementComponent
 
     this.dfMgmt.Context.subscribe(async (state: any) => {
       this.State = state;
-      console.log('Successfully loaded State: ', this.State);
-      // this.State.DataFlows = this.populateDataFlows();
+      console.log('DataFlow State: ', this.State);
 
       await this.handleStateChanges();
     });
@@ -74,27 +73,12 @@ export class LcuLimitedTrialDataFlowElementComponent extends LcuElementComponent
 
   //  Helpers
   protected handleStateChanges(): void {
-    console.log('this.State', this.State);
-
-    // const ids = this.State.EmulatedDataFlowIDs;
-    if (this.State && this.State.DataFlows) {
-      const ids = ['27a2c473-95a5-4120-bb04-df45fd10c9ac'];
-
-      if (ids && ids.length) {
-        this.DataFlowLists.emulatedDataFlows = this.State.DataFlows.filter((df: DataFlow) => {
-          return ids.find((id: string) => df.ID === id);
-        });
-        console.log('this.EmulatedDataFlows', this.DataFlowLists.emulatedDataFlows);
-        this.DataFlowLists.trialDataFlows = this.State.DataFlows.filter((df: DataFlow) => {
-          return ids.find((id: string) => df.ID !== id);
-        });
-        console.log('this.TrialDataFlows', this.DataFlowLists.trialDataFlows);
-      } else {
-        this.DataFlowLists.emulatedDataFlows = [];
-        this.DataFlowLists.trialDataFlows = [];
-      }
+    if (JSON.stringify(this.State.EmulatedDataFlows) !== JSON.stringify(this.DataFlowLists.emulatedDataFlows)) {
+      this.DataFlowLists.emulatedDataFlows = this.State.EmulatedDataFlows ? this.State.EmulatedDataFlows : [];
     }
-
+    if (JSON.stringify(this.State.DataFlows) !== JSON.stringify(this.DataFlowLists.trialDataFlows)) {
+      this.DataFlowLists.trialDataFlows = this.State.DataFlows ? this.State.DataFlows : [];
+    }
   }
 
   protected openProvisioningDialog(): void {
@@ -126,10 +110,6 @@ export class LcuLimitedTrialDataFlowElementComponent extends LcuElementComponent
       (dataFlow: DataFlow) => {
         this.State.Loading = true;
         this.dfMgmt.SaveDataFlow(dataFlow);
-
-        if (this.State.IsCreating) {
-          this.ToggleIsCreating();
-        }
       }
     );
   }
