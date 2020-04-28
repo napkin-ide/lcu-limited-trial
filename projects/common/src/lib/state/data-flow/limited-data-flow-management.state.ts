@@ -7,7 +7,7 @@ export class LimitedDataFlowManagementState {
 
   public DataFlows?: DataFlow[];
 
-  public EmulatedDataFlowIDs?: string[];
+  public EmulatedDataFlows?: DataFlow[];
 
   public EnvironmentLookup?: boolean;
 

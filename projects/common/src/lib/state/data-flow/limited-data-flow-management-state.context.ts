@@ -43,10 +43,10 @@ export class LimitedDataFlowManagementStateContext extends StateContext<
     });
   }
 
-  public SetActiveDataFlow(dataFlowLookup: string) {
+  public SetActiveDataFlow(dataFlow: DataFlow) {
     this.Execute({
       Arguments: {
-        DataFlowLookup: dataFlowLookup
+        DataFlow: dataFlow
       },
       Type: 'SetActiveDataFlow'
     });
@@ -72,12 +72,12 @@ export class LimitedDataFlowManagementStateContext extends StateContext<
   }
 
   protected loadStateKey(): string {
-    // return 'data-flow';
-    return 'main';
+    return 'data-flow';
+    // return 'main';
   }
 
   protected loadStateName(): string {
-    // return 'limitedtrial';
-    return 'dataflowmanagement';
+    return 'limitedtrial';
+    // return 'dataflowmanagement';
   }
 }
