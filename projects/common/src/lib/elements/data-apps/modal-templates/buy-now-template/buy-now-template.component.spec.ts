@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BuyNowModalComponent } from './buy-now-modal.component';
+import { BuyNowTemplateComponent } from './buy-now-template.component';
 
-describe('BuyNowModalComponent', () => {
-  let component: BuyNowModalComponent;
-  let fixture: ComponentFixture<BuyNowModalComponent>;
+describe('BuyNowTemplateComponent', () => {
+  let component: BuyNowTemplateComponent;
+  let fixture: ComponentFixture<BuyNowTemplateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BuyNowModalComponent ]
+      declarations: [ BuyNowTemplateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BuyNowModalComponent);
+    fixture = TestBed.createComponent(BuyNowTemplateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

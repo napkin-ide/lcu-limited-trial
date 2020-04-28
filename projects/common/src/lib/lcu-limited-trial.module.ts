@@ -16,7 +16,8 @@ import { LcuLimitedTrialWelcomeElementComponent, SafePipe } from './elements/wel
 import { LcuLimitedTrialDataAppsElementComponent } from './elements/data-apps/data-apps.component';
 import { LcuLimitedTrialDataFlowElementComponent } from './elements/data-flow/data-flow.component';
 import { JourneyCardComponent } from './elements/welcome/journey-card/journey-card.component';
-import { BuyNowModalComponent } from './elements/data-apps/buy-now-modal/buy-now-modal.component';
+import { DialogComponent } from './controls/modals/dialog/dialog.component';
+import { BuyNowTemplateComponent } from './elements/data-apps/modal-templates/buy-now-template/buy-now-template.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { BuyNowModalComponent } from './elements/data-apps/buy-now-modal/buy-now
     AddAppComponent,
     JourneyCardComponent,
     SafePipe,
-    BuyNowModalComponent
+    DialogComponent,
+    BuyNowTemplateComponent
   ],
   imports: [
     FathymSharedModule,
@@ -47,7 +49,8 @@ import { BuyNowModalComponent } from './elements/data-apps/buy-now-modal/buy-now
     JourneyCardComponent,
     AppListComponent,
     AddAppComponent,
-    BuyNowModalComponent
+    DialogComponent,
+    BuyNowTemplateComponent
   ],
   entryComponents: [
     LcuLimitedTrialWelcomeElementComponent,
@@ -58,7 +61,8 @@ import { BuyNowModalComponent } from './elements/data-apps/buy-now-modal/buy-now
     JourneyCardComponent,
     AppListComponent,
     AddAppComponent,
-    BuyNowModalComponent
+    DialogComponent,
+    BuyNowTemplateComponent
   ]
 })
 export class LcuLimitedTrialModule {

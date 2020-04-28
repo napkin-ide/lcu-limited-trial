@@ -1,3 +1,4 @@
+import { DialogComponent } from './../../../controls/modals/dialog/dialog.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, AbstractControl, FormControl } from '@angular/forms';
 import { debounceTime, switchMap, map } from 'rxjs/operators';
@@ -7,7 +8,8 @@ import { LimitedDataAppsManagementState } from '../../../state/data-apps/limited
 import { LimitedDataAppsManagementStateContext } from '../../../state/data-apps/limited-data-apps-management-state.context';
 import { NPMService } from '@napkin-ide/lcu-data-apps-common';
 import { DAFViewApplicationConfig } from '@lcu/common';
-import { BuyNowModalComponent } from '../buy-now-modal/buy-now-modal.component';
+import { BuyNowTemplateComponent } from '../modal-templates/buy-now-template/buy-now-template.component';
+import { DialogModel } from '../../../models/dialog.model';
 
 @Component({
   selector: 'lcu-data-apps-config',
@@ -76,7 +78,7 @@ export class DataAppsConfigComponent implements OnInit {
     return this.DAFViewAppFormGroup.get('appId');
   }
 
-  protected buyNowModal: MatDialogRef<BuyNowModalComponent>;
+  protected buyNowModal: MatDialogRef<BuyNowTemplateComponent>;
 
   constructor(protected state: LimitedDataAppsManagementStateContext,
               protected formBldr: FormBuilder,
@@ -169,7 +171,17 @@ export class DataAppsConfigComponent implements OnInit {
   }
 
   public OpenBuyNowModal(): void {
-    this.buyNowModal = this.dialog.open(BuyNowModalComponent);
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '450px',
+      data: new DialogModel(
+        {
+          Component: BuyNowTemplateComponent,
+          Title: 'Buy It Now',
+          CancelButtonLabel: 'No Thanks',
+          AcceptButtonLabel: 'Buy Now'
+        }
+        )
+    });
   }
 
   /**
