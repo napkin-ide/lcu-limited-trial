@@ -26,7 +26,6 @@ export class LimitedDataAppsManagementStateContext extends StateContext<
   }
 
   public SetActiveApp(app: Application) {
-    
     this.Execute({
       Arguments: {
         App: app
@@ -35,7 +34,8 @@ export class LimitedDataAppsManagementStateContext extends StateContext<
     });
   }
 
-  public SaveDAFApp(dafApp: DAFApplicationConfig) {
+  public SaveDAFApp(dafApp: any) {
+    debugger;
     this.Execute({
       Arguments: {
         DAFApp: dafApp
@@ -44,8 +44,8 @@ export class LimitedDataAppsManagementStateContext extends StateContext<
     });
   }
 
-  // leave id null and it will create a new one
   public SaveDataApp(app: Application): void {
+    debugger;
     this.Execute({
       Arguments: {
         App: app
@@ -55,10 +55,22 @@ export class LimitedDataAppsManagementStateContext extends StateContext<
   }
 
   /**
+   * Currently we aren't allowing deletes - dev use only
+   * @param appID id of application to delete
+   */
+  public DeleteDataApp(appID: string): void {
+    this.Execute({
+      Arguments: {
+        AppID: appID
+      },
+      Type: 'DeleteDataApp'
+    });
+  }
+
+  /**
    * Toggle between adding and canceling a new app
    */
   public ToggleAddNew(addNew: boolean): void {
-  
     this.Execute({
       Arguments: {
         New: addNew

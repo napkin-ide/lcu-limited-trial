@@ -2,9 +2,12 @@
 @import "../../../node_modules/@lcu/common/assets/styles/branding/fathym-branding";
 @import "../../../node_modules/@lcu/common/assets/theming/fathym_themes";
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap");
-@import '../../../node_modules/jsplumbtoolkit/dist/css/syntax-highlighter.css';
-@import '../../../node_modules/jsplumbtoolkit/dist/css/jsplumbtoolkit-defaults.css';
-@import '../../../node_modules/jsplumbtoolkit/dist/css/jsplumbtoolkit-demo.css';
+
+
+$global-theme: fathym-ivy-theme(true);
+$global-primary: mat-color(map-get($global-theme, primary), 500);
+$global-accent: mat-color(map-get($global-theme, accent), 500);
+$global-warn: mat-color(map-get($global-theme, warn), 500);
 
 .active-item {
   /**
@@ -24,8 +27,23 @@
 }
 
 .accent-divider {
-  background-color: palette-color($fathym-ivy-primary, A400) !important;
+  // background-color: palette-color($fathym-ivy-primary, A400) !important;
+  background-color: mat-color(map-get($global-theme, primary), A400) !important;
   width: 1px;
   @extend .margin-top-3;
   @extend .padding-bottom-3;
 }
+
+.thinky-logo {
+  background-image: fathym-logo(thinky-circle, mat-color(map-get($global-theme, warn), 500), .7);
+  background-repeat:no-repeat;
+  background-position: center;
+}
+
+@mixin theme-setup($theme) {
+  @include angular-material-theme($theme);
+  @include theme-extras($theme);
+  // @include fathym-branding($theme);
+}
+
+@include theme-setup($global-theme);

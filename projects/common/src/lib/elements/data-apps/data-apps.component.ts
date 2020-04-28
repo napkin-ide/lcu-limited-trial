@@ -28,7 +28,8 @@ export class LcuLimitedTrialDataAppsElementComponent
   //  Fields
 
   //  Properties
-  public ListItemData: Array<ListItemModel>;
+
+  // public ListItemData: Array<ListItemModel>;
 
   /**
    * Public data applications

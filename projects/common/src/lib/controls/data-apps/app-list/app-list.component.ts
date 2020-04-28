@@ -70,6 +70,10 @@ export class AppListComponent implements OnInit, AfterViewInit {
     this.SelectedApp.emit(app);
   }
 
+  public DeleteDataApp(app: Application): void {
+    this.state.DeleteDataApp(app.ID);
+  }
+
   /**
    * Listen for state changes
    */

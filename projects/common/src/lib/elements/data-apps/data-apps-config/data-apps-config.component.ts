@@ -1,11 +1,15 @@
+import { DialogComponent } from './../../../controls/modals/dialog/dialog.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, AbstractControl, FormControl } from '@angular/forms';
 import { debounceTime, switchMap, map } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { LimitedDataAppsManagementState } from '../../../state/data-apps/limited-data-apps-management.state';
 import { LimitedDataAppsManagementStateContext } from '../../../state/data-apps/limited-data-apps-management-state.context';
 import { NPMService } from '@napkin-ide/lcu-data-apps-common';
 import { DAFViewApplicationConfig } from '@lcu/common';
+import { BuyNowTemplateComponent } from '../modal-templates/buy-now-template/buy-now-template.component';
+import { DialogModel } from '../../../models/dialog.model';
 
 @Component({
   selector: 'lcu-data-apps-config',
@@ -30,6 +34,11 @@ export class DataAppsConfigComponent implements OnInit {
    * Array of NPM packages and versions, when doing an NPM package search
    */
   public NPMPackages: { Name: string; NPMLink: string; Version: string }[];
+
+  /**
+   * New NPM Packages
+   */
+  public NewNPMPackageOptions: Array<string>;
 
   /**
    * List of NPM package versions
@@ -69,9 +78,12 @@ export class DataAppsConfigComponent implements OnInit {
     return this.DAFViewAppFormGroup.get('appId');
   }
 
+  protected buyNowModal: MatDialogRef<BuyNowTemplateComponent>;
+
   constructor(protected state: LimitedDataAppsManagementStateContext,
               protected formBldr: FormBuilder,
-              protected npm: NPMService) {
+              protected npm: NPMService,
+              protected dialog: MatDialog) {
 
                 this.DisableFormFields = true;
   }
@@ -140,13 +152,35 @@ export class DataAppsConfigComponent implements OnInit {
     }
   }
 
-  public SaveAppView() {
-    this.State.Loading = true;
+  // public SaveAppView(): void {
+  //   this.State.Loading = true;
 
-    this.state.SaveAppView({
-      ...this.State.ActiveDAFApp,
+  //   this.state.SaveAppView({
+  //     ...this.State.ActiveDAFApp,
+  //     NPMPackage: this.NPMPackageControl.value,
+  //     PackageVersion: this.NPMPackageVersionControl.value
+  //   });
+  // }
+
+  public SaveDAFApp(): void {
+    debugger;
+    this.state.SaveDAFApp({
+      ...this.State.CurrentAppView,
       NPMPackage: this.NPMPackageControl.value,
-      PackageVersion: this.NPMPackageVersionControl.value
+      PackageVersion: this.NPMPackageVersionControl.value });
+  }
+
+  public OpenBuyNowModal(): void {
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '450px',
+      data: new DialogModel(
+        {
+          Component: BuyNowTemplateComponent,
+          Title: 'Buy It Now',
+          CancelButtonLabel: 'No Thanks',
+          AcceptButtonLabel: 'Buy Now'
+        }
+        )
     });
   }
 
@@ -197,15 +231,37 @@ export class DataAppsConfigComponent implements OnInit {
 
     this.State.CurrentAppView = this.State.ActiveDAFApp;
 
+    /**
+     * if ActiveDAFApp is null, we can assume this is a newly
+     * created application, so we need to handle this differently
+     */
     if (!this.State.ActiveDAFApp) {
-      this.State.CurrentAppView = new DAFViewApplicationConfig();
-      this.State.CurrentAppView.ID = this.State.ActiveApp.ID;
-      this.State.CurrentAppView.NPMPackage = 'N/A';
-      this.NPMPackageVersions = ['N/A'];
+      this.loadNewNPMPackageOptions();
+      this.newApp();
     }
 
     this.setNPMPackage();
     this.setSaveDataApp();
+  }
+
+  /**
+   * After a new app is created, we need to apply
+   * an NPM package and allow the user to save the configuration.
+   * After saving the configuration, ActiveDAFApp will return
+   * populated with data
+   */
+  protected newApp(): void {
+    // check if there's a current NPM package
+    if (!this.NewNPMPackageOptions[0]) {
+      this.OpenBuyNowModal();
+      return;
+    }
+
+    this.State.CurrentAppView = new DAFViewApplicationConfig();
+    this.State.CurrentAppView.ID = this.State.ActiveApp.ID;
+    this.State.CurrentAppView.NPMPackage = this.NewNPMPackageOptions[0];
+    // NPMPackage: this.NPMPackageControl.value,
+    // PackageVersion: this.NPMPackageVersionControl.value
   }
 
   protected setNPMPackage(): void {
@@ -238,6 +294,19 @@ export class DataAppsConfigComponent implements OnInit {
     });
 
     return versions;
+  }
+
+  /**
+   * Get package versions for newly created apps
+   *
+   * If no package versions are returned, then open buy it now modal
+   */
+  protected loadNewNPMPackageOptions(): void {
+    this.NewNPMPackageOptions = Object.keys(this.State.VersionLookups).filter((npmPackage: string) => {
+      return !this.State.DAFApps.find((daf: DAFViewApplicationConfig) => {
+            return npmPackage === daf.NPMPackage;
+      });
+    });
   }
 
   protected setSaveDataApp(): void {
