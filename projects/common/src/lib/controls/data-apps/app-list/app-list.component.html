@@ -1,10 +1,15 @@
+<!-- <div lcuMatCardHover
+    default-elevation = "1" 
+    raised-elevation = "16"></div> -->
 <mat-card
     *ngFor="
-            let app of AppData;
-            let first = first;
-            let last = last"
-            [ngClass]="{ 'active-item': State?.ActiveApp?.Name === app.Name && State.AddingApp === false }"
-            class="margin-1">
+        let app of AppData;
+        let first = first;
+        let last = last"
+        [ngClass]="{ 'active-item': State?.ActiveApp?.Name === app.Name && State.AddingApp === false}"
+        class="margin-1">
+        <!--'cursor-pointer': State?.ActiveApp?.Name !== app.Name -->
+        <!--(click)="State?.ActiveApp?.Name !== app.Name && SetActiveApp(app)"-->
     <div fxLayout="row">
         <div>
             <mat-icon matTooltip="Public App" *ngIf="!app.IsPrivate">lock_open</mat-icon>
@@ -18,9 +23,9 @@
         </mat-card-header>
     </div>
 
-    <mat-card-actions fxLayoutAlign="end">
+    <mat-card-actions fxLayoutAlign="end" *ngIf="!State.AddingApp">
         <button 
-            *ngIf="State?.ActiveApp?.Name !== app.Name && !State.AddingApp"
+            *ngIf="State?.ActiveApp?.Name !== app.Name"
             mat-button color="accent" 
             (click)="SetActiveApp(app)" 
             [disabled]="State.AddingApp === true">

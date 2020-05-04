@@ -3,11 +3,16 @@ import { Component, OnInit, Injector } from '@angular/core';
 import {
   LCUElementContext,
   LcuElementComponent,
-  Application
+  Application,
+  DAFViewApplicationConfig
 } from '@lcu/common';
 import { LimitedDataAppsManagementStateContext } from '../../state/data-apps/limited-data-apps-management-state.context';
 import { LimitedDataAppsManagementState } from '../../state/data-apps/limited-data-apps-management.state';
 import { ListItemModel } from '../../models/list-item.model';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogComponent } from '../../controls/modals/dialog/dialog.component';
+import { BuyNowTemplateComponent } from './modal-templates/buy-now-template/buy-now-template.component';
+import { DialogModel } from '../../models/dialog.model';
 
 export class LcuLimitedTrialDataAppsElementState {}
 
@@ -32,6 +37,11 @@ export class LcuLimitedTrialDataAppsElementComponent
   // public ListItemData: Array<ListItemModel>;
 
   /**
+   * New NPM Packages
+   */
+  public NewNPMPackageOptions: Array<string>;
+
+  /**
    * Public data applications
    */
   public PublicDataSource: Array<Application>;
@@ -49,7 +59,8 @@ export class LcuLimitedTrialDataAppsElementComponent
   //  Constructors
   constructor(
     protected injector: Injector,
-    protected state: LimitedDataAppsManagementStateContext
+    protected state: LimitedDataAppsManagementStateContext,
+    protected dialog: MatDialog
   ) {
     super(injector);
 
@@ -100,6 +111,16 @@ export class LcuLimitedTrialDataAppsElementComponent
    * @param addNew boolean for adding or canceling the creatinon of a new app
    */
   public ToggleAddingApp(addNew: boolean): void {
+
+    // for limited trial we're only allowing a user to
+    // create one application, here we check if
+    // @lowcodeunit/lcu-charts-demo already exists, if
+    // not allow a new app to be created
+    if (this.checkForLimitedTrialNPMPackage()) {
+      this.openBuyNowModal();
+      return;
+    }
+
     this.State.Loading = true;
 
     // toggle
@@ -115,6 +136,14 @@ export class LcuLimitedTrialDataAppsElementComponent
     }
   }
 
+  protected checkForLimitedTrialNPMPackage(): boolean {
+    if (this.State.VersionLookups) {
+      this.loadNewNPMPackageOptions();
+    }
+
+    return this.NewNPMPackageOptions.length > 0;
+  }
+
   //  Helpers
 
   /**
@@ -124,6 +153,26 @@ export class LcuLimitedTrialDataAppsElementComponent
     if (this.State.Applications) {
       this.separateAppTypes();
     }
+  }
+
+  /**
+   * Get package versions for newly created apps
+   *
+   * If no package versions are returned, then open buy it now modal
+   */
+  protected loadNewNPMPackageOptions(): void {
+    this.NewNPMPackageOptions = [];
+    this.State.DAFApps.forEach((daf: DAFViewApplicationConfig) => {
+       if (daf.NPMPackage === '@lowcodeunit/lcu-charts-demo') {
+        this.NewNPMPackageOptions[0] = daf.NPMPackage;
+       }
+    });
+
+    // this.NewNPMPackageOptions = Object.keys(this.State.VersionLookups).filter((npmPackage: string) => {
+    //   return !this.State.DAFApps.find((daf: DAFViewApplicationConfig) => {
+    //         return npmPackage === daf.NPMPackage;
+    //   });
+    // });
   }
 
   /**
@@ -141,5 +190,21 @@ export class LcuLimitedTrialDataAppsElementComponent
         return itm.IsPrivate === true;
       }
     );
+  }
+
+  /**
+   * Open the buy now modal
+   */
+  protected openBuyNowModal(): void {
+    const buyNowModal = this.dialog.open(DialogComponent, {
+      width: '450px',
+      data: new DialogModel(
+        {
+          Component: BuyNowTemplateComponent,
+          Title: 'Buy It Now',
+          CancelButtonLabel: 'No Thanks',
+          AcceptButtonLabel: 'Buy Now'
+        })
+    });
   }
 }

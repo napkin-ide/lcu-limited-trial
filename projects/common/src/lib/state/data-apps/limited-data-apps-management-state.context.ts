@@ -35,7 +35,6 @@ export class LimitedDataAppsManagementStateContext extends StateContext<
   }
 
   public SaveDAFApp(dafApp: any) {
-    debugger;
     this.Execute({
       Arguments: {
         DAFApp: dafApp
@@ -45,7 +44,6 @@ export class LimitedDataAppsManagementStateContext extends StateContext<
   }
 
   public SaveDataApp(app: Application): void {
-    debugger;
     this.Execute({
       Arguments: {
         App: app
