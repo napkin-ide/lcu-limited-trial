@@ -18,6 +18,8 @@ import { LcuLimitedTrialDataFlowElementComponent } from './elements/data-flow/da
 import { JourneyCardComponent } from './elements/welcome/journey-card/journey-card.component';
 import { DialogComponent } from './controls/modals/dialog/dialog.component';
 import { BuyNowTemplateComponent } from './elements/data-apps/modal-templates/buy-now-template/buy-now-template.component';
+import { MatCardHoverDirective } from './directives/mat-card-hover.directive';
+import { ColorDirective } from './directives/color.directive';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { BuyNowTemplateComponent } from './elements/data-apps/modal-templates/bu
     JourneyCardComponent,
     SafePipe,
     DialogComponent,
-    BuyNowTemplateComponent
+    BuyNowTemplateComponent,
+    MatCardHoverDirective,
+    ColorDirective
   ],
   imports: [
     FathymSharedModule,
@@ -50,7 +54,9 @@ import { BuyNowTemplateComponent } from './elements/data-apps/modal-templates/bu
     AppListComponent,
     AddAppComponent,
     DialogComponent,
-    BuyNowTemplateComponent
+    BuyNowTemplateComponent,
+    MatCardHoverDirective,
+    ColorDirective
   ],
   entryComponents: [
     LcuLimitedTrialWelcomeElementComponent,

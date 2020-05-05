@@ -31,6 +31,7 @@ export class DialogComponent implements OnInit, OnDestroy {
 
   public Accept(): void {
     window.open('https://fathym.com/pricing/', '_blank');
+    this.dialogRef.close();
   }
 
   public ngOnDestroy(): void {
