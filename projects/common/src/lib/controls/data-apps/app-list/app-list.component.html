@@ -11,7 +11,7 @@
         <!--'cursor-pointer': State?.ActiveApp?.Name !== app.Name -->
         <!--(click)="State?.ActiveApp?.Name !== app.Name && SetActiveApp(app)"-->
     <div fxLayout="row">
-        <div>
+        <div lcuColor="warn">
             <mat-icon matTooltip="Public App" *ngIf="!app.IsPrivate">lock_open</mat-icon>
             <mat-icon matTooltip="Private App" *ngIf="app.IsPrivate">lock</mat-icon>
         </div>
@@ -24,7 +24,7 @@
     </div>
 
     <mat-card-actions fxLayoutAlign="end" *ngIf="!State.AddingApp">
-        <button 
+        <button
             *ngIf="State?.ActiveApp?.Name !== app.Name"
             mat-button color="accent" 
             (click)="SetActiveApp(app)" 

@@ -8,15 +8,23 @@ $global-primary: mat-color(map-get($global-theme, primary), 500);
 $global-accent: mat-color(map-get($global-theme, accent), 500);
 $global-warn: mat-color(map-get($global-theme, warn), 500);
 
-.global-primary {
+@mixin global-primary-hue($hue) {
+  background-color: mat-color(map-get($global-theme, primary), $hue) !important;
+}
+
+:export {
+  primaryColor: mat-color(map-get($global-theme, primary), 500);
+}
+
+.fathym-primary {
   background-color: mat-color(map-get($global-theme, primary), 500) !important;
 }
 
-.global-accent {
+.fathym-accent {
   background-color: mat-color(map-get($global-theme, accent), 500) !important;
 }
 
-.global-warn {
+.fathym-warn {
   background-color: mat-color(map-get($global-theme, warn), 500) !important;
 }
 
@@ -34,16 +42,16 @@ $global-warn: mat-color(map-get($global-theme, warn), 500);
   * the above theme-color, however, in this instance you need to know
   * the name of the palette you want to use($fathym-ivy-primary, $fathym-ivy-accent, $fathym-ivy-warn, etc.) - Shannon
   */
-  background-color: palette-color($fathym-ivy-primary, A400) !important;
+  // background-color: palette-color($fathym-ivy-primary, A400) !important;
 }
 
-.accent-divider {
-  // background-color: palette-color($fathym-ivy-primary, A400) !important;
-  background-color: mat-color(map-get($global-theme, primary), A400) !important;
-  width: 1px;
-  @extend .margin-top-3;
-  @extend .padding-bottom-3;
-}
+// .accent-divider {
+//   // background-color: palette-color($fathym-ivy-primary, A400) !important;
+//   background-color: mat-color(map-get($global-theme, primary), A400) !important;
+//   width: 1px;
+//   @extend .margin-top-3;
+//   @extend .padding-bottom-3;
+// }
 
 .thinky-logo {
   background-image: fathym-logo(thinky-circle, mat-color(map-get($global-theme, warn), 500), .7);
@@ -58,33 +66,3 @@ $global-warn: mat-color(map-get($global-theme, warn), 500);
 }
 
 @include theme-setup($global-theme);
-
-// part of https://dev.to/martinmcwhorter/extending-angular-material-theme-system-n50
-// @mixin fathym-theme-properties($theme, $property, $hue) {
-//   $primary: map-get($theme, primary);
-//   $accent: map-get($theme, accent);
-//   $warn: map-get($theme, warn);
-//   $success: map-get($theme, success);
-//   $background: map-get($theme, background);
-//   $foreground: map-get($theme, foreground);
-
-//   &.mat-primary {
-//     #{$property}: mat-color($primary, $hue);
-//   }
-//   &.mat-accent {
-//     #{$property}: mat-color($accent, $hue);
-//   }
-//   &.mat-warn {
-//     #{$property}: mat-color($warn, $hue);
-//   }
-//   &.mat-success {
-//     #{$property}: mat-color($success, $hue);
-//   }
-
-//   &.mat-primary, &.mat-accent, &.mat-warn, &.mat-success, &[disabled] {
-//     &[disabled] {
-//       $palette: if($property == 'color', $foreground, $background);
-//       #{$property}: mat-color($palette, disabled-button);
-//     }
-//   }
-// }

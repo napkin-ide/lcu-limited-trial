@@ -1,5 +1,9 @@
 
-<div class="lcu-data-apps-config-manager" *ngIf="State">
+<div class="spread" *ngIf="State.Loading">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div class="lcu-data-apps-config-manager" *ngIf="State && !State.Loading">
   <mat-toolbar>
     <button *ngIf="drawer" mat-icon-button (click)="drawer.toggle()">
       <mat-icon
@@ -35,10 +39,6 @@
     </div>
 
   </mat-toolbar>
-
-  <ng-container *ngIf="State.Loading">
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-  </ng-container>
 
   <mat-drawer-container class="drawer" autosize>
     <mat-drawer mode="side" #drawer opened>

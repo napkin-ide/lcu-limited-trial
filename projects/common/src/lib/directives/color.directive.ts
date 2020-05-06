@@ -1,19 +1,28 @@
 import { Directive, Input, ElementRef, Renderer2 } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 
-// type ColorClasses = 'mat-primary' | 'mat-accent' | 'mat-warn' | 'mat-success' | undefined;
-type ColorClasses = 'global-primary' | 'global-accent' | 'global-warn';
+/**
+ * SCSS class types
+ */
+type ColorClasses = 'fathym-primary' | 'fathym-accent' | 'fathym-warn';
 
 @Directive({
   selector: '[lcuColor]'
 })
+
 export class ColorDirective {
 
-// https://dev.to/martinmcwhorter/extending-angular-material-theme-system-n50
+/**
+ * Set the current theme class to the element
+ */
+  @Input() set lcuColor(val: ColorClasses) {
+    this.renderer.addClass(this.element.nativeElement, `fathym-${val}`);
 
-  @Input() set lcuColor(val: ThemePalette) {
-    this.renderer.addClass(this.element.nativeElement, `global-${val}`);
-    // this.renderer.addClass(this.element.nativeElement, value);
+    // this.readProperty('background-color');
+  }
+
+  protected readProperty(property: string): void {
+    console.log('element', window.getComputedStyle(this.element.nativeElement).getPropertyValue(property));
   }
 
   constructor(

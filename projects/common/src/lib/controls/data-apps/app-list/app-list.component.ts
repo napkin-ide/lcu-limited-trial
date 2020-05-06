@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, ViewChild } from '@angular/core';
 import { Application } from '@lcu/common';
 import { LimitedDataAppsManagementStateContext } from '../../../state/data-apps/limited-data-apps-management-state.context';
 import { LimitedDataAppsManagementState } from '../../../state/data-apps/limited-data-apps-management.state';
+import { ReadStylePropertyDirective } from '../../../directives/read-style-property.directive';
 
 @Component({
   selector: 'lcu-app-list',
@@ -43,6 +44,8 @@ export class AppListComponent implements OnInit, AfterViewInit {
 
       this.handleStateChanges();
     });
+
+    // console.log('primary color', styles.primaryColor);
   }
 
   public ngAfterViewInit(): void {
