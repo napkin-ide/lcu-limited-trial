@@ -20,6 +20,7 @@ import { DialogComponent } from './controls/modals/dialog/dialog.component';
 import { BuyNowTemplateComponent } from './elements/data-apps/modal-templates/buy-now-template/buy-now-template.component';
 import { MatCardHoverDirective } from './directives/mat-card-hover.directive';
 import { ColorDirective } from './directives/color.directive';
+import { ReadStylePropertyDirective } from './directives/read-style-property.directive';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ColorDirective } from './directives/color.directive';
     DialogComponent,
     BuyNowTemplateComponent,
     MatCardHoverDirective,
-    ColorDirective
+    ColorDirective,
+    ReadStylePropertyDirective
   ],
   imports: [
     FathymSharedModule,
@@ -56,7 +58,8 @@ import { ColorDirective } from './directives/color.directive';
     DialogComponent,
     BuyNowTemplateComponent,
     MatCardHoverDirective,
-    ColorDirective
+    ColorDirective,
+    ReadStylePropertyDirective
   ],
   entryComponents: [
     LcuLimitedTrialWelcomeElementComponent,

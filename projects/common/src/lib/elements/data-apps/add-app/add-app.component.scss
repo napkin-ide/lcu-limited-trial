@@ -1,1 +1,8 @@
+@import "../../../../../../common/assets/common-styles";
 
+.accent-divider {
+    // background-color: mat-color(map-get($global-theme, primary), A400) !important;
+    width: 2px;
+    @extend .margin-top-3;
+    @extend .padding-bottom-3;
+  }
