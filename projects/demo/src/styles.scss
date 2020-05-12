@@ -1,15 +1,29 @@
-@import "../../common/assets/common-styles";
+/**
+* Common theme ($global-theme, theme-setup(), dynamic style classes, ...)
+*/
+// @import "../../common/assets/common-theme";
+@import "../../../node_modules/@lcu/common/assets/theming/common-theme";
+
+/**
+* Third party vendor styles (jsplumb, Fathym, ...)
+*/
+@import "../../common/assets/common-vendor";
+
+/**
+* Set specific styles for nested components
+*/
 @import "./app/app.component.scss";
-@import '../../../node_modules/jsplumbtoolkit/dist/css/syntax-highlighter.css';
-@import '../../../node_modules/jsplumbtoolkit/dist/css/jsplumbtoolkit-defaults.css';
-@import '../../../node_modules/jsplumbtoolkit/dist/css/jsplumbtoolkit-demo.css';
 
-.app-background {
-  display: flex;
-  flex-direction: column;
-  min-height: -webkit-fill-available;
-  min-width: 300px;
-  max-height: -webkit-fill-available;
-}
+/**
+* Can set a specific theme, doesn't have to be a Fathym theme
+*
+* If no theme is specified, the current theme will default to fathym-ivy-theme
+*
+* @param 1 theme to set the application to
+* @param 2 to use specific Fathym branded elements, can be ommited
+*/
+// @include theme-setup(fathym-ivy-theme(true), false);
 
- @include lcu-component-theme();
+@include lcu-component-theme();
+ 
+
