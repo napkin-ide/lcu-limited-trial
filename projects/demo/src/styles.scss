@@ -22,7 +22,7 @@
 * @param 1 theme to set the application to
 * @param 2 to use specific Fathym branded elements, can be ommited
 */
-// @include theme-setup(fathym-ivy-theme(true), false);
+@include theme-setup(fathym-sea-green-theme(true), false);
 
 @include lcu-component-theme();
  
