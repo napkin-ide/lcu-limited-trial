@@ -1,4 +1,5 @@
 @mixin lcu-component-theme() {
+  
   $header-height: 64px;
 
   .lcu-toolbar {
@@ -21,7 +22,7 @@
       }
 
       .title-text {
-        color: mat-color(map-get($global-theme, primary), default-contrast);
+        color: mat-color(map-get($global-theme, accent), default-contrast);
         text-decoration: none;
 
         &:hover {

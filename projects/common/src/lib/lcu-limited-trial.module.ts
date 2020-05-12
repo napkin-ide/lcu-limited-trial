@@ -3,7 +3,7 @@ import { LcuDataFlowModule } from '@napkin-ide/lcu-data-flow-common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FathymSharedModule, MaterialModule } from '@lcu/common';
+import { FathymSharedModule, MaterialModule, DirectiveModule } from '@lcu/common';
 import { AppListComponent } from './controls/data-apps/app-list/app-list.component';
 import { LimitedDataAppsManagementStateContext } from './state/data-apps/limited-data-apps-management-state.context';
 import { LimitedDataFlowManagementStateContext } from './state/data-flow/limited-data-flow-management-state.context';
@@ -19,7 +19,6 @@ import { JourneyCardComponent } from './elements/welcome/journey-card/journey-ca
 import { DialogComponent } from './controls/modals/dialog/dialog.component';
 import { BuyNowTemplateComponent } from './elements/data-apps/modal-templates/buy-now-template/buy-now-template.component';
 import { MatCardHoverDirective } from './directives/mat-card-hover.directive';
-import { ColorDirective } from './directives/color.directive';
 import { ReadStylePropertyDirective } from './directives/read-style-property.directive';
 
 @NgModule({
@@ -36,7 +35,6 @@ import { ReadStylePropertyDirective } from './directives/read-style-property.dir
     DialogComponent,
     BuyNowTemplateComponent,
     MatCardHoverDirective,
-    ColorDirective,
     ReadStylePropertyDirective
   ],
   imports: [
@@ -45,7 +43,8 @@ import { ReadStylePropertyDirective } from './directives/read-style-property.dir
     ReactiveFormsModule,
     FlexLayoutModule,
     MaterialModule,
-   LcuDataFlowModule.forRoot()
+    DirectiveModule,
+    LcuDataFlowModule.forRoot()
   ],
   exports: [
     LcuLimitedTrialWelcomeElementComponent,
@@ -57,9 +56,7 @@ import { ReadStylePropertyDirective } from './directives/read-style-property.dir
     AddAppComponent,
     DialogComponent,
     BuyNowTemplateComponent,
-    MatCardHoverDirective,
-    ColorDirective,
-    ReadStylePropertyDirective
+    MatCardHoverDirective
   ],
   entryComponents: [
     LcuLimitedTrialWelcomeElementComponent,
@@ -71,7 +68,8 @@ import { ReadStylePropertyDirective } from './directives/read-style-property.dir
     AppListComponent,
     AddAppComponent,
     DialogComponent,
-    BuyNowTemplateComponent
+    BuyNowTemplateComponent,
+
   ]
 })
 export class LcuLimitedTrialModule {

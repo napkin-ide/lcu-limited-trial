@@ -1,8 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { Application } from '@lcu/common';
 import { LimitedDataAppsManagementStateContext } from '../../../state/data-apps/limited-data-apps-management-state.context';
 import { LimitedDataAppsManagementState } from '../../../state/data-apps/limited-data-apps-management.state';
-import { ReadStylePropertyDirective } from '../../../directives/read-style-property.directive';
 
 @Component({
   selector: 'lcu-app-list',
@@ -44,13 +43,11 @@ export class AppListComponent implements OnInit, AfterViewInit {
 
       this.handleStateChanges();
     });
-
-    // console.log('primary color', styles.primaryColor);
   }
 
   public ngAfterViewInit(): void {
-     const primaryColor: string = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
-     document.documentElement.style.setProperty('--primary-color', primaryColor);
+    //  const primaryColor: string = getComputedStyle(document.documentElement).getPropertyValue('--primary-color');
+    //  document.documentElement.style.setProperty('--primary-color', primaryColor);
 
     //  if (document.getElementsByClassName) {
     //   const element: any = document.getElementsByClassName('active-item');
