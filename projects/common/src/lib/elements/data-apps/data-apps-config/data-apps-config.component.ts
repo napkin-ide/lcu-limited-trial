@@ -1,10 +1,15 @@
+import { DialogComponent } from './../../../controls/modals/dialog/dialog.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, Validators, FormBuilder, AbstractControl, FormControl } from '@angular/forms';
 import { debounceTime, switchMap, map } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { LimitedDataAppsManagementState } from '../../../state/data-apps/limited-data-apps-management.state';
 import { LimitedDataAppsManagementStateContext } from '../../../state/data-apps/limited-data-apps-management-state.context';
 import { NPMService } from '@napkin-ide/lcu-data-apps-common';
+import { DAFViewApplicationConfig } from '@lcu/common';
+import { BuyNowTemplateComponent } from '../modal-templates/buy-now-template/buy-now-template.component';
+import { DialogModel } from '../../../models/dialog.model';
 
 @Component({
   selector: 'lcu-data-apps-config',
@@ -139,14 +144,22 @@ export class DataAppsConfigComponent implements OnInit {
     }
   }
 
-  public SaveAppView() {
-    this.State.Loading = true;
+  // public SaveAppView(): void {
+  //   this.State.Loading = true;
 
-    this.state.SaveAppView({
-      ...this.State.ActiveDAFApp,
+  //   this.state.SaveAppView({
+  //     ...this.State.ActiveDAFApp,
+  //     NPMPackage: this.NPMPackageControl.value,
+  //     PackageVersion: this.NPMPackageVersionControl.value
+  //   });
+  // }
+
+  public SaveDAFApp(): void {
+
+    this.state.SaveDAFApp({
+      ...this.State.CurrentAppView,
       NPMPackage: this.NPMPackageControl.value,
-      PackageVersion: this.NPMPackageVersionControl.value
-    });
+      PackageVersion: this.NPMPackageVersionControl.value });
   }
 
   /**

@@ -1,0 +1,11 @@
+/**
+* fathym-gloabl styles (miscellaneous, fonts, mixins, ...)
+*/
+@import "../../../node_modules/@lcu/common/assets/styles/fathym-global.styles";
+
+/**
+* jsplumbtoolkit styles
+*/
+@import '../../../node_modules/jsplumbtoolkit/dist/css/syntax-highlighter.css';
+@import '../../../node_modules/jsplumbtoolkit/dist/css/jsplumbtoolkit-defaults.css';
+@import '../../../node_modules/jsplumbtoolkit/dist/css/jsplumbtoolkit-demo.css';

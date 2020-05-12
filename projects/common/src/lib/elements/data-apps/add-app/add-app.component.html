@@ -7,7 +7,8 @@
       (DA)
     </mat-card-subtitle>
   </mat-card-header>
-  <mat-divider color="accent"></mat-divider>
+
+  <mat-divider></mat-divider>
   <div *ngIf="!State.Loading" fxLayout="row">
       <div fxFlex="30" class="padding-3 mat-body margin-top-3">
         Data applications are quick and easy ways to build and deliver enterprise scalable experiences to your users. 
@@ -17,7 +18,7 @@
         </p>
         
       </div>
-      <div class="accent-divider"></div>
+      <div lcuThemeColor="primary" class="accent-divider"></div>
         <form class="padding-left-3 margin-top-3" [formGroup]="NewDataAppFormGroup" (ngSubmit)="CreateApp()">
           <mat-form-field class="mat-full-width">
             <input matInput placeholder="Application Name" formControlName="name" 

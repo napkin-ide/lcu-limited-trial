@@ -1,5 +1,4 @@
 
-
 <mat-card *ngIf="!State.Loading" class="margin-bottom-1 margin-left-1 margin-top-5">
     <div fxLayout="row">
         <mat-card-header>
@@ -30,7 +29,7 @@
         <ng-container *ngIf="!State.Loading">
             <mat-tab-group mat-stretch-tabs>
               <mat-tab label="View Configuration">
-                <form class="spread" [formGroup]="DAFViewAppFormGroup" (ngSubmit)="SaveAppView()" *ngIf="!State.Loading">
+                <form class="spread" [formGroup]="DAFViewAppFormGroup" (ngSubmit)="SaveDAFApp()" *ngIf="!State.Loading">
                   <mat-form-field class="mat-full-width">
                     <input matInput placeholder="Application Id" formControlName="appId"/>
                     <a 
@@ -58,7 +57,7 @@
                     </mat-autocomplete>
                   </mat-form-field>
 
-                  <mat-form-field class="mat-full-width">
+                  <mat-form-field class="mat-full-width" *ngIf="NPMPackageControl.value !== 'N/A'">
                     <!-- <input matInput placeholder="Package Version" formControlName="pkgVer" required /> -->
 
                       <mat-select formControlName="pkgVer" placeholder="NPM Package Version">
@@ -84,7 +83,7 @@
                     <button 
                       type="submit" 
                       mat-raised-button color="accent" 
-                      [disabled]="!DAFViewAppFormGroup.valid || DisableFormFields">
+                      [disabled]="!DAFViewAppFormGroup.valid">
                       Save View Config
                     </button>
                   </div>
@@ -123,6 +122,6 @@
           </ng-container>
     </mat-card-content>
     <mat-card-actions fxLayoutAlign="end">
-        
+      <!-- <button mat-raised-button color="accent" (click)="OpenBuyNowModal()">Buy Now</button> -->
     </mat-card-actions>
 </mat-card>

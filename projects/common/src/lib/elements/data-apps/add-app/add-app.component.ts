@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { LimitedDataAppsManagementState } from '../../../state/data-apps/limited-data-apps-management.state';
 import { LimitedDataAppsManagementStateContext } from '../../../state/data-apps/limited-data-apps-management-state.context';
-import { Application } from '@lcu/common';
+import { Application, DAFViewApplicationConfig } from '@lcu/common';
 
 
 @Component({
@@ -136,5 +136,4 @@ export class AddAppComponent implements OnInit {
   protected handleStateChanges(): void {
    
   }
-
 }

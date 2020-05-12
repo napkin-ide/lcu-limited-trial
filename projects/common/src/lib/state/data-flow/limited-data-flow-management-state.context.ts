@@ -43,10 +43,10 @@ export class LimitedDataFlowManagementStateContext extends StateContext<
     });
   }
 
-  public SetActiveDataFlow(dataFlowLookup: string) {
+  public SetActiveDataFlow(dataFlow: DataFlow) {
     this.Execute({
       Arguments: {
-        DataFlowLookup: dataFlowLookup
+        DataFlow: dataFlow
       },
       Type: 'SetActiveDataFlow'
     });
