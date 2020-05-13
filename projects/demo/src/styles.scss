@@ -1,8 +1,8 @@
 /**
 * Common theme ($global-theme, theme-setup(), dynamic style classes, ...)
 */
-// @import "../../common/assets/common-theme";
-@import "../../../node_modules/@lcu/common/assets/theming/common-theme";
+@import "../../common/assets/common-variables";
+// @import "../../../node_modules/@lcu/common/assets/theming/common-theme";
 
 /**
 * Third party vendor styles (jsplumb, Fathym, ...)
@@ -13,6 +13,7 @@
 * Set specific styles for nested components
 */
 @import "./app/app.component.scss";
+// @import "./app/controls/data-app/data-app.component.scss";
 
 /**
 * Can set a specific theme, doesn't have to be a Fathym theme
