@@ -6,7 +6,7 @@
         let app of AppData;
         let first = first;
         let last = last"
-        [ngClass]="{ 'primary': State?.ActiveApp?.Name === app.Name && State.AddingApp === false}"
+        [ngClass]="{ 'active-app': State?.ActiveApp?.Name === app.Name && State.AddingApp === false}"
         class="margin-1">
 
         <!--'cursor-pointer': State?.ActiveApp?.Name !== app.Name -->
@@ -26,7 +26,7 @@
         </div>
         <mat-icon 
         *ngIf="State?.ActiveApp?.Name === app.Name && State.AddingApp === false"
-        lcuThemeColor="accent-900">grade</mat-icon>
+        lcuThemeColor="accent-A700">grade</mat-icon>
     </div>
 
     <mat-card-actions fxLayoutAlign="end" *ngIf="!State.AddingApp">
