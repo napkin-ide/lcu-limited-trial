@@ -26,7 +26,7 @@
         </div>
         <mat-icon 
         *ngIf="State?.ActiveApp?.Name === app.Name && State.AddingApp === false"
-        lcuThemeColor="accent-900">grade</mat-icon>
+        class="star-indication" lcuThemeColor="accent-300">grade</mat-icon>
     </div>
 
     <mat-card-actions fxLayoutAlign="end" *ngIf="!State.AddingApp">

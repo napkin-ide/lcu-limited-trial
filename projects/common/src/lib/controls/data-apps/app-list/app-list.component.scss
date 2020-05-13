@@ -1,0 +1,6 @@
+@import "../../../../../assets/common-variables";
+
+.star-indication {
+    // color: $global-warn;
+    color: mat-color(map-get($global-theme, primary), A700);
+}
