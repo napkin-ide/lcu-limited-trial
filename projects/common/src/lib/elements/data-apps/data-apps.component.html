@@ -19,6 +19,7 @@
     <div>
       <button
         *ngIf="!State.AddingApp"
+        id="createNewDataAppBtn"
         (click)="ToggleAddingApp(true)"
         mat-flat-button matTooltip="Create a new application" color="accent">
         <mat-icon>add_circle</mat-icon>
@@ -26,6 +27,7 @@
       </button>
       <button
         *ngIf="State.AddingApp"
+        id="cancelAddNewBtn"
         (click)="ToggleAddingApp(false)"
         mat-flat-button matTooltip="Cancel new application" color="warn">
         <mat-icon>cancel</mat-icon>
@@ -39,7 +41,7 @@
     <mat-drawer mode="side" #drawer opened>
       <div fxLayout="column" fxLayoutGap="3px">
         <mat-tab-group>
-          
+
           <!-- Public Applications -->
           <mat-tab>
             <ng-template matTabLabel>
