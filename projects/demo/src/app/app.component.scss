@@ -22,7 +22,7 @@
       }
 
       .title-text {
-        // color: mat-color(map-get($global-theme, accent), default-contrast);
+        color: mat-color(map-get($global-theme, accent), default-contrast);
         text-decoration: none;
 
         &:hover {
