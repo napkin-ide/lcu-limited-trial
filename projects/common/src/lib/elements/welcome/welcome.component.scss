@@ -1,0 +1,36 @@
+@import "../../../../../../node_modules/@lcu/common/assets/styles/branding/logos/fathym-icons";
+
+.welcome-container {
+  height: 100%;
+
+  .intro-container {
+    padding: 1em;
+
+    .thinky-logo {
+      background-image: fathym-logo(thinky-circle, rgba(74, 145, 142, 1));
+      background-position: center;
+      background-repeat:no-repeat;
+      box-sizing: border-box;
+      height: 150px;
+      width: 100%;
+    }
+
+    .fathym-logo {
+      background-image: fathym-logo(fathym-logo, rgba(74, 145, 142, 1));
+      background-position: center;
+      background-repeat:no-repeat;
+      box-sizing: border-box;
+      height: 100px;
+      margin-top: 1em;
+      width: 100%;
+    }
+
+    p {
+      text-align: justify;
+    }
+  }
+
+  .journey-container {
+    padding: 1em;
+  }
+}
