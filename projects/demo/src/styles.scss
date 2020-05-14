@@ -1,8 +1,11 @@
 /**
 * Common theme ($global-theme, theme-setup(), dynamic style classes, ...)
 */
-@import "../../common/assets/common-variables";
+// @import "../../common/assets/common-variables";
 // @import "../../../node_modules/@lcu/common/assets/theming/common-theme";
+
+$global-theme: '';
+$my-global-theme-test: '';
 
 /**
 * Third party vendor styles (jsplumb, Fathym, ...)
@@ -23,7 +26,7 @@
 * @param 1 theme to set the application to, boolean is for dark or light mode
 * @param 2 to use specific Fathym branded elements, can be ommited
 */
-// @include theme-setup(fathym-ivy-theme(false), false);
+// @include theme-setup(fathym-contrast-theme(false), false);
 @include lcu-component-theme();
  
 
