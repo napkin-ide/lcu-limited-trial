@@ -1,8 +1,8 @@
 /**
 * Common theme ($global-theme, theme-setup(), dynamic style classes, ...)
 */
-// @import "../../common/assets/common-theme";
-@import "../../../node_modules/@lcu/common/assets/theming/common-theme";
+@import "../../common/assets/common-variables";
+// @import "../../../node_modules/@lcu/common/assets/theming/common-theme";
 
 /**
 * Third party vendor styles (jsplumb, Fathym, ...)
@@ -13,17 +13,19 @@
 * Set specific styles for nested components
 */
 @import "./app/app.component.scss";
+// @import "./app/controls/data-app/data-app.component.scss";
+
+$global-theme: fathym-sea-green-theme(true);
 
 /**
 * Can set a specific theme, doesn't have to be a Fathym theme
 *
 * If no theme is specified, the current theme will default to fathym-ivy-theme
 *
-* @param 1 theme to set the application to
+* @param 1 theme to set the application to, boolean is for dark or light mode
 * @param 2 to use specific Fathym branded elements, can be ommited
 */
-@include theme-setup(fathym-sea-green-theme(true), false);
-
+@include theme-setup($global-theme, false);
 @include lcu-component-theme();
  
 
