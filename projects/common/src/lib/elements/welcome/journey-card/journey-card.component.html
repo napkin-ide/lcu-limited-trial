@@ -8,21 +8,24 @@
     </mat-card-header>
     <div fxLayout="row">
         <div fxFlex="50" class="mat-body">{{ JourneyData.Description }}</div>
-        
-        <div>
-            <iframe 
-                *ngIf="JourneyData.ContentType === JourneyContentTypes.Video" 
-                [src]="JourneyData.ContentURL | safe" 
+
+        <div fxFlex fxLayout="column">
+            <iframe
+                *ngIf="JourneyData.ContentType === JourneyContentTypes.Video"
+                [src]="JourneyData.ContentURL | safe"
                 width="100%"
-                height="100px" 
-                webkitallowfullscreen 
-                mozallowfullscreen 
+                height="100px"
+                webkitallowfullscreen
+                mozallowfullscreen
                 allowfullscreen></iframe>
 
-            <img 
+            <img
                 *ngIf="JourneyData.ContentType === JourneyContentTypes.Image"
                 [src]="JourneyData.ContentURL"
                 class="journey-image" />
+
+            <!-- This button is used by the Thinkybot Guided Tour -->
+            <button mat-raised-button color="primary" class="margin-2">Start Journey!</button>
         </div>
     </div>
 </mat-card>
