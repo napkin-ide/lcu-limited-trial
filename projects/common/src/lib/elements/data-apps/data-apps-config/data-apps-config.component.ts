@@ -50,6 +50,16 @@ export class DataAppsConfigComponent implements OnInit {
    */
   public State: LimitedDataAppsManagementState;
 
+  /**
+   * Public/Private toggle label
+   */
+  public ToggleLabel: string;
+
+  /**
+   * Public/Private tooltip value
+   */
+  public ToggleTooltip: string;
+
   // Fields
 
   /**
@@ -73,11 +83,20 @@ export class DataAppsConfigComponent implements OnInit {
     return this.DAFViewAppFormGroup.get('appId');
   }
 
+  /**
+   * IsPrivate field
+   */
+  public get IsPrivateControl(): AbstractControl {
+    return this.DAFViewAppFormGroup.get('isPrivate');
+  }
+
   constructor(protected state: LimitedDataAppsManagementStateContext,
               protected formBldr: FormBuilder,
               protected npm: NPMService) {
 
                 this.DisableFormFields = true;
+                this.ToggleLabel = 'App is Public';
+                this.ToggleTooltip = 'App is set to public';
   }
 
   public ngOnInit(): void {
@@ -175,7 +194,8 @@ export class DataAppsConfigComponent implements OnInit {
     this.DAFViewAppFormGroup = this.formBldr.group({
       npmPkg: new FormControl({ value: '', disabled: this.DisableFormFields }, [Validators.required]),
       pkgVer: new FormControl({ value: '', disabled: false }, [Validators.required]),
-      appId: new FormControl({ value: '', disabled: this.DisableFormFields }, [Validators.required])
+      appId: new FormControl({ value: '', disabled: this.DisableFormFields }, [Validators.required]),
+      isPrivate: new FormControl({ value: false, disabled: true }, [Validators.required])
     });
 
     this.onChanges();
@@ -199,6 +219,11 @@ export class DataAppsConfigComponent implements OnInit {
       .subscribe(packages => {
         this.NPMPackages = packages;
       });
+
+    this.IsPrivateControl.valueChanges.subscribe((val: boolean) => {
+      this.ToggleLabel = val ? 'App is Private' : 'App is Public';
+      this.ToggleTooltip = val ? 'App is set to private' : 'App is set to public';
+    });
   }
 
   /**
