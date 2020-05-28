@@ -1,0 +1,32 @@
+:host ::ng-deep {
+  .data-flow-manager-container {
+    height: 100%;
+
+    .open-icon {
+      transform: rotate(180deg);
+    }
+
+    .mat-drawer,
+    .mat-drawer-container {
+      background-color: transparent;
+    }
+
+    .mat-drawer-container {
+      height: calc(100% - 64px);
+
+      .mat-drawer-content {
+        .data-flow-manager-content {
+          height: 100%;
+
+          .data-flow-manager-content-form {
+            align-items: center;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            padding: 5%;
+          }
+        }
+      }
+    }
+  }
+}

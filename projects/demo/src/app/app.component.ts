@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { ThemeColorPickerService } from '@lcu/common';
 
@@ -10,7 +10,7 @@ import { ThemeColorPickerService } from '@lcu/common';
 export class AppComponent implements OnInit {
   public ThemeClass: BehaviorSubject<string>;
   public Themes: Array<any>;
-  public Title = 'LCU-Starter-App';
+  public Title = 'Fathym Limited Trial';
 
   constructor(
     protected themeService: ThemeColorPickerService

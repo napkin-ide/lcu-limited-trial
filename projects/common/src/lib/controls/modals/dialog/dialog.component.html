@@ -1,0 +1,8 @@
+<h2 mat-dialog-title>{{ Data.Title }}</h2>
+<mat-dialog-content>
+    <ng-template #target></ng-template>
+</mat-dialog-content>
+<mat-dialog-actions fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end">
+  <button mat-button (click)="OnNoClick()">{{ Data.CancelButtonLabel }}</button>
+  <button mat-raised-button color="primary" cdkFocusInitial (click)="Accept()">{{ Data.AcceptButtonLabel }}</button>
+</mat-dialog-actions>

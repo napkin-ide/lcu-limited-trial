@@ -9,9 +9,8 @@ export class LimitedDataAppsManagementState {
 
   public ActiveHost: string;
 
-  // not sure where this comes from, don't see it in state data
-  // maybe I have to build this out?
-  public ActiveView: DAFViewApplicationConfig;
+  // I'm adding this property
+  public CurrentAppView: DAFViewApplicationConfig;
 
   public AddingApp: boolean;
 
@@ -29,7 +28,8 @@ export class LimitedDataAppsManagementState {
 
   public Loading?: boolean;
 
-  public VersionLookups?: boolean;
+  // public VersionLookups?: boolean;
+  public VersionLookups?: any;
 }
 
 export enum DAFAppTypes {

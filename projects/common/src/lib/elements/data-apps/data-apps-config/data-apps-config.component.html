@@ -1,0 +1,135 @@
+
+<mat-card *ngIf="!State.Loading" id="dataAppsConfigCard" class="margin-bottom-1 margin-left-1 margin-top-5">
+    <div fxLayout="row">
+        <mat-card-header>
+            <mat-card-title>
+              <div fxLayout="row" fxLayoutAlign="start center">
+                <span class="data-application-label" class="margin-top-2">{{ State.ActiveApp.Name }}</span>
+                <a
+                  *ngIf="State.CurrentAppView?.BaseHref"
+                  matTooltip="Open Application in Browser"
+                  mat-icon-button
+                  color="primary"
+                  [href]="State.ActiveDAFApp['BaseHref']"
+                  target="_blank">
+                  <mat-icon>open_in_browser</mat-icon>
+                </a>
+              </div>
+            </mat-card-title>
+            <mat-card-subtitle>
+              <!-- Brief Description -->
+            </mat-card-subtitle>
+            <!-- <mat-chip-list  *ngIf="State.ActiveApp.IsPrivate">
+              <mat-chip color="accent" selected>private</mat-chip>
+            </mat-chip-list> -->
+        </mat-card-header>
+    </div>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+        <ng-container *ngIf="!State.Loading">
+            <mat-tab-group mat-stretch-tabs>
+              <mat-tab label="View Configuration">
+                <form class="spread" [formGroup]="DAFViewAppFormGroup" (ngSubmit)="SaveDAFApp()" *ngIf="!State.Loading">
+                  <mat-form-field class="mat-full-width">
+                    <input matInput placeholder="Application Id" formControlName="appId"/>
+                    <a
+                      mat-icon-button
+                      color="accent"
+                      matSuffix
+                      matTooltip="Copy Application ID to clipboard"
+                      (click)="CopyAppIdToClipBoard(State.ActiveApp.ID)">
+                      <mat-icon class="margin-right-1">file_copy</mat-icon>
+                    </a>
+                  </mat-form-field>
+
+                  <mat-form-field class="mat-full-width">
+
+                    <input matInput placeholder="NPM Package" formControlName="npmPkg" [matAutocomplete]="npmPkg" required />
+
+                    <mat-autocomplete #npmPkg="matAutocomplete" (optionSelected)="PackageSelected($event)">
+                      <ng-container *ngFor="let pkg of NPMPackages">
+                        <mat-option [value]="pkg.Name">
+                          <span>{{ pkg.Name }}</span> |
+
+                          <small>(latest: {{ pkg.Version }})</small>
+                        </mat-option>
+                      </ng-container>
+                    </mat-autocomplete>
+                  </mat-form-field>
+
+                  <mat-form-field class="mat-full-width" *ngIf="NPMPackageControl.value !== 'N/A'">
+                    <!-- <input matInput placeholder="Package Version" formControlName="pkgVer" required /> -->
+
+                      <mat-select formControlName="pkgVer" placeholder="NPM Package Version">
+                        <mat-option *ngFor="let ver of NPMPackageVersions" [value]="ver">
+                          <span>{{ ver }}</span>
+                        </mat-option>
+                      </mat-select>
+
+                    <a
+                      mat-icon-button
+                      matSuffix
+                      color="accent"
+                      matTooltip="Get information about
+                      {{DAFViewAppFormGroup.controls.npmPkg.value}}/
+                      {{DAFViewAppFormGroup.controls.pkgVer.value}} on npmjs.com"
+                      [href]="'https://www.npmjs.com/package/' + DAFViewAppFormGroup.controls.npmPkg.value"
+                      target="_blank">
+                      <mat-icon>help</mat-icon>
+                    </a>
+                  </mat-form-field>
+
+                  <mat-slide-toggle
+                      id="accessControlToggle"
+                      matTooltip="{{ ToggleTooltip }}"
+                      name="isPrivate"
+                      formControlName="isPrivate">
+                      {{ ToggleLabel }}
+                  </mat-slide-toggle>
+
+                  <div class="state-actions" fxLayoutAlign="end">
+                    <button
+                      type="submit"
+                      mat-raised-button color="accent"
+                      [disabled]="!DAFViewAppFormGroup.valid">
+                      Save View Config
+                    </button>
+                  </div>
+                </form>
+              </mat-tab>
+
+              <!-- <mat-tab label="State Configuration">
+                <h2>Coming Soon</h2>
+              </mat-tab> -->
+
+              <mat-tab label="Application Details">
+                <form class="spread" [formGroup]="SaveDataAppFormGroup">
+                  <mat-form-field class="mat-full-width">
+                    <input matInput placeholder="Application Name" formControlName="name" />
+                  </mat-form-field>
+
+                  <mat-form-field class="mat-full-width">
+                    <textarea matInput placeholder="Description" formControlName="desc"></textarea>
+                  </mat-form-field>
+
+                  <mat-form-field class="mat-full-width">
+                    <input matInput placeholder="Path" formControlName="path" />
+                    <button
+                    mat-icon-button
+                    matSuffix
+                    color="accent"
+                    matTooltip="Path to your application based off host URL">
+                    <mat-icon>help</mat-icon>
+                  </button>
+                  </mat-form-field>
+
+                  <!-- <a mat-raised-button color="accent" (click)="SaveDataApp(false)">Save Data App</a> -->
+                </form>
+              </mat-tab>
+            </mat-tab-group>
+          </ng-container>
+    </mat-card-content>
+    <mat-card-actions fxLayoutAlign="end">
+      <!-- <button mat-raised-button color="accent" (click)="OpenBuyNowModal()">Buy Now</button> -->
+    </mat-card-actions>
+</mat-card>

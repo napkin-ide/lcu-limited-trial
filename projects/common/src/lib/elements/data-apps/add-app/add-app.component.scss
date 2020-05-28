@@ -1,0 +1,7 @@
+@import "../../../../../../common/assets/common-vendor";
+
+.accent-divider {
+    width: 2px;
+    @extend .margin-top-3;
+    @extend .padding-bottom-3;
+  }

@@ -4,7 +4,7 @@ import { debounceTime, switchMap, map } from 'rxjs/operators';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { LimitedDataAppsManagementState } from '../../../state/data-apps/limited-data-apps-management.state';
 import { LimitedDataAppsManagementStateContext } from '../../../state/data-apps/limited-data-apps-management-state.context';
-import { NPMService } from '../../../state/limited-trial/npm.service';
+import { NPMService } from '@napkin-ide/lcu-data-apps-common';
 
 @Component({
   selector: 'lcu-data-apps-config',
@@ -41,7 +41,7 @@ export class DataAppsConfigComponent implements OnInit {
   }
 
   /**
-   * 
+   *
    * @param appId id of active app
    */
   public CopyAppIdToClipBoard(appId: string) {
@@ -79,7 +79,7 @@ export class DataAppsConfigComponent implements OnInit {
   }
 
   /**
-   * 
+   *
    * @param event mat option selected event
    */
   public PackageSelected(event: MatAutocompleteSelectedEvent) {
@@ -93,11 +93,11 @@ export class DataAppsConfigComponent implements OnInit {
   public SaveAppView() {
     this.State.Loading = true;
 
-    this.state.SaveAppView({
-      ...this.State.ActiveView,
-      NPMPackage: this.DAFViewAppFormGroup.controls.npmPkg.value,
-      PackageVersion: this.DAFViewAppFormGroup.controls.pkgVer.value
-    });
+    // this.state.SaveAppView({
+    //   ...this.State.ActiveView,
+    //   NPMPackage: this.DAFViewAppFormGroup.controls.npmPkg.value,
+    //   PackageVersion: this.DAFViewAppFormGroup.controls.pkgVer.value
+    // });
   }
 
   /**

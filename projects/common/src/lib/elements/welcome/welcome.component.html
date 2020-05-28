@@ -1,3 +1,46 @@
-<h2>LcuLimitedTrial Welcome Next Steps</h2>
+<div class="welcome-container background" *ngIf="State && !State.Loading">
+  <mat-toolbar>
+    <h2>Welcome to Fathym!</h2>
 
-<p>Do stuff and things!</p>
+    <span class="filler"></span>
+  </mat-toolbar>
+
+  <div fxLayout="row">
+    <div fxFlex="25" fxLayout="column" class="intro-container mat-body margin-right-1">
+        <div class="thinky-logo"></div>
+        <div class="fathym-logo"></div>
+        <p>The Fathym Low-Code Framework enables you to rapidly build data-driven applications.</p>
+        <p>Each element of the Low-Code Framework is built from Low-Code Units – modular and reusable building blocks of code that can be as large as an application, or as small as a data visualization.</p>
+        <p>The framework drastically cuts down development time by automating and applying best practice workflows for cloud infrastructure automation and application management. You can create data applications without having to manage and maintain the underlying infrastructure.</p>
+    </div>
+
+    <div fxFlex="75" fxLayout="column" class="journey-container">
+      <mat-card>
+        <mat-tab-group mat-align-tabs="left">
+            <mat-tab *ngFor="let journeySet of DividedJourneys" label="{{ journeySet.JourneyName }}">
+                <div
+                    fxLayout="row wrap"
+                    fxLayoutAlign="space-between"
+                    fxLayout.sm="column">
+
+                    <div *ngFor="let journey of journeySet.Journeys"
+                        [fxFlex.sm]="100"
+                        [fxFlex.md]="50"
+                        [fxFlex.lg]="33"
+                        class="mat-body margin-top-3">
+                        <lcu-journey-card
+                            *ngIf="ContainsRoleType(journey, journeySet.JourneyName) && journey.Active"
+                            [journey-data]="journey"></lcu-journey-card>
+                    </div>
+
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="spread" *ngIf="State.Loading">
+    <mat-spinner></mat-spinner>
+</div>
