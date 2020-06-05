@@ -1,5 +1,5 @@
 
-<mat-card *ngIf="!State.Loading" class="margin-bottom-1 margin-left-1 margin-top-5">
+<mat-card *ngIf="!State.Loading" id="dataAppsConfigCard" class="margin-bottom-1 margin-left-1 margin-top-5">
     <div fxLayout="row">
         <mat-card-header>
             <mat-card-title>
@@ -32,18 +32,18 @@
                 <form class="spread" [formGroup]="DAFViewAppFormGroup" (ngSubmit)="SaveDAFApp()" *ngIf="!State.Loading">
                   <mat-form-field class="mat-full-width">
                     <input matInput placeholder="Application Id" formControlName="appId"/>
-                    <a 
-                      mat-icon-button 
-                      color="accent" 
-                      matSuffix 
-                      matTooltip="Copy Application ID to clipboard" 
+                    <a
+                      mat-icon-button
+                      color="accent"
+                      matSuffix
+                      matTooltip="Copy Application ID to clipboard"
                       (click)="CopyAppIdToClipBoard(State.ActiveApp.ID)">
                       <mat-icon class="margin-right-1">file_copy</mat-icon>
                     </a>
                   </mat-form-field>
-                  
+
                   <mat-form-field class="mat-full-width">
-                    
+
                     <input matInput placeholder="NPM Package" formControlName="npmPkg" [matAutocomplete]="npmPkg" required />
 
                     <mat-autocomplete #npmPkg="matAutocomplete" (optionSelected)="PackageSelected($event)">
@@ -70,7 +70,7 @@
                       mat-icon-button
                       matSuffix
                       color="accent"
-                      matTooltip="Get information about 
+                      matTooltip="Get information about
                       {{DAFViewAppFormGroup.controls.npmPkg.value}}/
                       {{DAFViewAppFormGroup.controls.pkgVer.value}} on npmjs.com"
                       [href]="'https://www.npmjs.com/package/' + DAFViewAppFormGroup.controls.npmPkg.value"
@@ -79,10 +79,18 @@
                     </a>
                   </mat-form-field>
 
+                  <mat-slide-toggle
+                      id="accessControlToggle"
+                      matTooltip="{{ ToggleTooltip }}"
+                      name="isPrivate"
+                      formControlName="isPrivate">
+                      {{ ToggleLabel }}
+                  </mat-slide-toggle>
+
                   <div class="state-actions" fxLayoutAlign="end">
-                    <button 
-                      type="submit" 
-                      mat-raised-button color="accent" 
+                    <button
+                      type="submit"
+                      mat-raised-button color="accent"
                       [disabled]="!DAFViewAppFormGroup.valid">
                       Save View Config
                     </button>
