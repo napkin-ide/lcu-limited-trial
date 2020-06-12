@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Renderer2 } from '@angular/core';
 import { JourneyContentTypes } from '../../../state/journeys/journeys.state';
 
 @Component({
@@ -8,11 +8,15 @@ import { JourneyContentTypes } from '../../../state/journeys/journeys.state';
 })
 export class JourneyCardComponent implements OnInit {
 
+  public ShowOverlay: boolean;
+
   /**
    * the individual journey data to be displayed in the card
    */
   // tslint:disable-next-line
   protected _journeyData: any;
+
+  @ViewChild('journeyIframe') public iframe: any;
 
   @Input('journey-data')
   set JourneyData(val: any) {
@@ -26,10 +30,17 @@ export class JourneyCardComponent implements OnInit {
     return JourneyContentTypes;
   }
 
-  constructor() {
+  constructor(protected renderer: Renderer2) {
+    this.ShowOverlay = true;
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  public OnIframeLoad(): void {
+    // TODO: We need to utilize Vimeo API to access video controls (i.e. play button)
   }
 
+  public OnVideoClick(): void {
+    this.ShowOverlay = false;
+  }
 }
