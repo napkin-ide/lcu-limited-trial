@@ -46,7 +46,7 @@
 		"@lowcodeunit-devkit/ng-lcu": "^1.9.66",
 		"@lowcodeunit/lazy-element": "0.0.13",
 		"@napkin-ide/lcu-data-apps-common": "^1.6.43",
-		"@napkin-ide/lcu-data-flow-common": "^1.6.38-6861-data-flow-free-trial",
+		"@napkin-ide/lcu-data-flow-common": "^1.7.53-6861-data-flow-free-trial",
 		"@webcomponents/custom-elements": "^1.4.1",
 		"@webcomponents/webcomponentsjs": "^2.4.3",
 		"chart.js": "^2.9.3",
