@@ -1,31 +1,40 @@
-<mat-card style="height: 90%;">
-    <div class="coming-soon-overlay" *ngIf="JourneyData.ComingSoon">
-        <h1>Coming Soon!</h1>
+<mat-card class="journey-card">
+    <div class="iframe-container">
+      <ng-container *ngIf="ShowOverlay">
+        <div fxLayout="column" fxLayoutAlign="center center" class="iframe-overlay">
+          <button mat-fab color="basic" (click)="OnVideoClick()" matTooltip="Play Video" matTooltipPosition="right">
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+          <p>{{ JourneyData.Description }}</p>
+        </div>
+
+        <button mat-fab color="basic" class="play-button-ghost">
+          <mat-icon>play_arrow</mat-icon>
+        </button>
+
+        <!-- TODO: We need a way to access Vimeo API to show Img and access control functionality -->
+        <img
+          src="https://i.vimeocdn.com/video/873005351.webp?mw=600&mh=337&q=70"
+          class="journey-image" />
+      </ng-container>
+
+      <iframe #journeyIframe class="journey-iframe"
+        *ngIf="!ShowOverlay"
+        [src]="JourneyData.ContentURL | safe"
+        width="100%"
+        (load)="OnIframeLoad()"
+        webkitallowfullscreen
+        mozallowfullscreen
+        allowfullscreen></iframe>
     </div>
+
     <mat-card-header>
         <mat-card-title>{{ JourneyData.Name }}</mat-card-title>
         <mat-card-subtitle>{{ JourneyData.Uses.join(', ') }}</mat-card-subtitle>
+
+        <!-- This button is used by the Thinkybot Guided Tour -->
+        <button mat-fab color="primary" id="startIotDevJourneyBtn" matTooltip="Start Journey" matTooltipPosition="left">
+          <mat-icon>launch</mat-icon>
+        </button>
     </mat-card-header>
-    <div fxLayout="row">
-        <div fxFlex="50" class="mat-body">{{ JourneyData.Description }}</div>
-
-        <div fxFlex fxLayout="column">
-            <iframe
-                *ngIf="JourneyData.ContentType === JourneyContentTypes.Video"
-                [src]="JourneyData.ContentURL | safe"
-                width="100%"
-                height="120px"
-                webkitallowfullscreen
-                mozallowfullscreen
-                allowfullscreen></iframe>
-
-            <img
-                *ngIf="JourneyData.ContentType === JourneyContentTypes.Image"
-                [src]="JourneyData.ContentURL"
-                class="journey-image" />
-
-            <!-- This button is used by the Thinkybot Guided Tour -->
-            <button mat-raised-button id="startIotDevJourneyBtn" color="primary" class="margin-2">Start Journey!</button>
-        </div>
-    </div>
 </mat-card>

@@ -107,7 +107,7 @@ export class LcuLimitedTrialDataAppsElementComponent
 
   /**
    * Toggle between adding and canceling a new app
-   * 
+   *
    * @param addNew boolean for adding or canceling the creatinon of a new app
    */
   public ToggleAddingApp(addNew: boolean): void {
@@ -201,9 +201,9 @@ export class LcuLimitedTrialDataAppsElementComponent
       data: new DialogModel(
         {
           Component: BuyNowTemplateComponent,
-          Title: 'Buy It Now',
+          Title: 'Limited Trial',
           CancelButtonLabel: 'No Thanks',
-          AcceptButtonLabel: 'Buy Now'
+          AcceptButtonLabel: 'Upgrade'
         })
     });
   }
