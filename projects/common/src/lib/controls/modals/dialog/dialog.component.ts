@@ -30,7 +30,7 @@ export class DialogComponent implements OnInit, OnDestroy {
   }
 
   public Accept(): void {
-    window.open('https://fathym.com/pricing/', '_blank');
+    window.open('https://www.fathym-it.com/billing/lcu', '_blank');
     this.dialogRef.close();
   }
 
