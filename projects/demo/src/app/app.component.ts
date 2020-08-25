@@ -10,7 +10,7 @@ import { ThemeColorPickerService } from '@lcu/common';
 export class AppComponent implements OnInit {
   public ThemeClass: BehaviorSubject<string>;
   public Themes: Array<any>;
-  public Title = 'Fathym Limited Trial';
+  public Title = 'Fathym Demo';
 
   constructor(
     protected themeService: ThemeColorPickerService
