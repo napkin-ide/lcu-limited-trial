@@ -18,6 +18,6 @@ export class ProvisioningModalComponent {
   }
 
   public UpgradeNow(): void {
-    window.location.href = 'https://fathym.com/pricing/';
+    window.location.href = 'https://www.fathym-it.com/billing/lcu';
   }
 }
