@@ -201,7 +201,7 @@ export class LcuLimitedTrialDataAppsElementComponent
       data: new DialogModel(
         {
           Component: BuyNowTemplateComponent,
-          Title: 'Limited Trial',
+          Title: 'Demo',
           CancelButtonLabel: 'No Thanks',
           AcceptButtonLabel: 'Upgrade'
         })
